@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Forms;
-using MetroFramework.Browser;
-namespace SA_MP_Browser
+
+namespace Browser
 {
     static class Program
     {

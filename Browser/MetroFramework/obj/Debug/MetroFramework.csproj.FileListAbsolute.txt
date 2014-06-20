@@ -1,0 +1,13 @@
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\bin\Debug\MetroFramework.dll
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\bin\Debug\MetroFramework.pdb
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Debug\MetroFramework.csprojResolveAssemblyReference.cache
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Debug\MetroFramework.MetroMessageBoxControl.resources
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Debug\MetroFramework.Properties.Resources.resources
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Debug\MetroFramework.csproj.GenerateResource.Cache
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Debug\MetroFramework.dll
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Debug\MetroFramework.pdb
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\Browser\Browser\MetroFramework\obj\Debug\MetroFramework.csprojResolveAssemblyReference.cache
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\Browser\Browser\MetroFramework\obj\Debug\MetroFramework.MetroMessageBoxControl.resources
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\Browser\Browser\MetroFramework\obj\Debug\MetroFramework.Properties.Resources.resources
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\Browser\Browser\MetroFramework\obj\Debug\MetroFramework.csproj.GenerateResource.Cache
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\Browser\Browser\MetroFramework\obj\Debug\MetroFramework.dll

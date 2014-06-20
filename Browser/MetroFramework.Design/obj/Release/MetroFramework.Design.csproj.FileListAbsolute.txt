@@ -1,0 +1,11 @@
+C:\build\AnyCpu\NET20\MetroFramework.Design.dll
+C:\build\AnyCpu\NET20\MetroFramework.Design.pdb
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework.Design\obj\Release\MetroFramework.Design.dll
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework.Design\obj\Release\MetroFramework.Design.pdb
+C:\build\AnyCpu\NET35\MetroFramework.Design.dll
+C:\build\AnyCpu\NET35\MetroFramework.Design.pdb
+C:\build\AnyCpu\NET40\MetroFramework.Design.dll
+C:\build\AnyCpu\NET40\MetroFramework.Design.pdb
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework.Design\obj\Release\MetroFramework.Design.csprojResolveAssemblyReference.cache
+C:\build\AnyCpu\NET45\MetroFramework.Design.dll
+C:\build\AnyCpu\NET45\MetroFramework.Design.pdb
