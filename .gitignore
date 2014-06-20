@@ -16,3 +16,11 @@
 # Executables
 *.out
 *.app
+
+# Log files
+*.log
+*.tlog
+
+# Debug symbols
+*.pdb
+*.exp
