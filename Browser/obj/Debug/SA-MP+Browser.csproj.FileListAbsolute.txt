@@ -1,0 +1,15 @@
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\obj\Debug\SA-MP+Browser.csprojResolveAssemblyReference.cache
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\obj\Debug\MetroFramework.Browser.MainForm.resources
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\obj\Debug\SA_MP_Browser.Properties.Resources.resources
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\obj\Debug\SA-MP+Browser.csproj.GenerateResource.Cache
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\SA-MP+Browser.exe.config
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\SA-MP+Browser.exe
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\SA-MP+Browser.pdb
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\MetroFramework.Design.dll
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\MetroFramework.dll
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\MetroFramework.Fonts.dll
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\MetroFramework.Design.pdb
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\MetroFramework.Fonts.pdb
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\bin\Debug\MetroFramework.pdb
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\obj\Debug\SA-MP+Browser.exe
+C:\Users\Brennan\Documents\Visual Studio 2012\Projects\SA-MP+Browser\SA-MP+Browser\obj\Debug\SA-MP+Browser.pdb

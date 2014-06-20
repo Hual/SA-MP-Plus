@@ -1,0 +1,10 @@
+C:\build\AnyCpu\NET20\MetroFramework.Fonts.dll
+C:\build\AnyCpu\NET20\MetroFramework.Fonts.pdb
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework.Fonts\obj\Release\MetroFramework.Fonts.dll
+C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework.Fonts\obj\Release\MetroFramework.Fonts.pdb
+C:\build\AnyCpu\NET35\MetroFramework.Fonts.dll
+C:\build\AnyCpu\NET35\MetroFramework.Fonts.pdb
+C:\build\AnyCpu\NET40\MetroFramework.Fonts.dll
+C:\build\AnyCpu\NET40\MetroFramework.Fonts.pdb
+C:\build\AnyCpu\NET45\MetroFramework.Fonts.dll
+C:\build\AnyCpu\NET45\MetroFramework.Fonts.pdb
