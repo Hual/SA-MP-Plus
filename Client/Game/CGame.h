@@ -18,11 +18,19 @@ public:
 	static bool InMenu();
 	static bool Paused();
 	static bool Playing();
-	static void SetHUDVisible(bool bVisible);
+
 	static int OnCursorMove(int iX, int iY);
+	static BYTE OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID);
+	static void OnWorldCreate();
+	static void OnPauseMenuToggle(bool toggle);
+
 	static void UnprotectMemory();
 	static void SetRadioStation(unsigned long ulStation);
 	static void SetWaveHeight(float fLength);
+	static void SetHUDVisible(bool bVisible);
+
+	static bool InPauseMenu;
+	static bool PauseMenuEnabled;
 
 private:
 	static bool m_bGameLoaded;

@@ -4,12 +4,13 @@
 
 void CRPCCallback::Initialize()
 {
-	CRPC::Add(eRPC::TOGGLE_HUD_COMPONENT, TogglePlayerHUDComponent);
-	CRPC::Add(eRPC::SET_RADIO_STATION, SetPlayerRadioStation);
-	CRPC::Add(eRPC::SET_WAVE_HEIGHT, SetPlayerWaveHeight);
+	CRPC::Add(eRPC::TOGGLE_HUD_COMPONENT, ToggleHUDComponent);
+	CRPC::Add(eRPC::SET_RADIO_STATION, SetRadioStation);
+	CRPC::Add(eRPC::SET_WAVE_HEIGHT, SetWaveHeight);
+	CRPC::Add(eRPC::TOGGLE_PAUSE_MENU, TogglePauseMenu);
 }
 
-RPC_CALLBACK CRPCCallback::TogglePlayerHUDComponent(RakNet::BitStream& bsData)
+RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iExtra)
 {
 	unsigned char ucComponent, bToggle;
 
@@ -18,7 +19,7 @@ RPC_CALLBACK CRPCCallback::TogglePlayerHUDComponent(RakNet::BitStream& bsData)
 
 }
 
-RPC_CALLBACK CRPCCallback::SetPlayerRadioStation(RakNet::BitStream& bsData)
+RPC_CALLBACK CRPCCallback::SetRadioStation(RakNet::BitStream& bsData, int iExtra)
 {
 	unsigned char ucStation;
 
@@ -26,11 +27,20 @@ RPC_CALLBACK CRPCCallback::SetPlayerRadioStation(RakNet::BitStream& bsData)
 		CGame::SetRadioStation(ucStation);
 }
 
-RPC_CALLBACK CRPCCallback::SetPlayerWaveHeight(RakNet::BitStream& bsData)
+RPC_CALLBACK CRPCCallback::SetWaveHeight(RakNet::BitStream& bsData, int iExtra)
 {
 	float fHeight;
 
 	if (bsData.Read(fHeight))
 		CGame::SetWaveHeight(fHeight);
+
+}
+
+RPC_CALLBACK CRPCCallback::TogglePauseMenu(RakNet::BitStream& bsData, int iExtra)
+{
+	unsigned char ucToggle;
+
+	if (bsData.Read(ucToggle))
+		CGame::PauseMenuEnabled = ucToggle;
 
 }

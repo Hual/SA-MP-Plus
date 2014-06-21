@@ -33,11 +33,37 @@ RakNet::ConnectionAttemptResult CRakClient::Connect(const char* szAddress, unsig
 	return m_pPeer->Connect(szAddress, usPort, szPassword, szPassword ? strlen(szPassword) : NULL);
 }
 
+RakNet::SystemAddress* CRakClient::GetRemoteAddress()
+{
+	return m_pSystemAddress;
+}
+
+unsigned int CRakClient::Send(Network::ePacketType packetType, const RakNet::SystemAddress& systemAddress, RakNet::BitStream* pBitStream, PacketPriority priority, PacketReliability reliability, char cOrderingChannel)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write((unsigned char)packetType);
+	if (pBitStream)
+		bitStream.Write((char*)pBitStream->GetData(), pBitStream->GetNumberOfBytesUsed());
+
+	return m_pPeer->Send(&bitStream, priority, reliability, cOrderingChannel, systemAddress, false);
+}
+
+unsigned int CRakClient::SendRPC(unsigned short usRPCId, const RakNet::SystemAddress& systemAddress, RakNet::BitStream* pBitStream, PacketPriority priority, PacketReliability reliability, char cOrderingChannel)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(usRPCId);
+	if (pBitStream)
+		bitStream.Write((char*)pBitStream->GetData(), pBitStream->GetNumberOfBytesUsed());
+
+	return Send(Network::ePacketType::PACKET_RPC, systemAddress, &bitStream, priority, reliability, cOrderingChannel);
+}
+
 void CRakClient::Disconnect()
 {
 	if (IsConnected())
 	{
 		m_pPeer->CloseConnection(*m_pSystemAddress, true);
+		delete m_pSystemAddress;
 		m_bConnected = false;
 	}
 }

@@ -390,6 +390,12 @@
     <ClCompile Include="Network\Network.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="SAMPServer\CPlayer.cpp">
+      <Filter>SAMPServer</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\CRPCCallback.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Callback.h">
@@ -945,6 +951,12 @@
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\Network.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SAMPServer\CPlayer.h">
+      <Filter>SAMPServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\CRPCCallback.h">
       <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>

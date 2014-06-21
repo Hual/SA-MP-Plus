@@ -4,12 +4,17 @@
 #include "CGraphics.h"
 #include "CCmdlineParams.h"
 #include "../Network/Network.h"
+#include "../Shared/Network/CRPC.h"
 
 bool CGame::m_bGameLoaded;
+bool CGame::InPauseMenu;
+bool CGame::PauseMenuEnabled;
 
 void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow)
 {
 	m_bGameLoaded = false;
+	InPauseMenu = false;
+	PauseMenuEnabled = true;
 
 	CGraphics::Initialize(pDirect3D, pDevice);
 }
@@ -40,6 +45,17 @@ void CGame::PreDeviceReset()
 	CGraphics::OnReset();
 }
 
+BYTE CGame::OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(bFromMenuID);
+	bitStream.Write(bToMenuID);
+
+	Network::SendRPC(eRPC::ON_PAUSE_MENU_CHANGE, &bitStream);
+
+	return bToMenuID;
+}
+
 void CGame::PostDeviceReset()
 {
 	
@@ -47,21 +63,36 @@ void CGame::PostDeviceReset()
 
 void CGame::PreEndScene()
 {
-	if (IsLoaded())
+	/*if (IsLoaded())
 	{
 		//TODO: stuff???
-	}
+	}*/
 
 	CGraphics::PreEndScene();
 }
 
 void CGame::PostEndScene()
 {
-	if (!InMainMenu() && !IsLoaded())
+	/*if (!InMainMenu() && !IsLoaded())
 	{
-		OnLoad();
-		m_bGameLoaded = true;
-	}
+
+	}*/
+}
+
+void CGame::OnWorldCreate()
+{
+	OnLoad();
+	m_bGameLoaded = true;
+}
+
+void CGame::OnPauseMenuToggle(bool toggle)
+{
+	InPauseMenu = toggle;
+
+	RakNet::BitStream bitStream;
+	bitStream.Write(CGame::InPauseMenu);
+
+	Network::SendRPC(eRPC::ON_PAUSE_MENU_TOGGLE, &bitStream);
 }
 
 bool CGame::IsLoaded()

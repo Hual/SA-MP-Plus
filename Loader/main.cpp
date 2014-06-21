@@ -32,8 +32,8 @@ HANDLE start_samp(const bool bDebug, const char *pcUsername, const char *pcAddre
 	memset(&si, 0, sizeof(si));
 	si.cb = sizeof(si);
 	CreateProcess(exe_path, cmd_args, NULL, NULL, FALSE, CREATE_SUSPENDED, NULL, NULL, &si, &pi);
-	inject_using_thread("sampp.dll", pi.hProcess);
 	inject_using_thread("samp.dll", pi.hProcess);
+	inject_using_thread("sampp.dll", pi.hProcess);
 	ResumeThread(pi.hThread);
 	return pi.hProcess;
 }

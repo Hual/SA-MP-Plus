@@ -1,21 +1,24 @@
 #include "Network.h"
 #include "../Shared/Utility/Utility.h"
 #include "sampgdk/a_players.h"
+#include "../Shared/Network/CRPC.h"
+#include "CRPCCallback.h"
 
 namespace Network
 {
 	static CRakServer* pRakServer;
 	static bool bInitialized = false;
 	static std::list<CClientSocketInfo*> unhandledConnections;
-	static std::map<unsigned int, CClientSocketInfo*> clientConnections;
+	static std::map<unsigned int, CPlayer*> players;
 
 	void Initialize(const std::string& szHostAddress, t_port usPort, int iConnections)
 	{
 		if (szHostAddress.length() == 0)
-			return Initialize(0, usPort, iConnections);
+			Initialize(0, usPort, iConnections);
 		else
-			return Initialize(szHostAddress.c_str(), usPort, iConnections);
+			Initialize(szHostAddress.c_str(), usPort, iConnections);
 
+		return CRPCCallback::Initialize();
 	}
 
 	void Initialize(const char* szHostAddress, t_port usPort, int iConnections)
@@ -42,26 +45,26 @@ namespace Network
 		return unhandledConnections;
 	}
 
-	std::map<unsigned int, CClientSocketInfo*>& GetClientConnections()
+	std::map<unsigned int, CPlayer*>& GetPlayers()
 	{
-		return clientConnections;
+		return players;
 	}
 
-	CClientSocketInfo* GetClientConnectionFromPlayerid(unsigned int uiPlayerid)
+	CPlayer* GetPlayerFromPlayerid(unsigned int uiPlayerid)
 	{
-		return clientConnections[uiPlayerid];
+		return players[uiPlayerid];
 	}
 
 	bool IsPlayerConnected(unsigned int uiPlayerid)
 	{
-		return clientConnections.count(uiPlayerid);
+		return players.count(uiPlayerid);
 	}
 
 	int GetPlayeridFromSystemAddress(const RakNet::SystemAddress& systemAddress)
 	{
-		for (std::map<unsigned int, CClientSocketInfo*>::iterator it = clientConnections.begin(); it != clientConnections.end(); ++it)
+		for (std::map<unsigned int, CPlayer*>::iterator it = players.begin(); it != players.end(); ++it)
 		{
-			if (!strcmp(systemAddress.ToString(false), (*it).second->GetSystemAddress().ToString(false)))
+			if (!strcmp(systemAddress.ToString(false), (*it).second->GetConnectionInfo()->GetSystemAddress().ToString(false)))
 				return (*it).first;
 
 		}
@@ -71,8 +74,8 @@ namespace Network
 
 	void CloseConnection(unsigned int uiPlayerid)
 	{
-		pRakServer->CloseConnection(clientConnections[uiPlayerid]->GetSystemAddress());
-		CleanupConnection(uiPlayerid);
+		pRakServer->CloseConnection(players[uiPlayerid]->GetConnectionInfo()->GetSystemAddress());
+		Cleanup(uiPlayerid);
 	}
 
 	void CloseUnhandledConnection(const RakNet::SystemAddress& systemAddress)
@@ -81,10 +84,10 @@ namespace Network
 		CleanupUnhandledConnection(systemAddress);
 	}
 
-	void CleanupConnection(unsigned int uiPlayerid)
+	void Cleanup(unsigned int uiPlayerid)
 	{
-		delete clientConnections[uiPlayerid];
-		clientConnections.erase(uiPlayerid);
+		delete players[uiPlayerid];
+		players.erase(uiPlayerid);
 	}
 
 	void CleanupUnhandledConnection(const RakNet::SystemAddress& systemAddress)
@@ -109,9 +112,10 @@ namespace Network
 		{
 			if (!strcmp(szIP, (*it)->GetSystemAddress().ToString(false)))
 			{
-				clientConnections[uiPlayerid] = (*it);
-				(*it)->SetState(eClientConnectionState::CONNECTED);
+				CPlayer* pPlayer = new CPlayer(*it);
 				unhandledConnections.erase(it);
+				players[uiPlayerid] = pPlayer;
+				pPlayer->GetConnectionInfo()->SetState(eClientConnectionState::CONNECTED);
 
 				return true;
 			}
@@ -127,45 +131,45 @@ namespace Network
 
 	unsigned int PlayerSend(ePacketType packetType, unsigned int uiPlayerId, RakNet::BitStream* pBitStream, PacketPriority priority, PacketReliability reliability, char cOrderingChannel)
 	{
-		CClientSocketInfo* pSocketInfo = GetClientConnectionFromPlayerid(uiPlayerId);
-		if (!pSocketInfo || pSocketInfo->GetState() != eClientConnectionState::CONNECTED)
+		CPlayer* pPlayer = GetPlayerFromPlayerid(uiPlayerId);
+		if (!pPlayer || pPlayer->GetConnectionInfo()->GetState() != eClientConnectionState::CONNECTED)
 			return 0;
 
-		return pRakServer->Send(packetType, pSocketInfo->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
+		return pRakServer->Send(packetType, pPlayer->GetConnectionInfo()->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
 	}
 
 	unsigned int PlayerSendRPC(unsigned short usRPCId, unsigned int uiPlayerId, RakNet::BitStream* pBitStream, PacketPriority priority, PacketReliability reliability, char cOrderingChannel)
 	{
-		CClientSocketInfo* pSocketInfo = GetClientConnectionFromPlayerid(uiPlayerId);
-		if (!pSocketInfo || pSocketInfo->GetState() != eClientConnectionState::CONNECTED)
+		CPlayer* pPlayer = GetPlayerFromPlayerid(uiPlayerId);
+		if (!pPlayer || pPlayer->GetConnectionInfo()->GetState() != eClientConnectionState::CONNECTED)
 			return 0;
 
-		return pRakServer->SendRPC(usRPCId, pSocketInfo->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
+		return pRakServer->SendRPC(usRPCId, pPlayer->GetConnectionInfo()->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
 	}
 
 	void Broadcast(ePacketType packetType, RakNet::BitStream* pBitStream, PacketPriority priority, PacketReliability reliability, char cOrderingChannel)
 	{
-		for (std::map<unsigned int, CClientSocketInfo*>::iterator it = clientConnections.begin(); it != clientConnections.end(); ++it)
+		for (std::map<unsigned int, CPlayer*>::iterator it = players.begin(); it != players.end(); ++it)
 		{
-			CClientSocketInfo* pSocketInfo = it->second;
+			CPlayer* pPlayer = it->second;
 
-			if (!pSocketInfo || pSocketInfo->GetState() != eClientConnectionState::CONNECTED)
+			if (!pPlayer || pPlayer->GetConnectionInfo()->GetState() != eClientConnectionState::CONNECTED)
 				continue;
 
-			pRakServer->Send(packetType, pSocketInfo->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
+			pRakServer->Send(packetType, pPlayer->GetConnectionInfo()->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
 		}
 	}
 
 	void BroadcastRPC(unsigned short usRPCId, RakNet::BitStream* pBitStream, PacketPriority priority, PacketReliability reliability, char cOrderingChannel)
 	{
-		for (std::map<unsigned int, CClientSocketInfo*>::iterator it = clientConnections.begin(); it != clientConnections.end(); ++it)
+		for (std::map<unsigned int, CPlayer*>::iterator it = players.begin(); it != players.end(); ++it)
 		{
-			CClientSocketInfo* pSocketInfo = it->second;
+			CPlayer* pPlayer = it->second;
 
-			if (!pSocketInfo || pSocketInfo->GetState() != eClientConnectionState::CONNECTED)
+			if (!pPlayer || pPlayer->GetConnectionInfo()->GetState() != eClientConnectionState::CONNECTED)
 				continue;
 
-			pRakServer->SendRPC(usRPCId, pSocketInfo->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
+			pRakServer->SendRPC(usRPCId, pPlayer->GetConnectionInfo()->GetSystemAddress(), pBitStream, priority, reliability, cOrderingChannel);
 		}
 	}
 
@@ -178,9 +182,13 @@ namespace Network
 
 		while ((pPacket = pRakServer->Receive()))
 		{
-			switch (pPacket->data[0])
-			{
-			case ID_NEW_INCOMING_CONNECTION:
+			if (!pPacket->length)
+				return;
+
+			int iPlayerId;
+			RakNet::BitStream bitStream(&pPacket->data[1], pPacket->length - 1, false);
+
+			if (pPacket->data[0] == ID_NEW_INCOMING_CONNECTION)
 			{
 				Utility::Printf("Incoming connection: %s", pPacket->systemAddress.ToString());
 
@@ -188,12 +196,24 @@ namespace Network
 
 				CClientSocketInfo* pSockInfo = new CClientSocketInfo(pPacket->systemAddress, pPacket->guid);
 				unhandledConnections.push_back(pSockInfo);
-
-				break;
 			}
+			else
+				iPlayerId = GetPlayeridFromSystemAddress(pPacket->systemAddress);
+
+			switch (pPacket->data[0])
+			{
 			case ID_DISCONNECTION_NOTIFICATION:
 			{
 				Utility::Printf("Disconnected: %s", pPacket->systemAddress.ToString());
+				
+				if (iPlayerId != -1)
+					Cleanup(iPlayerId);
+				else
+					CleanupUnhandledConnection(pPacket->systemAddress);
+				
+#ifdef DEBUG
+				Utility::Printf("Connection status: unhandledConnections: %u, players: %u", unhandledConnections.size(), players.size());
+#endif
 
 				break;
 			}
@@ -201,22 +221,34 @@ namespace Network
 			{
 				Utility::Printf("Connection lost: %s", pPacket->systemAddress.ToString());
 
-				int iPlayerId = GetPlayeridFromSystemAddress(pPacket->systemAddress);
 				if (iPlayerId != -1)
-					CleanupConnection(iPlayerId);
+					Cleanup(iPlayerId);
 				else
 					CleanupUnhandledConnection(pPacket->systemAddress);
+
+#ifdef DEBUG
+				Utility::Printf("Connection status: unhandledConnections: %u, players: %u", unhandledConnections.size(), players.size());
+#endif
+
+				break;
+			}
+			case PACKET_RPC:
+			{
+				if (iPlayerId != -1)
+				{
+					unsigned short usRpcId;
+
+					if (bitStream.Read<unsigned short>(usRpcId))
+						CRPC::Process(usRpcId, bitStream, iPlayerId);
+
+				}
 
 				break;
 			}
 			default:
-				Utility::Printf("Unknown packet received: %u", pPacket->data[0]);
+				Utility::Printf("Unknown packet received: %u, local: %u", pPacket->data[0], pPacket->wasGeneratedLocally);
 				break;
 			}
-
-#ifdef DEBUG
-			Utility::Printf("Connection status: unhandledConnections: %u, clientConnections: %u", unhandledConnections.size(), clientConnections.size());
-#endif
 
 			pRakServer->DeallocatePacket(pPacket);
 		}

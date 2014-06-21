@@ -2,19 +2,35 @@
 
 #include <Windows.h>
 
+#define ASM_JMP 0xE9
+#define ASM_NOP 0x90
+
 class CMem
 {
 public:
 	template<class T, class U> static void PutSingle(U pMemory, T value);
 	template<class T, class U, class V> static void Put(U pMemory, V pValue, unsigned long uiLen);
 	template<class T, class U> static T Get(U pMemory);
-	template <class T> static BOOL Unprotect(T lpMemory, size_t uiSize, DWORD* pOut = NULL);
+	template <class T> static BOOL Unprotect(T lpMemory, SIZE_T dwSize, DWORD* pOut = NULL);
 	template <class T> static void Set(T lpMemory, unsigned char ucByte, size_t uiSize);
+	template <class T, class U> static void InstallJmp(T address, U proxy, DWORD& jumpback, DWORD dwLen, DWORD jumpbackPos = NULL);
+
+	static void ApplyJmp(BYTE* pAddress, DWORD dwProxy, DWORD dwLen);
 
 private:
 	static DWORD m_dwUnprotectDummy;
 
 };
+
+template <class T, class U>
+void CMem::InstallJmp(T address, U proxy, DWORD& jumpback, DWORD dwLen, DWORD jumpbackPos)
+{
+	if (!jumpbackPos)
+		jumpbackPos = dwLen;
+
+	jumpback = (DWORD)address + jumpbackPos;
+	ApplyJmp((BYTE*)address, (DWORD)proxy, dwLen);
+}
 
 template<class T, class U>
 void CMem::PutSingle(U pMemory, T value)
@@ -37,9 +53,9 @@ T CMem::Get(U pMemory)
 }
 
 template <class T>
-BOOL CMem::Unprotect(T lpMemory, size_t uiSize, DWORD* pOut)
+BOOL CMem::Unprotect(T lpMemory, SIZE_T dwSize, DWORD* pOut)
 {
-	return VirtualProtect((void*)lpMemory, uiSize, PAGE_READWRITE, pOut ? pOut : &m_dwUnprotectDummy);
+	return VirtualProtect((void*)lpMemory, dwSize, PAGE_READWRITE, pOut ? pOut : &m_dwUnprotectDummy);
 }
 
 template <class T>

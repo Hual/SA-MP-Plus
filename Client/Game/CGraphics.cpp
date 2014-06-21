@@ -49,8 +49,8 @@ void CGraphics::OnReset()
 
 void CGraphics::PreEndScene()
 {
-	if (CGame::Playing())
+	/*if (CGame::Playing())
 	{
 
-	}
+	}*/
 }

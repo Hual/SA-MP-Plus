@@ -383,6 +383,9 @@
     <ClCompile Include="Network\CRPCCallback.cpp">
       <Filter>Network</Filter>
     </ClCompile>
+    <ClCompile Include="Game\Hooks\Proxy\CJmpProxy.cpp">
+      <Filter>Game\Hooks\Proxy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -901,6 +904,9 @@
     </ClInclude>
     <ClInclude Include="Network\CRPCCallback.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Hooks\Proxy\CJmpProxy.h">
+      <Filter>Game\Hooks\Proxy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

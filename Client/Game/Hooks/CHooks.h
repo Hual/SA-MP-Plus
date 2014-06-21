@@ -14,6 +14,7 @@ class CHooks
 {
 public:
 	static void Apply();
+	static void InstallJmp();
 	static void Remove();
 
 private:

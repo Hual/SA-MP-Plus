@@ -2,6 +2,7 @@
 #include "CHooks.h"
 #include "../Utility/CLog.h"
 #include <Detours/detours.h>
+#include "Proxy/CJmpProxy.h"
 
 Direct3DCreate9_t  CHooks::m_pfnDirect3DCreate9 = NULL;
 DirectInput8Create_t CHooks::m_pfnDirectInput8Create = NULL;
@@ -12,6 +13,7 @@ void CHooks::Apply()
 	ApplyCursorPos();
 	ApplyDirect3D();
 	ApplyDirectInput();
+	InstallJmp();
 }
 
 void CHooks::Remove()
@@ -19,6 +21,15 @@ void CHooks::Remove()
 	RemoveDirectInput();
 	RemoveDirect3D();
 	RemoveCursorPos();
+}
+
+void CHooks::InstallJmp()
+{
+	CMem::InstallJmp(0x57377D, CJmpProxy::MenuAction1, CJmpProxy::MenuJumpBack1, 6);
+	CMem::InstallJmp(0x5736CF, CJmpProxy::MenuAction2, CJmpProxy::MenuJumpBack2, 6);
+	CMem::InstallJmp(0x57C2F7, CJmpProxy::MenuAction3, CJmpProxy::MenuJumpBack3, 6);
+	CMem::InstallJmp(0x576C27, CJmpProxy::MenuSwitch, CJmpProxy::MenuSwitchJumpBack, 6, 8);
+	CMem::InstallJmp(0x748CF1, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 5);
 }
 
 void CHooks::ApplyDirectInput()

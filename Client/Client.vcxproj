@@ -62,6 +62,7 @@
       <CallingConvention>StdCall</CallingConvention>
       <PreprocessorDefinitions>DEBUG;DIRECTINPUT_VERSION#0x0800;_WIN32_WINNT#0x0500;WIN32_LEAN_AND_MEAN;WIN32;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -193,6 +194,7 @@
     <ClCompile Include="Game\Hooks\Proxy\CD3D9Proxy.cpp" />
     <ClCompile Include="Game\Hooks\Proxy\CDInput8DeviceProxy.cpp" />
     <ClCompile Include="Game\Hooks\Proxy\CDInput8Proxy.cpp" />
+    <ClCompile Include="Game\Hooks\Proxy\CJmpProxy.cpp" />
     <ClCompile Include="Game\Hooks\Proxy\CMessageProxy.cpp" />
     <ClCompile Include="Network\CRakClient.cpp" />
     <ClCompile Include="Network\CRPCCallback.cpp" />
@@ -367,6 +369,7 @@
     <ClInclude Include="Game\Hooks\Proxy\CD3D9Proxy.h" />
     <ClInclude Include="Game\Hooks\Proxy\CDInput8DeviceProxy.h" />
     <ClInclude Include="Game\Hooks\Proxy\CDInput8Proxy.h" />
+    <ClInclude Include="Game\Hooks\Proxy\CJmpProxy.h" />
     <ClInclude Include="Game\Hooks\Proxy\CMessageProxy.h" />
     <ClInclude Include="Network\CRakClient.h" />
     <ClInclude Include="Network\CRPCCallback.h" />

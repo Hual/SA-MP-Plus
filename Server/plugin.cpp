@@ -41,6 +41,14 @@ cell AMX_NATIVE_CALL SetWaveHeightForPlayerProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::SET_WAVE_HEIGHT, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL TogglePauseMenuAbilityProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_PAUSE_MENU, pParams[1], &bitStream);
+}
+
 cell AMX_NATIVE_CALL SetWaveHeightForAllProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
@@ -82,16 +90,19 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "SetRadioStationForPlayer", SetRadioStationForPlayerProc },
 	{ "SetWaveHeightForPlayer", SetWaveHeightForPlayerProc },
 	{ "SetWaveHeightForAll", SetWaveHeightForAllProc },
+	{ "TogglePauseMenuAbility", TogglePauseMenuAbilityProc },
 	{ 0, 0 }
 };
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxLoad(AMX *pAmx)
 {
+	Callback::GetAMXList().push_back(pAmx);
 	return amx_Register(pAmx, PluginNatives, -1);
 }
 
 
 PLUGIN_EXPORT int PLUGIN_CALL AmxUnload(AMX *pAmx)
 {
+	Callback::GetAMXList().remove(pAmx);
 	return AMX_ERR_NONE;
 }
