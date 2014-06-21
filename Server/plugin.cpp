@@ -49,6 +49,11 @@ cell AMX_NATIVE_CALL TogglePauseMenuAbilityProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::TOGGLE_PAUSE_MENU, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL IsPlayerInPauseMenuProc(AMX* pAmx, cell* pParams)
+{
+	return Network::GetPlayerFromPlayerid(pParams[1])->IsInPauseMenu();
+}
+
 cell AMX_NATIVE_CALL SetWaveHeightForAllProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
@@ -91,6 +96,7 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "SetWaveHeightForPlayer", SetWaveHeightForPlayerProc },
 	{ "SetWaveHeightForAll", SetWaveHeightForAllProc },
 	{ "TogglePauseMenuAbility", TogglePauseMenuAbilityProc },
+	{ "IsPlayerInPauseMenu", IsPlayerInPauseMenuProc },
 	{ 0, 0 }
 };
 

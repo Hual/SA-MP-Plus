@@ -91,6 +91,7 @@ native SetRadioStationForPlayer(playerid, stationid);
 native SetWaveHeightForPlayer(playerid, Float:height);
 native SetWaveHeightForAll(Float:height);
 native TogglePauseMenuAbility(playerid, bool:toggle);
+native IsPlayerInPauseMenu(playerid);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
