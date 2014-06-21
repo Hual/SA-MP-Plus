@@ -1,9 +1,0 @@
-C:\build\AnyCpu\NET20\MetroFramework.dll
-C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Release\MetroFramework.MetroMessageBoxControl.resources
-C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Release\MetroFramework.Properties.Resources.resources
-C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Release\MetroFramework.csproj.GenerateResource.Cache
-C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Release\MetroFramework.dll
-C:\build\AnyCpu\NET35\MetroFramework.dll
-C:\build\AnyCpu\NET40\MetroFramework.dll
-C:\Users\Brennan\Desktop\viperneo-winforms-modernui-7345244\MetroFramework\obj\Release\MetroFramework.csprojResolveAssemblyReference.cache
-C:\build\AnyCpu\NET45\MetroFramework.dll
