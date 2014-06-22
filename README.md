@@ -12,7 +12,7 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * TogglePauseMenuAbility(playerid, bool:toggle)
   * IsPlayerInPauseMenu(playerid)
 
-  Callbacks:
+Callbacks:
   
   * OnPlayerOpenPauseMenu(playerid)
   * OnPlayerClosePauseMenu(playerid)
