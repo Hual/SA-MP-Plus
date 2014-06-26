@@ -2,6 +2,8 @@
 
 #include <DirectX/d3d9.h>
 
+#define NUM_CHECKPOINTS 2
+
 class CGame
 {
 public:

@@ -12,4 +12,3 @@ public:
 	static RPC_CALLBACK PlayerPauseMenuBrowse(RPC_ARGS);
 
 };
-

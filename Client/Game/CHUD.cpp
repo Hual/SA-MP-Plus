@@ -1,6 +1,6 @@
 #include "CHUD.h"
 #include "../Utility/CMem.h"
-#include <stdafx.h>
+#include "Game/Hooks/Proxy/CJmpProxy.h"
 
 sHUDComponent CHUD::components[] =
 {
@@ -13,6 +13,8 @@ sHUDComponent CHUD::components[] =
 	{ 0x0058E020, { 0xC3, 0x83, 0x01 } },
 	{ 0x0058F47D, { 0xE990, 0x840F, 0x02 } },
 };
+
+DWORD* CHUD::colourComponents = CJmpProxy::HUDColourList;
 
 void CHUD::Initialize()
 {
@@ -58,4 +60,12 @@ bool CHUD::IsComponentToggled(unsigned char ucComponent)
 			return false;
 
 	return true;
+}
+
+void CHUD::SetComponentColour(unsigned char ucColourComponent, DWORD dwColour)
+{
+	if (ucColourComponent >= eHUDColourComponent::COUNT)
+		return;
+
+	colourComponents[ucColourComponent] = dwColour;
 }

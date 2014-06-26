@@ -3,6 +3,7 @@
 #include "sampgdk/a_players.h"
 #include "../Shared/Network/CRPC.h"
 #include "CRPCCallback.h"
+#include "../Shared/RakNet/SuperFastHash.h"
 
 namespace Network
 {
@@ -62,6 +63,8 @@ namespace Network
 
 	int GetPlayeridFromSystemAddress(const RakNet::SystemAddress& systemAddress)
 	{
+		// todo: turn address into an int
+		//SuperFastHash((const char*)& systemAddress.address.addr4.sin_addr.s_addr, sizeof(systemAddress.address.addr4.sin_addr.s_addr));
 		for (std::map<unsigned int, CPlayer*>::iterator it = players.begin(); it != players.end(); ++it)
 		{
 			if (!strcmp(systemAddress.ToString(false), (*it).second->GetConnectionInfo()->GetSystemAddress().ToString(false)))

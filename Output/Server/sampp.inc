@@ -42,6 +42,21 @@ public OnPlayerDisconnect(playerid, reason)
 #endif
 #define OnPlayerDisconnect SAMPP_OnPlayerDisconnect
 
+/*native SetPlayerCheckpointColour(playerid, inner, middle, outer);
+native SetPlayerRaceCheckpointColour(playerid, colour);
+
+stock SAMPP_hook_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size, inner_colour = 0xFF0000FF, middle_colour = 0xFF0000FF, outer_colour = 0xFF0000FF)
+{
+	return SetPlayerCheckpoint(playerid, x, y, z, size) && SetPlayerCheckpointColour(playerid, inner_colour, middle_colour, outer_colour);
+}
+#define SetPlayerCheckpoint SAMPP_hook_SetPlayerCheckpoint
+
+stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size, colour = 0xFF0000FF)
+{
+	return SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size) && SetPlayerRaceCheckpointColour(playerid, colour);
+}
+#define SetPlayerRaceCheckpoint SAMPP_hook_SetPlayerRaceCP*/
+
 #define HUD_COMPONENT_ALL 0
 #define HUD_COMPONENT_AMMO 1
 #define HUD_COMPONENT_WEAPON 2
@@ -51,6 +66,16 @@ public OnPlayerDisconnect(playerid, reason)
 #define HUD_COMPONENT_MINIMAP 6
 #define HUD_COMPONENT_CROSSHAIR 7
 #define HUD_COMPONENT_MONEY 8
+
+#define HUD_COLOUR_MONEY_POSITIVE 0
+#define HUD_COLOUR_MONEY_NEGATIVE 1
+#define HUD_COLOUR_ARMOUR 2
+#define HUD_COLOUR_HEALTH 3
+#define HUD_COLOUR_BREATH 4
+#define HUD_COLOUR_AMMO 5
+#define HUD_COLOUR_WANTED_LEVEL 6
+#define HUD_COLOUR_RADIO_TUNED 7
+#define HUD_COLOUR_RADIO_UNTUNED 8
 
 #define RADIO_PLAYBACKFM 1
 #define RADIO_KROSE 2
@@ -92,6 +117,7 @@ native SetWaveHeightForPlayer(playerid, Float:height);
 native SetWaveHeightForAll(Float:height);
 native TogglePauseMenuAbility(playerid, bool:toggle);
 native IsPlayerInPauseMenu(playerid);
+native SetPlayerHUDComponentColour(playerid, componentid, colour);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);

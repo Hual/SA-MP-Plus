@@ -12,6 +12,9 @@ public:
 	static RPC_CALLBACK SetRadioStation(RPC_ARGS);
 	static RPC_CALLBACK SetWaveHeight(RPC_ARGS);
 	static RPC_CALLBACK TogglePauseMenu(RPC_ARGS);
+	static RPC_CALLBACK SetHUDComponentColour(RPC_ARGS);
+	//static RPC_CALLBACK SetCheckpointColour(RPC_ARGS);
+	//static RPC_CALLBACK SetRaceCheckpointColour(RPC_ARGS);
 
 private:
 

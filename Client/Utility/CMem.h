@@ -14,6 +14,7 @@ public:
 	template <class T> static BOOL Unprotect(T lpMemory, SIZE_T dwSize, DWORD* pOut = NULL);
 	template <class T> static void Set(T lpMemory, unsigned char ucByte, size_t uiSize);
 	template <class T, class U> static void InstallJmp(T address, U proxy, DWORD& jumpback, DWORD dwLen, DWORD jumpbackPos = NULL);
+	template <class T, class U> static void InstallJmp(T address, U proxy, DWORD dwLen = 5);
 
 	static void ApplyJmp(BYTE* pAddress, DWORD dwProxy, DWORD dwLen);
 
@@ -30,6 +31,12 @@ void CMem::InstallJmp(T address, U proxy, DWORD& jumpback, DWORD dwLen, DWORD ju
 
 	jumpback = (DWORD)address + jumpbackPos;
 	ApplyJmp((BYTE*)address, (DWORD)proxy, dwLen);
+}
+
+template <class T, class U>
+static void CMem::InstallJmp(T address, U proxy, DWORD dwLen)
+{
+	return ApplyJmp((BYTE*)address, (DWORD)proxy, dwLen);
 }
 
 template<class T, class U>

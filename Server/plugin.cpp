@@ -20,6 +20,15 @@ cell AMX_NATIVE_CALL ToggleHUDComponentForPlayerProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::TOGGLE_HUD_COMPONENT, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL SetPlayerHUDComponentColourProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]);
+	bitStream.WriteCasted<unsigned int, cell>(pParams[3]);
+
+	return Network::PlayerSendRPC(eRPC::SET_HUD_COMPONENT_COLOUR, pParams[1], &bitStream);
+}
+
 cell AMX_NATIVE_CALL SetRadioStationForPlayerProc(AMX* pAmx, cell* pParams)
 {
 	if (IsPlayerInAnyVehicle(pParams[1]))
@@ -30,7 +39,7 @@ cell AMX_NATIVE_CALL SetRadioStationForPlayerProc(AMX* pAmx, cell* pParams)
 		return Network::PlayerSendRPC(eRPC::SET_RADIO_STATION, pParams[1], &bitStream);
 	}
 
-	return 0;
+	return 1;
 }
 
 cell AMX_NATIVE_CALL SetWaveHeightForPlayerProc(AMX* pAmx, cell* pParams)
@@ -60,8 +69,28 @@ cell AMX_NATIVE_CALL SetWaveHeightForAllProc(AMX* pAmx, cell* pParams)
 	bitStream.Write(amx_ctof(pParams[1]));
 
 	Network::BroadcastRPC(eRPC::SET_WAVE_HEIGHT, &bitStream);
-	return 0;
+	return 1;
 }
+
+/*cell AMX_NATIVE_CALL SetPlayerCheckpointColourProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<unsigned long, cell>(pParams[2]); // checkpoint colours
+	bitStream.WriteCasted<unsigned long, cell>(pParams[3]);
+	bitStream.WriteCasted<unsigned long, cell>(pParams[4]);
+
+	Network::PlayerSendRPC(eRPC::SET_CHECKPOINT_COLOUR, pParams[1], &bitStream);
+	return 1;
+}
+
+cell AMX_NATIVE_CALL SetPlayerRaceCheckpointColourProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<unsigned long, cell>(pParams[2]); // checkpoint colour
+
+	Network::PlayerSendRPC(eRPC::SET_RACE_CHECKPOINT_COLOUR, pParams[1], &bitStream);
+	return 1;
+}*/
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
@@ -97,6 +126,9 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "SetWaveHeightForAll", SetWaveHeightForAllProc },
 	{ "TogglePauseMenuAbility", TogglePauseMenuAbilityProc },
 	{ "IsPlayerInPauseMenu", IsPlayerInPauseMenuProc },
+	{ "SetPlayerHUDComponentColour", SetPlayerHUDComponentColourProc },
+	/*{ "SetPlayerCheckpointColour", SetPlayerCheckpointColourProc },
+	{ "SetPlayerRaceCheckpointColour", SetPlayerRaceCheckpointColourProc },*/
 	{ 0, 0 }
 };
 

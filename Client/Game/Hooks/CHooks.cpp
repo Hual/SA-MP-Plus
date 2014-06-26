@@ -30,6 +30,19 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x57C2F7, CJmpProxy::MenuAction3, CJmpProxy::MenuJumpBack3, 6);
 	CMem::InstallJmp(0x576C27, CJmpProxy::MenuSwitch, CJmpProxy::MenuSwitchJumpBack, 6, 8);
 	CMem::InstallJmp(0x748CF1, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 5);
+	//TODO: fix checkpoints
+	//CMem::InstallJmp(0x722F1A, CJmpProxy::RaceCheckpointUnknown, CJmpProxy::RaceCheckpointUnknownJumpBack, 7, 25);
+	CMem::InstallJmp(0x58F4A2, CJmpProxy::PositiveMoneyDraw, CJmpProxy::PositiveMoneyDrawJumpBack, 8);
+	//CMem::InstallJmp(0x58EBDA, CJmpProxy::UnknownMoneyDraw1, CJmpProxy::UnknownMoneyDraw1JumpBack, 8);
+	CMem::InstallJmp(0x58F4E4, CJmpProxy::NegativeMoneyDraw, CJmpProxy::NegativeMoneyDrawJumpBack, 8);
+	CMem::InstallJmp(0x589117, CJmpProxy::ArmourBarDraw, CJmpProxy::ArmourBarDrawJumpBack, 6);
+	CMem::InstallJmp(0x589344, CJmpProxy::HealthBarDraw, CJmpProxy::HealthBarDrawJumpBack, 8);
+	CMem::InstallJmp(0x589202, CJmpProxy::BreathBarDraw, CJmpProxy::BreathBarDrawJumpBack, 6);
+	CMem::InstallJmp(0x589608, CJmpProxy::AmmoDraw, CJmpProxy::AmmoDrawJumpBack, 8);
+	CMem::InstallJmp(0x58DDD9, CJmpProxy::WantedLevelDraw, CJmpProxy::WantedLevelDrawJumpBack, 8);
+	CMem::InstallJmp(0x4E9FA1, CJmpProxy::ActiveRadioDraw);
+	CMem::InstallJmp(0x4E9FB2, CJmpProxy::InactiveRadioDraw, CJmpProxy::InactiveRadioDrawJumpBack, 7);
+	//TODO: unknown active draw (71A220)
 }
 
 void CHooks::ApplyDirectInput()
