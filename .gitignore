@@ -13,6 +13,7 @@
 # Executables
 *.out
 *.app
+*.so
 
 # Log files
 *.log
@@ -27,3 +28,7 @@
 *.cache
 *.FileListAbsolute.txt
 *.opensdf
+*~
+
+# Makefile dependency files
+*.d

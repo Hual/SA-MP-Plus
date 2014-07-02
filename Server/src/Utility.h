@@ -5,8 +5,6 @@
 
 #include <string>
 
-#include "SDK/plugincommon.h"
-
 typedef void(*logprintf_t)(char* format, ...);
 
 namespace Utility
@@ -19,3 +17,4 @@ namespace Utility
 }
 
 #endif
+

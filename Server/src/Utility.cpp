@@ -1,5 +1,15 @@
-#include "Utility.h"
+#include <cstdarg>
+
 #include <Platform.h>
+
+#include "Utility.h"
+#include "RakNet/SuperFastHash.h"
+#include "SDK/amx/amx.h"
+#include "SDK/plugincommon.h"
+
+#ifdef __linux
+#include <unistd.h>
+#endif
 
 extern void* pAMXFunctions;
 
@@ -10,11 +20,12 @@ namespace Utility
 
 	void Initialize(void** ppData)
 	{
-		m_szPath = new char[MAX_PATH + 1];
 #ifdef WIN32
+		m_szPath = new char[MAX_PATH + 1];
 		GetModuleFileNameA((HINSTANCE)&__ImageBase, m_szPath, MAX_PATH + 1);
 #else
-		readlink("/proc/self/exe", szAppPath, sizeof(szAppPath));
+		m_szPath = new char[4096 + 1];
+		readlink("/proc/self/exe", m_szPath, sizeof(m_szPath));
 #endif
 		pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 		logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
@@ -22,7 +33,7 @@ namespace Utility
 
 	std::string GetApplicationPath(const char* szAppend)
 	{
-		std::string strPath(m_szPath);
+		/*std::string strPath(m_szPath);
 
 		std::string::size_type ptr = strPath.find_last_of("\\");
 
@@ -32,7 +43,8 @@ namespace Utility
 			strPath.erase(strPath.find_last_of("/plugins")-7);
 
 		if (szAppend)
-			strPath += szAppend;
+			strPath += szAppend;*/
+		std::string strPath = "TEST";
 
 		return strPath;
 	}
@@ -45,7 +57,7 @@ namespace Utility
 		vsnprintf(szBuffer, sizeof(szBuffer), szFormat, vaArgs);
 		va_end(vaArgs);
 
-		return logprintf("[SA-MP+] %s", szBuffer);
+		logprintf("[SA-MP+] %s", szBuffer);
 	}
 
 	void* GetAMXFunctions()

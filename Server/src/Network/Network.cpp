@@ -26,8 +26,17 @@ namespace Network
 	void Initialize(const char* szHostAddress, t_port usPort, int iConnections)
 	{
 		pRakServer = new CRakServer();
-		if (pRakServer->Startup(szHostAddress, usPort, iConnections) != RakNet::StartupResult::RAKNET_STARTED)
+		const int status = pRakServer->Startup(szHostAddress, usPort, iConnections);
+		if (status != RakNet::StartupResult::RAKNET_STARTED)
+		{
+			std::string message = GetRakNetStartupResult(status);
+			Utility::Printf("RakNet startup failed with code %d (%s). <Address: %s, Port: %d, Connections: %d>", status, message.c_str(), szHostAddress, usPort, iConnections);
+#ifdef WIN32
 			ExitThread(0);
+#else
+			// pthread_exit(void *retval);
+#endif	
+		}
 
 		bInitialized = true;
 	}
@@ -256,5 +265,68 @@ namespace Network
 
 			pRakServer->DeallocatePacket(pPacket);
 		}
+	}
+	
+	std::string GetRakNetStartupResult(const int result)
+	{
+		using namespace RakNet;
+	
+		std::string ret_str = "";
+		switch(result)
+		{
+			case RAKNET_STARTED:
+				ret_str = "Successfully started";
+				break;
+			
+			case RAKNET_ALREADY_STARTED:
+				ret_str = "RakNet was already started";
+				break;
+			
+			case INVALID_SOCKET_DESCRIPTORS:
+				ret_str = "Invalid socket descriptors";
+				break;
+			
+			case INVALID_MAX_CONNECTIONS:
+				ret_str = "Invalid value given for max connections";
+				break;
+			
+			case SOCKET_FAMILY_NOT_SUPPORTED:
+				ret_str = "Unsupported socket family";
+				break;
+			
+			case SOCKET_PORT_ALREADY_IN_USE:
+				ret_str = "Socket port is already in use";
+				break;
+			
+			case SOCKET_FAILED_TO_BIND:
+				ret_str = "Failed to bind to the port";
+				break;
+			
+			case SOCKET_FAILED_TEST_SEND:
+				ret_str = "The test send failed.";
+				break;
+			
+			case PORT_CANNOT_BE_ZERO:
+				ret_str = "The port cannot be zero";
+				break;
+			
+			case FAILED_TO_CREATE_NETWORK_THREAD:
+				ret_str = "Failed to create a network thread";
+				break;
+			
+			case COULD_NOT_GENERATE_GUID:
+				ret_str = "Failed to generate GUID";
+				break;
+			
+			case STARTUP_OTHER_FAILURE:
+				ret_str = "Startup failed";
+				break;
+			
+			default:
+				ret_str = "Startup failed";
+				break;
+		}
+
+		return ret_str;
 	}
 }

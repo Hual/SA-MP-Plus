@@ -37,6 +37,7 @@ namespace Network
 	void BroadcastRPC(unsigned short usRPCId, RakNet::BitStream* pBitStream = NULL, PacketPriority priority = PacketPriority::HIGH_PRIORITY, PacketReliability reliability = PacketReliability::RELIABLE_ORDERED, char cOrderingChannel = 0x7F);
 
 	void Process();
+	std::string	GetRakNetStartupResult(const int result);
 }
 
 #endif
