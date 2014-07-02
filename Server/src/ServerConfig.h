@@ -3,20 +3,22 @@
 
 #include <map>
 
-class CServerConfig
+class ServerConfig
 {
 public:
-	CServerConfig(const char* szFileName);
-	virtual ~CServerConfig();
+	ServerConfig(const char* szFileName);
+	virtual ~ServerConfig();
 
-	void Reparse();
-	std::string& GetSetting(const std::string strKey);
-	inline std::map<std::string, std::string> GetSettings() { return m_settings; };
+	void Parse();
+	
+	int GetInt(const std::string key);
+	std::string GetString(const std::string key);
+	
+	inline std::map<std::string, std::string> GetSettings() { return settings; };
 
 private:
-
-	std::map<std::string, std::string> m_settings;
-	const char* m_szFileName;
+	std::string config_path;
+	std::map<std::string, std::string> settings;
 
 };
 

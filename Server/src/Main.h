@@ -9,4 +9,6 @@
 #include "Server.h"
 #include "Network/Network.h"
 
+#define PLUGIN_VERSION "X.X"
+
 #endif

@@ -3,46 +3,62 @@
 #include "ServerConfig.h"
 #include "Utility.h"
 
-CServerConfig::CServerConfig(const char* szFileName)
+ServerConfig::ServerConfig(const char* config_path)
 {
-	m_szFileName = szFileName;
-
-	Reparse();
+	this->config_path = Utility::GetWorkingDir() + config_path;
+	this->Parse();
 }
 
-CServerConfig::~CServerConfig()
+ServerConfig::~ServerConfig()
 {
 
 }
 
-void CServerConfig::Reparse()
+void ServerConfig::Parse()
 {
-	m_settings.clear();
+	settings.clear();
 
-	std::ifstream isConfigFile(Utility::GetApplicationPath(m_szFileName));
-	std::string strLine;
-
-	while (std::getline(isConfigFile, strLine))
+	std::ifstream config_file(this->config_path);
+	std::string line;
+	
+	while(std::getline(config_file, line))
 	{
-		std::string strKey, strValue;
-		std::string::size_type iDelimiter = strLine.find_first_of(' ');
+		std::string key, value;
+		std::string::size_type delimiter = line.find_first_of(' ');
 
-		if (iDelimiter != std::string::npos)
+		if (delimiter != std::string::npos)
 		{
-			strKey = strLine.substr(0, iDelimiter);
-			strValue = strLine.substr(iDelimiter + 1);
+			key = line.substr(0, delimiter);
+			value = line.substr(delimiter + 1);
 		}
 		else
 		{
-			strKey = strLine;
-			strValue = "";
+			key = line;
+			value = "";
 		}
 
-		m_settings[strKey] = strValue;
+		settings[key] = value;
 	}
 }
 
-std::string& CServerConfig::GetSetting(const std::string strKey)
+int ServerConfig::GetInt(const std::string key)
 {
-	return m_settings.find(strKey)->second;
+	std::map<std::string, std::string>::iterator pos = settings.find(key);
+	
+	if(pos != settings.end())
+		return atoi(pos->second.c_str());
+	else
+		return 0;
 }
+
+std::string ServerConfig::GetString(const std::string key)
+{
+	std::string value("");
+	std::map<std::string, std::string>::iterator pos = settings.find(key);
+	
+	if(pos != settings.end())
+		value = pos->second;
+		
+	return value;
+}
+

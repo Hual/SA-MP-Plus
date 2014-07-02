@@ -106,10 +106,11 @@ PLUGIN_EXPORT void PLUGIN_CALL ProcessTick()
 PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 {
 	Utility::Initialize(ppData);
-	Utility::Printf("Loaded");
 	SAMPServer::Initialize("server.cfg");
 	Network::Initialize(SAMPServer::GetListeningAddress(), SAMPServer::GetListeningPort()+1, SAMPServer::GetMaxPlayers());
-	return sampgdk::Load(ppData);
+	sampgdk::Load(ppData);
+	Utility::Printf("SA-MP Plus v%s loaded!", PLUGIN_VERSION);
+	return true;
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL Unload()

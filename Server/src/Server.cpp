@@ -2,30 +2,35 @@
 
 namespace SAMPServer
 {
-	static CServerConfig* pServerConfig;
+	static ServerConfig *config;
 
 	void Initialize(const char* szConfigFileName)
 	{
-		pServerConfig = new CServerConfig(szConfigFileName);
+		config = new ServerConfig(szConfigFileName);
 	}
 
-	CServerConfig* GetConfig()
+	ServerConfig *GetConfig()
 	{
-		return pServerConfig;
+		return config;
 	}
 
 	unsigned short GetMaxPlayers()
 	{
-		return atoi(pServerConfig->GetSetting("maxplayers").c_str());
+		return config->GetInt("maxplayers");
 	}
 
-	std::string& GetListeningAddress()
+	std::string GetListeningAddress()
 	{
-		return pServerConfig->GetSetting("bind");
+		std::string address = config->GetString("bind");
+
+		if(address.empty())
+			address = "127.0.0.1";
+			
+		return address;
 	}
 
 	unsigned short GetListeningPort()
 	{
-		return atoi(pServerConfig->GetSetting("port").c_str());
+		return config->GetInt("port");
 	}
 }

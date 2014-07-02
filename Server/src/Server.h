@@ -6,10 +6,10 @@
 namespace SAMPServer
 {
 	void Initialize(const char* szConfigFileName);
-	CServerConfig* GetConfig();
+	ServerConfig* GetConfig();
 	unsigned short GetMaxPlayers();
 	unsigned short GetListeningPort();
-	std::string& GetListeningAddress();
+	std::string GetListeningAddress();
 }
 
 #endif
