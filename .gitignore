@@ -1,3 +1,6 @@
+# VS files
+*.sdf
+
 # Compiled Object files
 *.slo
 *.lo

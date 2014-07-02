@@ -84,20 +84,16 @@ namespace Callback
 		{
 		case eCallbackType::ON_PLAYER_CONNECT:
 		{
-			cell* pPlayerId = nullptr;
+			cell *pPlayerId = NULL;
 			amx_GetAddr(pAmx, pParams[0], &pPlayerId);
 			OnPlayerConnect(*pPlayerId);
-			delete pPlayerId;
-
 			break;
 		}
 		case eCallbackType::ON_PLAYER_DISCONNECT:
 		{
-			cell* pPlayerId = nullptr;
+			cell *pPlayerId = NULL;
 			amx_GetAddr(pAmx, pParams[0], &pPlayerId);
 			OnPlayerDisconnect(*pPlayerId);
-			delete pPlayerId;
-
 			break;
 		}
 		default:
