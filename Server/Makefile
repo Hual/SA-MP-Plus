@@ -8,7 +8,7 @@ CC = g++ -m32
 CFLAGS = -c -g --std=c++11 -I../Shared/include -Wno-write-strings
 LDFLAGS = -fshort-wchar -g -shared -lpthread
 
-LDLIBS = -L../Shared/lib -lsampgdk -lsubhook
+LDLIBS = -L../Shared/lib -lsampgdk -lsubhook -lraknet
 
 PROJDIRS = ./
 OBJDIR = obj/

@@ -3,7 +3,7 @@
 
 #include <map>
 
-#include "../../../Server/src/RakNet/BitStream.h"
+#include <RakNet/BitStream.h>
 
 #define RPC_CALLBACK void
 #define RPC_ARGS RakNet::BitStream& bsData, int iExtra

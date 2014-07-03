@@ -1,9 +1,9 @@
 #include <Network/RPC.h>
+#include <RakNet/SuperFastHash.h>
 #include <sampgdk/a_players.h>
 
 #include "Network.h"
 #include "RPCCallback.h"
-#include "../RakNet/SuperFastHash.h"
 #include "../Utility.h"
 
 namespace Network

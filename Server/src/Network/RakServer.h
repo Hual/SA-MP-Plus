@@ -2,9 +2,8 @@
 #define RAKSERVER_H
 
 #include <Network/Network.h>
-
-#include "../RakNet/MessageIdentifiers.h"
-#include "../RakNet/RakPeer.h"
+#include <RakNet/MessageIdentifiers.h>
+#include <RakNet/RakPeer.h>
 
 class CRakServer
 {

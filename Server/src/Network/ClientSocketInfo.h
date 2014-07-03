@@ -1,7 +1,7 @@
 #ifndef CLIENTSOCKETINFO_H
 #define CLIENTSOCKETINFO_H
 
-#include "../RakNet/RakNetTypes.h"
+#include <RakNet/RakNetTypes.h>
 
 enum eClientConnectionState
 {
