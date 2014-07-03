@@ -1,10 +1,11 @@
 #include <stdafx.h>
+#include <Network/RPC.h>
+
 #include "CHUD.h"
 #include "CGame.h"
 #include "CGraphics.h"
 #include "CCmdlineParams.h"
 #include "../Network/Network.h"
-#include "../Shared/Network/CRPC.h"
 
 bool CGame::m_bGameLoaded;
 bool CGame::InPauseMenu;

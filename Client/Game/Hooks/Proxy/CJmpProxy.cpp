@@ -1,7 +1,8 @@
+#include <Network/RPC.h>
+
 #include "CJmpProxy.h"
 #include "../../CGame.h"
 #include "Network/Network.h"
-#include "../Shared/Network/CRPC.h"
 
 DWORD CJmpProxy::MenuJumpBack1;
 DWORD CJmpProxy::MenuJumpBack2;

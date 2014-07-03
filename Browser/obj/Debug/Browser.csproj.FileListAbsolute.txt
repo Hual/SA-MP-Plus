@@ -22,3 +22,4 @@ C:\Users\Brennan\Documents\GitHub\SA-MP-Plus\Browser\obj\Debug\Browser.Propertie
 C:\Users\Brennan\Documents\GitHub\SA-MP-Plus\Browser\obj\Debug\Browser.csproj.GenerateResource.Cache
 C:\Users\Brennan\Documents\GitHub\SA-MP-Plus\Browser\obj\Debug\Browser.exe
 C:\Users\Brennan\Documents\GitHub\SA-MP-Plus\Browser\obj\Debug\Browser.pdb
+C:\Users\Lassi\git\SA-MP-Plus\Output\Client\SA-MP+.exe.config

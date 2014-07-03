@@ -1,7 +1,7 @@
 #pragma once
 
-#include "../../Shared/RakNet/RakPeer.h"
-#include "../Shared/Network/Network.h"
+#include <Network/Network.h>
+#include <RakNet/RakPeer.h>
 
 class CRakClient
 {
