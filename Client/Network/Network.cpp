@@ -1,10 +1,11 @@
+#include <Network/RPC.h>
+
 #include "Network.h"
 #include "../stdafx.h"
 #include "../Game/CHUD.h"
 #include "../Game/Hooks/CHooks.h"
 #include "../Game/CGame.h"
-#include "../Shared/Network/CRPC.h"
-#include "Network/CRPCCallback.h"
+#include "CRPCCallback.h"
 
 namespace Network
 {
@@ -68,7 +69,7 @@ namespace Network
 				unsigned short usRpcId;
 
 				if (bitStream.Read<unsigned short>(usRpcId))
-					CRPC::Process(usRpcId, bitStream);
+					RPC::Process(usRpcId, bitStream);
 
 				break;
 			}

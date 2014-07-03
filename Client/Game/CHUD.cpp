@@ -1,6 +1,6 @@
 #include "CHUD.h"
 #include "../Utility/CMem.h"
-#include "Game/Hooks/Proxy/CJmpProxy.h"
+#include "Hooks/Proxy/CJmpProxy.h"
 
 sHUDComponent CHUD::components[] =
 {

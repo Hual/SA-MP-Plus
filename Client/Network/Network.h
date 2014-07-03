@@ -1,7 +1,7 @@
 #pragma once
 
+#include <Network/Network.h>
 #include "CRakClient.h"
-#include "../../Shared/Network/Network.h"
 
 namespace Network
 {

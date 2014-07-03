@@ -1,17 +1,17 @@
 #include "CRPCCallback.h"
-#include "Game/CHUD.h"
-#include "Game/CGame.h"
-#include "Game/Hooks/Proxy/CJmpProxy.h"
+#include "../Game/CHUD.h"
+#include "../Game/CGame.h"
+#include "../Game/Hooks/Proxy/CJmpProxy.h"
 
 void CRPCCallback::Initialize()
 {
-	CRPC::Add(eRPC::TOGGLE_HUD_COMPONENT, ToggleHUDComponent);
-	CRPC::Add(eRPC::SET_RADIO_STATION, SetRadioStation);
-	CRPC::Add(eRPC::SET_WAVE_HEIGHT, SetWaveHeight);
-	CRPC::Add(eRPC::TOGGLE_PAUSE_MENU, TogglePauseMenu);
-	CRPC::Add(eRPC::SET_HUD_COMPONENT_COLOUR, SetHUDComponentColour);
-	//CRPC::Add(eRPC::SET_CHECKPOINT_COLOUR, SetCheckpointColour);
-	//CRPC::Add(eRPC::SET_RACE_CHECKPOINT_COLOUR, SetRaceCheckpointColour);
+	RPC::Add(eRPC::TOGGLE_HUD_COMPONENT, ToggleHUDComponent);
+	RPC::Add(eRPC::SET_RADIO_STATION, SetRadioStation);
+	RPC::Add(eRPC::SET_WAVE_HEIGHT, SetWaveHeight);
+	RPC::Add(eRPC::TOGGLE_PAUSE_MENU, TogglePauseMenu);
+	RPC::Add(eRPC::SET_HUD_COMPONENT_COLOUR, SetHUDComponentColour);
+	//RPC::Add(eRPC::SET_CHECKPOINT_COLOUR, SetCheckpointColour);
+	//RPC::Add(eRPC::SET_RACE_CHECKPOINT_COLOUR, SetRaceCheckpointColour);
 }
 
 RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iExtra)
