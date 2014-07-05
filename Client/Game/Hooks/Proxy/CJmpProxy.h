@@ -24,6 +24,7 @@ public:
 	static void ActiveRadioDraw();
 	static void InactiveRadioDraw();
 	static void DriveByUnknown();
+	static void StuntBonus();
 
 	static void TestDraw();
 
@@ -44,6 +45,7 @@ public:
 	static DWORD WantedLevelDrawJumpBack;
 	static DWORD InactiveRadioDrawJumpBack;
 	static DWORD DriveByUnknownJumpBack;
+	static DWORD StuntBonusJumpBack;
 
 	static DWORD HUDColourList[];
 

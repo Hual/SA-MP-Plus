@@ -8,6 +8,7 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::ON_PAUSE_MENU_TOGGLE, CRPCCallback::PlayerPauseMenuSwitch);
 	CRPC::Add(eRPC::ON_PAUSE_MENU_CHANGE, CRPCCallback::PlayerPauseMenuBrowse);
 	CRPC::Add(eRPC::ON_DRIVE_BY_SHOT, CRPCCallback::PlayerDriveByShot);
+	CRPC::Add(eRPC::ON_STUNT_BONUS, CRPCCallback::StuntBonus);
 }
 
 RPC_CALLBACK CRPCCallback::PlayerPauseMenuSwitch(RPC_ARGS)
@@ -36,4 +37,13 @@ RPC_CALLBACK CRPCCallback::PlayerPauseMenuBrowse(RPC_ARGS)
 RPC_CALLBACK CRPCCallback::PlayerDriveByShot(RPC_ARGS)
 {
 	Callback::Execute("OnDriverDriveByShot", "i", iExtra);
+}
+
+RPC_CALLBACK CRPCCallback::StuntBonus(RPC_ARGS)
+{
+	int money;
+
+	if (bsData.Read(money))
+		Callback::Execute("OnPlayerStunt", "ii", money, iExtra);
+
 }

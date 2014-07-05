@@ -25,6 +25,7 @@ public:
 	static BYTE OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID);
 	static void OnWorldCreate();
 	static void OnPauseMenuToggle(bool toggle);
+	static void CGame::OnStuntBonus(int iMoney);
 
 	static void UnprotectMemory();
 	static void SetRadioStation(unsigned long ulStation);
