@@ -133,3 +133,4 @@ forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
 forward OnDriverDriveByShot(playerid);
+forward OnPlayerStunt(playerid, money);

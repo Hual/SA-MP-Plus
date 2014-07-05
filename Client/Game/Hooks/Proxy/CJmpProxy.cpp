@@ -21,6 +21,7 @@ DWORD CJmpProxy::WantedLevelDrawJumpBack;
 DWORD CJmpProxy::BreathBarDrawJumpBack;
 DWORD CJmpProxy::InactiveRadioDrawJumpBack;
 DWORD CJmpProxy::DriveByUnknownJumpBack;
+DWORD CJmpProxy::StuntBonusJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -288,4 +289,19 @@ JMP_CAVE CJmpProxy::DriveByUnknown()
 		mov ecx, [esi + 0x480]
 		jmp[DriveByUnknownJumpBack]
 	}
+}
+
+JMP_CAVE CJmpProxy::StuntBonus() {
+
+	__asm
+	{
+		add dword ptr ds : [eax + 0xB8], edx		// inc money
+		pushad										// save flags
+
+		push edx									// push money as param to OnStuntBonus
+		call CGame::OnStuntBonus					// call onstuntbonus
+		popad										// restore flags
+		jmp[StuntBonusJumpBack]						// jmp to regular func
+	}
+
 }

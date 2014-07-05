@@ -20,6 +20,7 @@ Callbacks:
   * OnPlayerClosePauseMenu(playerid)
   * OnPlayerEnterPauseSubmenu(playerid, from, to)
   * OnDriverDriveByShot(playerid)
+  * OnPlayerStunt(playerid, money)
 
 Experimental:
 
