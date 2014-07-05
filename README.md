@@ -18,7 +18,7 @@ Callbacks:
   * OnPlayerOpenPauseMenu(playerid)
   * OnPlayerClosePauseMenu(playerid)
   * OnPlayerEnterPauseSubmenu(playerid, from, to)
-
+  * OnPlayerStunt(playerid, money)
 
 Experimental:
 
