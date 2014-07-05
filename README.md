@@ -12,13 +12,14 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * TogglePauseMenuAbility(playerid, bool:toggle)
   * IsPlayerInPauseMenu(playerid)
   * SetPlayerHUDComponentColour(playerid, componentid, colour)
+  * TogglePlayerAction(playerid, actionid, bool:toggle)
   
 Callbacks:
   
   * OnPlayerOpenPauseMenu(playerid)
   * OnPlayerClosePauseMenu(playerid)
   * OnPlayerEnterPauseSubmenu(playerid, from, to)
-
+  * OnDriverDriveByShot(playerid)
 
 Experimental:
 
