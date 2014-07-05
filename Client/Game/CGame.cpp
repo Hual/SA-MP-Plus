@@ -150,3 +150,12 @@ void CGame::UnprotectMemory()
 	CMem::Unprotect(0x00C812E8, sizeof(float));
 	//CMem::Unprotect(0x00C7F158, 38 * NUM_CHECKPOINTS);
 }
+
+void CGame::OnStuntBonus(int iMoney)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(iMoney);
+
+	Network::SendRPC(eRPC::ON_STUNT_BONUS, &bitStream);
+
+}

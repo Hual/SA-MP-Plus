@@ -21,7 +21,8 @@ enum eRPC : unsigned short
 
 	// server RPCs
 	ON_PAUSE_MENU_TOGGLE,
-	ON_PAUSE_MENU_CHANGE
+	ON_PAUSE_MENU_CHANGE,
+	ON_STUNT_BONUS
 };
 
 class CRPC

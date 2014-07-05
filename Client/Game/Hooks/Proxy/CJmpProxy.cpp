@@ -19,6 +19,7 @@ DWORD CJmpProxy::AmmoDrawJumpBack;
 DWORD CJmpProxy::WantedLevelDrawJumpBack;
 DWORD CJmpProxy::BreathBarDrawJumpBack;
 DWORD CJmpProxy::InactiveRadioDrawJumpBack;
+DWORD CJmpProxy::StuntBonusJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -272,4 +273,20 @@ JMP_CAVE CJmpProxy::InactiveRadioDraw()
 		mov eax, [HUDColourList + 0x20]
 		jmp[InactiveRadioDrawJumpBack]
 	}
+}
+
+JMP_CAVE CJmpProxy::StuntBonus() {
+
+	__asm
+	{
+		add dword ptr ds : [eax + 0xB8], edx // inc money
+		pushad // save flags
+
+		push edx
+		call CGame::OnStuntBonus
+		//add esp,4
+		popad // restore flags
+		jmp[StuntBonusJumpBack] // jmp back
+	}
+
 }

@@ -7,6 +7,7 @@ void CRPCCallback::Initialize()
 {
 	CRPC::Add(eRPC::ON_PAUSE_MENU_TOGGLE, CRPCCallback::PlayerPauseMenuSwitch);
 	CRPC::Add(eRPC::ON_PAUSE_MENU_CHANGE, CRPCCallback::PlayerPauseMenuBrowse);
+	CRPC::Add(eRPC::ON_STUNT_BONUS, CRPCCallback::StuntBonus);
 }
 
 RPC_CALLBACK CRPCCallback::PlayerPauseMenuSwitch(RPC_ARGS)
@@ -29,5 +30,14 @@ RPC_CALLBACK CRPCCallback::PlayerPauseMenuBrowse(RPC_ARGS)
 
 	if (bsData.Read(ucFrom) && bsData.Read(ucTo))
 		Callback::Execute("OnPlayerEnterPauseSubmenu", "iii", ucTo, ucFrom, iExtra);
+
+}
+
+RPC_CALLBACK CRPCCallback::StuntBonus(RPC_ARGS)
+{
+	int money;
+
+	if (bsData.Read(money))
+		Callback::Execute("OnPlayerStunt", "ii", money, iExtra);
 
 }

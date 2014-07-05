@@ -23,6 +23,7 @@ public:
 	static void WantedLevelDraw();
 	static void ActiveRadioDraw();
 	static void InactiveRadioDraw();
+	static void StuntBonus();
 
 	static void TestDraw();
 
@@ -42,6 +43,7 @@ public:
 	static DWORD AmmoDrawJumpBack;
 	static DWORD WantedLevelDrawJumpBack;
 	static DWORD InactiveRadioDrawJumpBack;
+	static DWORD StuntBonusJumpBack; 
 
 	static DWORD HUDColourList[];
 

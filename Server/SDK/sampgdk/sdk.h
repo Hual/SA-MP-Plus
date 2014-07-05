@@ -48,8 +48,8 @@
   #endif
 #endif
 
-#include "C:\Users\YANAKIEVI\Documents\GitHub\SA-MP-Plus\Server\SDK\amx\amx.h"
-#include "C:\Users\YANAKIEVI\Documents\GitHub\SA-MP-Plus\Server\SDK\plugincommon.h"
+#include "../Server/SDK/amx/amx.h"
+#include "../Server/SDK/plugincommon.h"
 
 /**
  * \addtogroup sdk

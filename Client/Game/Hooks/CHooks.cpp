@@ -42,6 +42,7 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x58DDD9, CJmpProxy::WantedLevelDraw, CJmpProxy::WantedLevelDrawJumpBack, 8);
 	CMem::InstallJmp(0x4E9FA1, CJmpProxy::ActiveRadioDraw);
 	CMem::InstallJmp(0x4E9FB2, CJmpProxy::InactiveRadioDraw, CJmpProxy::InactiveRadioDrawJumpBack, 7);
+	CMem::InstallJmp(0x469941, CJmpProxy::StuntBonus, CJmpProxy::StuntBonusJumpBack, 6);
 	//TODO: unknown active draw (71A220)
 }
 

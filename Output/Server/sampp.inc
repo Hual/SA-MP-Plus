@@ -122,3 +122,4 @@ native SetPlayerHUDComponentColour(playerid, componentid, colour);
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
+forward OnPlayerStunt(playerid, money);
