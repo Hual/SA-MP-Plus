@@ -15,6 +15,7 @@ public:
 	static RPC_CALLBACK SetHUDComponentColour(RPC_ARGS);
 	//static RPC_CALLBACK SetCheckpointColour(RPC_ARGS);
 	//static RPC_CALLBACK SetRaceCheckpointColour(RPC_ARGS);
+	static RPC_CALLBACK ToggleAction(RPC_ARGS);
 
 private:
 

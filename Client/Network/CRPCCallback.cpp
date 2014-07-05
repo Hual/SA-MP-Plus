@@ -2,6 +2,7 @@
 #include "Game/CHUD.h"
 #include "Game/CGame.h"
 #include "Game/Hooks/Proxy/CJmpProxy.h"
+#include "Game/CLocalPlayer.h"
 
 void CRPCCallback::Initialize()
 {
@@ -12,6 +13,7 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::SET_HUD_COMPONENT_COLOUR, SetHUDComponentColour);
 	//CRPC::Add(eRPC::SET_CHECKPOINT_COLOUR, SetCheckpointColour);
 	//CRPC::Add(eRPC::SET_RACE_CHECKPOINT_COLOUR, SetRaceCheckpointColour);
+	CRPC::Add(eRPC::TOGGLE_ACTION, ToggleAction);
 }
 
 RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iExtra)
@@ -89,3 +91,16 @@ RPC_CALLBACK CRPCCallback::SetRaceCheckpointColour(RakNet::BitStream& bsData, in
 	}
 }
 */
+
+RPC_CALLBACK CRPCCallback::ToggleAction(RakNet::BitStream& bsData, int iExtra)
+{
+	BYTE action;
+	bool bToggle;
+
+	if (bsData.Read(action) && bsData.Read(bToggle))
+	{
+		CLog::Write("ToggleAction %i %i", action, bToggle);
+		CLocalPlayer::SetActionEnabled(action, bToggle);
+	}
+
+}

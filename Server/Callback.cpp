@@ -12,6 +12,7 @@ namespace Callback
 		return amxPointers;
 	}
 
+	// push arguments in reversed order
 	void Execute(const char* szFunction, const char* szFormat, ...)
 	{
 		va_list argPtr;

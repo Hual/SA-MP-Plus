@@ -386,6 +386,12 @@
     <ClCompile Include="Game\Hooks\Proxy\CJmpProxy.cpp">
       <Filter>Game\Hooks\Proxy</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\CSystem.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\CLocalPlayer.cpp">
+      <Filter>Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -907,6 +913,12 @@
     </ClInclude>
     <ClInclude Include="Game\Hooks\Proxy\CJmpProxy.h">
       <Filter>Game\Hooks\Proxy</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\CSystem.h">
+      <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\CLocalPlayer.h">
+      <Filter>Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

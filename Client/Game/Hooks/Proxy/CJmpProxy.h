@@ -23,6 +23,7 @@ public:
 	static void WantedLevelDraw();
 	static void ActiveRadioDraw();
 	static void InactiveRadioDraw();
+	static void DriveByUnknown();
 
 	static void TestDraw();
 
@@ -32,7 +33,7 @@ public:
 	static DWORD MenuSwitchJumpBack;
 	static DWORD MenuSwitchEndJumpBack;
 	static DWORD WorldCreateJumpBack;
-	static DWORD RaceCheckpointUnknownJumpBack;
+	//static DWORD RaceCheckpointUnknownJumpBack;
 	static DWORD PositiveMoneyDrawJumpBack;
 	//static DWORD UnknownMoneyDraw1JumpBack;
 	static DWORD NegativeMoneyDrawJumpBack;
@@ -42,6 +43,7 @@ public:
 	static DWORD AmmoDrawJumpBack;
 	static DWORD WantedLevelDrawJumpBack;
 	static DWORD InactiveRadioDrawJumpBack;
+	static DWORD DriveByUnknownJumpBack;
 
 	static DWORD HUDColourList[];
 

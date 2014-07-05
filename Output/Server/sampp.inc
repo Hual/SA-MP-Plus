@@ -111,6 +111,15 @@ stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Floa
 #define PAUSE_ID_JOYPADSETTINGS 40
 #define PAUSE_ID_MAIN 41
 
+#define PLAYER_ACTION_ALL 0
+#define PLAYER_ACTION_SPRINT 1
+#define PLAYER_ACTION_ENTER_CAR 2
+#define PLAYER_ACTION_CROUCH 3
+#define PLAYER_ACTION_FIRE_WEAPON 4
+#define PLAYER_ACTION_UNKNOWN 5
+#define PLAYER_ACTION_SWITCH_WEAPON 6
+#define PLAYER_ACTION JUMP 7
+
 native ToggleHUDComponentForPlayer(playerid, componentid, bool:toggle);
 native SetRadioStationForPlayer(playerid, stationid);
 native SetWaveHeightForPlayer(playerid, Float:height);
@@ -118,7 +127,9 @@ native SetWaveHeightForAll(Float:height);
 native TogglePauseMenuAbility(playerid, bool:toggle);
 native IsPlayerInPauseMenu(playerid);
 native SetPlayerHUDComponentColour(playerid, componentid, colour);
+native TogglePlayerAction(playerid, actionid, bool:toggle);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
+forward OnDriverDriveByShot(playerid);

@@ -189,6 +189,7 @@
     <ClCompile Include="Game\CGame.cpp" />
     <ClCompile Include="Game\CGraphics.cpp" />
     <ClCompile Include="Game\CHUD.cpp" />
+    <ClCompile Include="Game\CLocalPlayer.cpp" />
     <ClCompile Include="Game\Hooks\CHooks.cpp" />
     <ClCompile Include="Game\Hooks\Proxy\CD3D9DeviceProxy.cpp" />
     <ClCompile Include="Game\Hooks\Proxy\CD3D9Proxy.cpp" />
@@ -202,6 +203,7 @@
     <ClCompile Include="Utility\CLog.cpp" />
     <ClCompile Include="Utility\CMem.cpp" />
     <ClCompile Include="Utility\CPoint2D.cpp" />
+    <ClCompile Include="Utility\CSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Shared\Network\CRPC.h" />
@@ -364,6 +366,7 @@
     <ClInclude Include="Game\CGame.h" />
     <ClInclude Include="Game\CGraphics.h" />
     <ClInclude Include="Game\CHUD.h" />
+    <ClInclude Include="Game\CLocalPlayer.h" />
     <ClInclude Include="Game\Hooks\CHooks.h" />
     <ClInclude Include="Game\Hooks\Proxy\CD3D9DeviceProxy.h" />
     <ClInclude Include="Game\Hooks\Proxy\CD3D9Proxy.h" />
@@ -378,6 +381,7 @@
     <ClInclude Include="Utility\CLog.h" />
     <ClInclude Include="Utility\CMem.h" />
     <ClInclude Include="Utility\CPoint2D.h" />
+    <ClInclude Include="Utility\CSystem.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

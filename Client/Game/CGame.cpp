@@ -5,6 +5,7 @@
 #include "CCmdlineParams.h"
 #include "../Network/Network.h"
 #include "../Shared/Network/CRPC.h"
+#include "Utility/CSystem.h"
 
 bool CGame::m_bGameLoaded;
 bool CGame::InPauseMenu;
@@ -23,6 +24,7 @@ void CGame::OnLoad()
 {
 	if (!CCmdlineParams::ArgumentExists("d") && CCmdlineParams::ArgumentExists("c"))
 	{
+		CSystem::GetLoadedModules();
 		CGame::UnprotectMemory();
 		Network::Initialize();
 		Network::Connect(CCmdlineParams::GetArgumentValue("h"), atoi(CCmdlineParams::GetArgumentValue("p").c_str())+1);

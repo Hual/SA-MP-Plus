@@ -10,5 +10,5 @@ public:
 
 	static RPC_CALLBACK PlayerPauseMenuSwitch(RPC_ARGS);
 	static RPC_CALLBACK PlayerPauseMenuBrowse(RPC_ARGS);
-
+	static RPC_CALLBACK PlayerDriveByShot(RPC_ARGS);
 };

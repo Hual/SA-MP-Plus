@@ -2,6 +2,7 @@
 #include "../../CGame.h"
 #include "Network/Network.h"
 #include "../Shared/Network/CRPC.h"
+#include "../../CLocalPlayer.h"
 
 DWORD CJmpProxy::MenuJumpBack1;
 DWORD CJmpProxy::MenuJumpBack2;
@@ -9,7 +10,7 @@ DWORD CJmpProxy::MenuJumpBack3;
 DWORD CJmpProxy::MenuSwitchJumpBack;
 DWORD CJmpProxy::MenuSwitchEndJumpBack;
 DWORD CJmpProxy::WorldCreateJumpBack;
-DWORD CJmpProxy::RaceCheckpointUnknownJumpBack;
+//DWORD CJmpProxy::RaceCheckpointUnknownJumpBack;
 DWORD CJmpProxy::PositiveMoneyDrawJumpBack;
 //DWORD CJmpProxy::UnknownMoneyDraw1JumpBack;
 DWORD CJmpProxy::NegativeMoneyDrawJumpBack;
@@ -19,6 +20,7 @@ DWORD CJmpProxy::AmmoDrawJumpBack;
 DWORD CJmpProxy::WantedLevelDrawJumpBack;
 DWORD CJmpProxy::BreathBarDrawJumpBack;
 DWORD CJmpProxy::InactiveRadioDrawJumpBack;
+DWORD CJmpProxy::DriveByUnknownJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -271,5 +273,19 @@ JMP_CAVE CJmpProxy::InactiveRadioDraw()
 		call edx
 		mov eax, [HUDColourList + 0x20]
 		jmp[InactiveRadioDrawJumpBack]
+	}
+}
+
+JMP_CAVE CJmpProxy::DriveByUnknown()
+{
+	__asm pushad;
+	
+	CLocalPlayer::OnDriveByShot();
+
+	__asm
+	{
+		popad
+		mov ecx, [esi + 0x480]
+		jmp[DriveByUnknownJumpBack]
 	}
 }

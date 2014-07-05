@@ -14,8 +14,8 @@ cell AMX_NATIVE_CALL CallbackProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL ToggleHUDComponentForPlayerProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<unsigned char, cell>(pParams[2]);
-	bitStream.WriteCasted<unsigned char, cell>(pParams[3]);
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // component
+	bitStream.WriteCasted<unsigned char, cell>(pParams[3]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_HUD_COMPONENT, pParams[1], &bitStream);
 }
@@ -23,8 +23,8 @@ cell AMX_NATIVE_CALL ToggleHUDComponentForPlayerProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL SetPlayerHUDComponentColourProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<unsigned char, cell>(pParams[2]);
-	bitStream.WriteCasted<unsigned int, cell>(pParams[3]);
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // colour component
+	bitStream.WriteCasted<unsigned int, cell>(pParams[3]); // colour
 
 	return Network::PlayerSendRPC(eRPC::SET_HUD_COMPONENT_COLOUR, pParams[1], &bitStream);
 }
@@ -34,7 +34,7 @@ cell AMX_NATIVE_CALL SetRadioStationForPlayerProc(AMX* pAmx, cell* pParams)
 	if (IsPlayerInAnyVehicle(pParams[1]))
 	{
 		RakNet::BitStream bitStream;
-		bitStream.WriteCasted<unsigned char, cell>(pParams[2]);
+		bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // radio station id
 
 		return Network::PlayerSendRPC(eRPC::SET_RADIO_STATION, pParams[1], &bitStream);
 	}
@@ -45,7 +45,7 @@ cell AMX_NATIVE_CALL SetRadioStationForPlayerProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL SetWaveHeightForPlayerProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.Write(amx_ctof(pParams[2]));
+	bitStream.Write(amx_ctof(pParams[2])); // wave height
 
 	return Network::PlayerSendRPC(eRPC::SET_WAVE_HEIGHT, pParams[1], &bitStream);
 }
@@ -53,7 +53,7 @@ cell AMX_NATIVE_CALL SetWaveHeightForPlayerProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL TogglePauseMenuAbilityProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<unsigned char, cell>(pParams[2]);
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_PAUSE_MENU, pParams[1], &bitStream);
 }
@@ -66,7 +66,7 @@ cell AMX_NATIVE_CALL IsPlayerInPauseMenuProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL SetWaveHeightForAllProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.Write(amx_ctof(pParams[1]));
+	bitStream.Write(amx_ctof(pParams[1])); // wave height
 
 	Network::BroadcastRPC(eRPC::SET_WAVE_HEIGHT, &bitStream);
 	return 1;
@@ -91,6 +91,15 @@ cell AMX_NATIVE_CALL SetPlayerRaceCheckpointColourProc(AMX* pAmx, cell* pParams)
 	Network::PlayerSendRPC(eRPC::SET_RACE_CHECKPOINT_COLOUR, pParams[1], &bitStream);
 	return 1;
 }*/
+
+cell AMX_NATIVE_CALL TogglePlayerActionProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // action
+	bitStream.WriteCasted<bool, cell>(pParams[3]); // toggle
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_ACTION, pParams[1], &bitStream);
+}
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
@@ -129,6 +138,7 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "SetPlayerHUDComponentColour", SetPlayerHUDComponentColourProc },
 	/*{ "SetPlayerCheckpointColour", SetPlayerCheckpointColourProc },
 	{ "SetPlayerRaceCheckpointColour", SetPlayerRaceCheckpointColourProc },*/
+	{ "TogglePlayerAction", TogglePlayerActionProc },
 	{ 0, 0 }
 };
 
