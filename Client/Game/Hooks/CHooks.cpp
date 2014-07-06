@@ -29,7 +29,7 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x5736CF, CJmpProxy::MenuAction2, CJmpProxy::MenuJumpBack2, 6);
 	CMem::InstallJmp(0x57C2F7, CJmpProxy::MenuAction3, CJmpProxy::MenuJumpBack3, 6);
 	CMem::InstallJmp(0x576C27, CJmpProxy::MenuSwitch, CJmpProxy::MenuSwitchJumpBack, 6, 8);
-	CMem::InstallJmp(0x748CF1, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 5);
+	CMem::InstallJmp(0x748D05, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 10);
 	//TODO: fix checkpoints
 	//CMem::InstallJmp(0x722F1A, CJmpProxy::RaceCheckpointUnknown, CJmpProxy::RaceCheckpointUnknownJumpBack, 7, 25);
 	CMem::InstallJmp(0x58F4A2, CJmpProxy::PositiveMoneyDraw, CJmpProxy::PositiveMoneyDrawJumpBack, 8);

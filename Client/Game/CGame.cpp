@@ -81,6 +81,7 @@ void CGame::PostEndScene()
 	}*/
 }
 
+// crash
 void CGame::OnWorldCreate()
 {
 	OnLoad();
@@ -148,7 +149,7 @@ void CGame::SetWaveHeight(float fHeight)
 
 void CGame::UnprotectMemory()
 {
-	CMem::Unprotect(0x0072C659, 0x12);
-	CMem::Unprotect(0x00C812E8, sizeof(float));
+	CMem::Unprotect(0x72C659, 0x12);
+	CMem::Unprotect(0xC812E8, sizeof(float));
 	//CMem::Unprotect(0x00C7F158, 38 * NUM_CHECKPOINTS);
 }

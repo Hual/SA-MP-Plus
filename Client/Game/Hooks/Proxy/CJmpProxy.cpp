@@ -144,7 +144,7 @@ JMP_CAVE CJmpProxy::WorldCreate()
 	__asm
 	{
 		popad
-		mov ecx, 0x76BC90
+		mov ds:0xC8D4C0, 9
 		jmp[WorldCreateJumpBack]
 	}
 }

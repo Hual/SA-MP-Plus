@@ -62,7 +62,7 @@ T CMem::Get(U pMemory)
 template <class T>
 BOOL CMem::Unprotect(T lpMemory, SIZE_T dwSize, DWORD* pOut)
 {
-	return VirtualProtect((void*)lpMemory, dwSize, PAGE_READWRITE, pOut ? pOut : &m_dwUnprotectDummy);
+	return VirtualProtect((void*)lpMemory, dwSize, PAGE_EXECUTE_READWRITE, pOut ? pOut : &m_dwUnprotectDummy);
 }
 
 template <class T>
