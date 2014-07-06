@@ -29,7 +29,8 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x5736CF, CJmpProxy::MenuAction2, CJmpProxy::MenuJumpBack2, 6);
 	CMem::InstallJmp(0x57C2F7, CJmpProxy::MenuAction3, CJmpProxy::MenuJumpBack3, 6);
 	CMem::InstallJmp(0x576C27, CJmpProxy::MenuSwitch, CJmpProxy::MenuSwitchJumpBack, 6, 8);
-	CMem::InstallJmp(0x748D05, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 10);
+	if(CHooks::GetGameVersion() == 2) CMem::InstallJmp(0x748CF1, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 5);
+	else CMem::InstallJmp(0x748CF1, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 10);
 	//TODO: fix checkpoints
 	//CMem::InstallJmp(0x722F1A, CJmpProxy::RaceCheckpointUnknown, CJmpProxy::RaceCheckpointUnknownJumpBack, 7, 25);
 	CMem::InstallJmp(0x58F4A2, CJmpProxy::PositiveMoneyDraw, CJmpProxy::PositiveMoneyDrawJumpBack, 8);
@@ -46,6 +47,29 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x60F583, CJmpProxy::DriveByUnknown, CJmpProxy::DriveByUnknownJumpBack, 6);
 	CMem::InstallJmp(0x469941, CJmpProxy::StuntBonus, CJmpProxy::StuntBonusJumpBack, 6);
 	CMem::InstallJmp(0x69E360, CJmpProxy::StuntInfo, CJmpProxy::StuntInfoJumpBack, 58);
+}
+
+int CHooks::GetGameVersion() {
+	unsigned char ucA = *reinterpret_cast < unsigned char* > (0x748ADD);
+	unsigned char ucB = *reinterpret_cast < unsigned char* > (0x748ADE);
+	if (ucA == 0xFF && ucB == 0x53)
+	{
+		return 1; // usa
+	}
+	else if (ucA == 0x0F && ucB == 0x84)
+	{
+		return 2; // eu
+	}
+	else if (ucA == 0xFE && ucB == 0x10)
+	{
+		return 3;
+	}
+	else
+	{
+		return -1;
+	}
+
+	return -1;
 }
 
 void CHooks::ApplyDirectInput()
