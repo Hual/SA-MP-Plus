@@ -34,3 +34,11 @@ void CLocalPlayer::OnDriveByShot()
 {
 	Network::SendRPC(eRPC::ON_DRIVE_BY_SHOT);
 }
+
+void CLocalPlayer::OnStuntBonus(sStuntDetails* pStuntDetails)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(*pStuntDetails);
+
+	Network::SendRPC(eRPC::ON_STUNT_BONUS, &bitStream);
+}

@@ -45,6 +45,7 @@ void CHooks::InstallJmp()
 	//TODO: unknown active draw (71A220)
 	CMem::InstallJmp(0x60F583, CJmpProxy::DriveByUnknown, CJmpProxy::DriveByUnknownJumpBack, 6);
 	CMem::InstallJmp(0x469941, CJmpProxy::StuntBonus, CJmpProxy::StuntBonusJumpBack, 6);
+	CMem::InstallJmp(0x69E360, CJmpProxy::StuntInfo, CJmpProxy::StuntInfoJumpBack, 58);
 }
 
 void CHooks::ApplyDirectInput()

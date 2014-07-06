@@ -1,5 +1,6 @@
 #include "CRPCCallback.h"
 #include "../Shared/Utility/Utility.h"
+#include "../Shared/Game/Definitions.h"
 #include "../Callback.h"
 #include "sampgdk/a_players.h"
 
@@ -41,9 +42,9 @@ RPC_CALLBACK CRPCCallback::PlayerDriveByShot(RPC_ARGS)
 
 RPC_CALLBACK CRPCCallback::StuntBonus(RPC_ARGS)
 {
-	int money;
+	sStuntDetails stuntDetails;
 
-	if (bsData.Read(money))
-		Callback::Execute("OnPlayerStunt", "ii", money, iExtra);
+	if (bsData.Read(stuntDetails))
+			Callback::Execute("OnPlayerStunt", "aiii", PAWNArray{ stuntDetails.iInfo, 6 }, stuntDetails.dwMoney, stuntDetails.ucType, iExtra);
 
 }

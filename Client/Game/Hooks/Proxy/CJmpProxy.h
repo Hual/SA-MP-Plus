@@ -1,6 +1,8 @@
 #pragma once
 
 #include <stdafx.h>
+#include "../Shared/Game/Definitions.h"
+#include "../Game/CLocalPlayer.h"
 
 #define JMP_CAVE __declspec(naked) void
 
@@ -25,6 +27,7 @@ public:
 	static void InactiveRadioDraw();
 	static void DriveByUnknown();
 	static void StuntBonus();
+	static void StuntInfo();
 
 	static void TestDraw();
 
@@ -46,8 +49,10 @@ public:
 	static DWORD InactiveRadioDrawJumpBack;
 	static DWORD DriveByUnknownJumpBack;
 	static DWORD StuntBonusJumpBack;
+	static DWORD StuntInfoJumpBack;
 
 	static DWORD HUDColourList[];
+	static sStuntDetails StuntDetails;
 
 	/*static BYTE RaceCheckpointByteRed;
 	static BYTE RaceCheckpointByteGreen;

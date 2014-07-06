@@ -120,6 +120,11 @@ stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Floa
 #define PLAYER_ACTION_SWITCH_WEAPON 6
 #define PLAYER_ACTION JUMP 7
 
+#define STUNT_TYPE_TWO_WHEELS 247
+#define STUNT_TYPE_INSANE 173
+#define STUNT_TYPE_WHEELIE 117
+#define STUNT_TYPE_STOPPIE 233
+
 native ToggleHUDComponentForPlayer(playerid, componentid, bool:toggle);
 native SetRadioStationForPlayer(playerid, stationid);
 native SetWaveHeightForPlayer(playerid, Float:height);
@@ -133,4 +138,4 @@ forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
 forward OnDriverDriveByShot(playerid);
-forward OnPlayerStunt(playerid, money);
+forward OnPlayerStunt(playerid, stuntid, money, details[]);

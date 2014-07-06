@@ -12,7 +12,6 @@ namespace Callback
 		return amxPointers;
 	}
 
-	// push arguments in reversed order
 	void Execute(const char* szFunction, const char* szFormat, ...)
 	{
 		va_list argPtr;
@@ -52,11 +51,15 @@ namespace Callback
 				{
 					cell iAmxAddr, *pPhysAddr;
 
-					cell* pArray = va_arg(argPtr, cell*);
+					/*cell* pArray = va_arg(argPtr, cell*);
 					amx_Allot(pAmx, sizeof(pArray) / sizeof(cell), &iAmxAddr, &pPhysAddr);
 					memcpy(pPhysAddr, pArray, sizeof(pArray));
-					amx_Push(pAmx, iAmxAddr);
+					amx_Push(pAmx, iAmxAddr);*/
 
+					PAWNArray array = va_arg(argPtr, PAWNArray);
+					amx_Allot(pAmx, array.length, &iAmxAddr, &pPhysAddr);
+					memcpy(pPhysAddr, array.address, array.length*sizeof(cell));
+					amx_Push(pAmx, iAmxAddr);
 					break;
 				}
 				}

@@ -22,6 +22,7 @@ DWORD CJmpProxy::BreathBarDrawJumpBack;
 DWORD CJmpProxy::InactiveRadioDrawJumpBack;
 DWORD CJmpProxy::DriveByUnknownJumpBack;
 DWORD CJmpProxy::StuntBonusJumpBack;
+DWORD CJmpProxy::StuntInfoJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -44,6 +45,8 @@ DWORD CJmpProxy::HUDColourList[] =
 	0xFF106290,     // tuned radio
 	0xFF969696      // untuned radio
 };
+
+sStuntDetails CJmpProxy::StuntDetails;
 
 JMP_CAVE CJmpProxy::MenuAction1()
 {
@@ -291,17 +294,60 @@ JMP_CAVE CJmpProxy::DriveByUnknown()
 	}
 }
 
-JMP_CAVE CJmpProxy::StuntBonus() {
-
+JMP_CAVE CJmpProxy::StuntBonus()
+{
 	__asm
 	{
 		add dword ptr ds : [eax + 0xB8], edx		// inc money
-		pushad										// save flags
 
-		push edx									// push money as param to OnStuntBonus
-		call CGame::OnStuntBonus					// call onstuntbonus
-		popad										// restore flags
+		pushad
+
+		lea eax, StuntDetails
+		mov [eax].dwMoney, edx
+
+		popad
+
 		jmp[StuntBonusJumpBack]						// jmp to regular func
+	}
+
+}
+
+JMP_CAVE CJmpProxy::StuntInfo()
+{
+	__asm
+	{
+		mov ecx, [esp + 0x14]
+		mov[StuntDetails + 0x04] + 0x00, ecx
+		mov edx, [esp + 0x10]
+		mov[StuntDetails + 0x04] + 0x04, edx
+		sub esp, 0x320
+		push ebx
+		mov ebx, [esp + 0x340]
+		mov[StuntDetails + 0x04] + 0x08, ebx
+		push ebp
+		mov ebp, [esp + 0x340]
+		mov[StuntDetails + 0x04] + 0x0C, ebp
+		push esi
+		mov esi, [esp + 0x350]
+		mov[StuntDetails + 0x04] + 0x10, esi
+		push edi
+		mov edi, [esp + 0x350]
+		mov[StuntDetails + 0x04] + 0x14, edi
+		lea eax, [esp + 0x10]
+		push eax
+		mov eax, [esp + 0x338]
+		pushad
+		lea ebx, StuntDetails
+		mov[ebx].ucType, al
+	}
+
+	if (StuntDetails.ucType != 55)
+		CLocalPlayer::OnStuntBonus(&StuntDetails);
+	
+	__asm
+	{
+		popad
+		jmp[StuntInfoJumpBack]
 	}
 
 }

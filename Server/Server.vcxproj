@@ -135,6 +135,7 @@
     <ClCompile Include="SDK\amxplugin.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Shared\Game\Definitions.h" />
     <ClInclude Include="..\Shared\Network\CRPC.h" />
     <ClInclude Include="..\Shared\Network\Network.h" />
     <ClInclude Include="..\Shared\Platform.h" />

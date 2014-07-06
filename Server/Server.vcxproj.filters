@@ -28,6 +28,9 @@
     <Filter Include="Network">
       <UniqueIdentifier>{29daa95f-b7a3-425c-879e-3eea9a8acd28}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shared\Game">
+      <UniqueIdentifier>{f0c029a1-e69f-4545-8908-9adb5ea0ee6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Callback.cpp">
@@ -958,6 +961,9 @@
     </ClInclude>
     <ClInclude Include="Network\CRPCCallback.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Shared\Game\Definitions.h">
+      <Filter>Shared\Game</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

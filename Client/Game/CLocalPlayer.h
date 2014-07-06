@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdafx.h>
+#include "../Shared/Game/Definitions.h"
 
 class CLocalPlayer
 {
@@ -20,6 +21,7 @@ public:
 
 	static void SetActionEnabled(unsigned char action, bool bEnabled);
 	static void OnDriveByShot();
+	static void OnStuntBonus(sStuntDetails* pStuntDetails);
 
 private:
 	static DWORD m_actionMemory[ePlayerAction::COUNT-1];
