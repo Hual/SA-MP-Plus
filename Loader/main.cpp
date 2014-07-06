@@ -7,7 +7,7 @@ VOID inject_using_thread(char *pcDllName, HANDLE hProcess);
 
 int main()
 {
-	HANDLE process = start_samp(false, "King_Haul", "127.0.0.1", "7777");
+	HANDLE process = start_samp(false, "King_Hual", "127.0.0.1", "7777");
 	return !process;
 }
 
