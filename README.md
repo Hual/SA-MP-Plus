@@ -13,7 +13,7 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * IsPlayerInPauseMenu(playerid)
   * SetPlayerHUDComponentColour(playerid, componentid, colour)
   * TogglePlayerAction(playerid, actionid, bool:toggle)
-  * SetPlayerNoReload(playerid, bool:toggle);  
+  * SetPlayerNoReload(playerid, bool:toggle)
 
 Callbacks:
   
