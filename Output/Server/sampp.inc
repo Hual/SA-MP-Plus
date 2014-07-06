@@ -133,6 +133,8 @@ native TogglePauseMenuAbility(playerid, bool:toggle);
 native IsPlayerInPauseMenu(playerid);
 native SetPlayerHUDComponentColour(playerid, componentid, colour);
 native TogglePlayerAction(playerid, actionid, bool:toggle);
+//native SetPlayerAmmoInClip(playerid, slotid, newammo);
+native SetPlayerNoReload(playerid, bool:toggle);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);

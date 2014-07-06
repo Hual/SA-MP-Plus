@@ -101,6 +101,23 @@ cell AMX_NATIVE_CALL TogglePlayerActionProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::TOGGLE_ACTION, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL SetPlayerClipAmmoProc(AMX* pAmx, cell* pParams) // tips off SA-MP's anti-cheat, wouldn't recomend using... yet...
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // bSlotId
+	bitStream.WriteCasted<DWORD, cell>(pParams[3]); // dwNewAmmo
+
+	return Network::PlayerSendRPC(eRPC::SET_CLIP_AMMO, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]); // bToggle
+
+	return Network::PlayerSendRPC(eRPC::SET_NO_RELOAD, pParams[1], &bitStream);
+}
+
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
 	return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES | SUPPORTS_PROCESS_TICK;
@@ -139,6 +156,8 @@ AMX_NATIVE_INFO PluginNatives[] =
 	/*{ "SetPlayerCheckpointColour", SetPlayerCheckpointColourProc },
 	{ "SetPlayerRaceCheckpointColour", SetPlayerRaceCheckpointColourProc },*/
 	{ "TogglePlayerAction", TogglePlayerActionProc },
+	//{ "SetPlayerAmmoInClip", SetPlayerClipAmmoProc }, // tips off SA-MP's anti-cheat, wouldn't recomend using... yet...
+	{ "SetPlayerNoReload", SetPlayerNoReloadProc },
 	{ 0, 0 }
 };
 

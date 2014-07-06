@@ -14,6 +14,8 @@ void CRPCCallback::Initialize()
 	//CRPC::Add(eRPC::SET_CHECKPOINT_COLOUR, SetCheckpointColour);
 	//CRPC::Add(eRPC::SET_RACE_CHECKPOINT_COLOUR, SetRaceCheckpointColour);
 	CRPC::Add(eRPC::TOGGLE_ACTION, ToggleAction);
+	CRPC::Add(eRPC::SET_CLIP_AMMO, SetAmmoInClip);
+	CRPC::Add(eRPC::SET_NO_RELOAD, SetNoReload);
 }
 
 RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iExtra)
@@ -103,4 +105,27 @@ RPC_CALLBACK CRPCCallback::ToggleAction(RakNet::BitStream& bsData, int iExtra)
 		CLocalPlayer::SetActionEnabled(action, bToggle);
 	}
 
+}
+
+RPC_CALLBACK CRPCCallback::SetAmmoInClip(RakNet::BitStream& bsData, int iExtra)
+{
+
+	DWORD dwNewAmmo;
+	BYTE bSlotId;
+
+	if (bsData.Read(bSlotId) && bsData.Read(dwNewAmmo))
+	{
+		CLocalPlayer::SetClipAmmo(bSlotId, dwNewAmmo);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetNoReload(RakNet::BitStream& bsData, int iExtra)
+{
+
+	bool toggle;
+
+	if (bsData.Read(toggle))
+	{
+		CLocalPlayer::SetNoReload(toggle);
+	}
 }
