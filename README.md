@@ -14,6 +14,7 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * SetPlayerHUDComponentColour(playerid, componentid, colour)
   * TogglePlayerAction(playerid, actionid, bool:toggle)
   * SetPlayerNoReload(playerid, bool:toggle)
+  * GetPlayerResolution(playerid, &width, &height)
 
 Callbacks:
   
@@ -22,6 +23,7 @@ Callbacks:
   * OnPlayerEnterPauseSubmenu(playerid, from, to)
   * OnDriverDriveByShot(playerid)
   * OnPlayerStunt(playerid, stuntid, money, details[])
+  * OnPlayerResolutionChange(playerid, X, Y)
 
 Experimental:
 
