@@ -24,6 +24,7 @@ DWORD CJmpProxy::InactiveRadioDrawJumpBack;
 DWORD CJmpProxy::DriveByUnknownJumpBack;
 DWORD CJmpProxy::StuntBonusJumpBack;
 DWORD CJmpProxy::StuntInfoJumpBack;
+DWORD CJmpProxy::ChangeResolutionJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -365,4 +366,26 @@ JMP_CAVE CJmpProxy::StuntInfo()
 		jmp[StuntInfoJumpBack]
 	}
 
+}
+
+JMP_CAVE CJmpProxy::ChangeResolution() 
+{
+	__asm
+	{
+		push ebx
+		mov ebx, 0x0C9C040
+		mov [ebx], ecx
+		mov edx, [eax + 04]
+		mov ebx, 0x0C9C044
+		mov [ebx], edx
+		pop ebx
+
+		pushad
+		push edx
+		push ecx
+		call CGame::OnResolutionChange
+		popad
+
+		jmp[ChangeResolutionJumpBack]
+	}
 }

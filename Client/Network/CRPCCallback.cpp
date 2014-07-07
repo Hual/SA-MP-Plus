@@ -16,6 +16,8 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::TOGGLE_ACTION, ToggleAction);
 	CRPC::Add(eRPC::SET_CLIP_AMMO, SetAmmoInClip);
 	CRPC::Add(eRPC::SET_NO_RELOAD, SetNoReload);
+
+	CGame::OnResolutionChange(*(int*)0x0C9C040, *(int*)0x0C9C044);
 }
 
 RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iExtra)

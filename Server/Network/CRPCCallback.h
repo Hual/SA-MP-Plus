@@ -12,4 +12,5 @@ public:
 	static RPC_CALLBACK PlayerPauseMenuBrowse(RPC_ARGS);
 	static RPC_CALLBACK PlayerDriveByShot(RPC_ARGS);
 	static RPC_CALLBACK StuntBonus(RPC_ARGS);
+	static RPC_CALLBACK ResolutionChange(RPC_ARGS);
 };

@@ -63,6 +63,21 @@ cell AMX_NATIVE_CALL IsPlayerInPauseMenuProc(AMX* pAmx, cell* pParams)
 	return Network::GetPlayerFromPlayerid(pParams[1])->IsInPauseMenu();
 }
 
+cell AMX_NATIVE_CALL GetPlayerResolutionProc(AMX* pAmx, cell* pParams)
+{
+	//pParams[2] = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionX();
+	//pParams[3] = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionY();
+	
+	cell *cellptr;
+	amx_GetAddr(pAmx, pParams[2], &cellptr);
+	*cellptr = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionX(); 
+
+	amx_GetAddr(pAmx, pParams[3], &cellptr);
+	*cellptr = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionY();
+
+	return 1;
+}
+
 cell AMX_NATIVE_CALL SetWaveHeightForAllProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
@@ -158,6 +173,8 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "TogglePlayerAction", TogglePlayerActionProc },
 	//{ "SetPlayerAmmoInClip", SetPlayerClipAmmoProc }, // tips off SA-MP's anti-cheat, wouldn't recomend using... yet...
 	{ "SetPlayerNoReload", SetPlayerNoReloadProc },
+	{ "GetPlayerResolution", GetPlayerResolutionProc },
+
 	{ 0, 0 }
 };
 
