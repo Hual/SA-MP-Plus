@@ -27,6 +27,23 @@ bool CPlayer::IsInPauseMenu()
 	return m_bInPauseMenu;
 }
 
+int CPlayer::GetResolutionX()
+{
+	return m_iResolutionX;
+}
+
+int CPlayer::GetResolutionY()
+{
+	return m_iResolutionY;
+}
+
+void CPlayer::SetResolution(int X, int Y)
+{
+	m_iResolutionX = X;
+	m_iResolutionY = Y;
+}
+
+
 void CPlayer::SetCurrentMenuId(unsigned char ucMenuId)
 {
 	m_ucMenuId = ucMenuId;

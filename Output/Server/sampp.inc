@@ -133,9 +133,13 @@ native TogglePauseMenuAbility(playerid, bool:toggle);
 native IsPlayerInPauseMenu(playerid);
 native SetPlayerHUDComponentColour(playerid, componentid, colour);
 native TogglePlayerAction(playerid, actionid, bool:toggle);
+//native SetPlayerAmmoInClip(playerid, slotid, newammo);
+native SetPlayerNoReload(playerid, bool:toggle);
+native GetPlayerResolution(playerid, &X, &Y);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
 forward OnDriverDriveByShot(playerid);
 forward OnPlayerStunt(playerid, stuntid, money, details[]);
+forward OnPlayerResolutionChange(playerid, X, Y);

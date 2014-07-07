@@ -22,6 +22,8 @@ public:
 	static void SetActionEnabled(unsigned char action, bool bEnabled);
 	static void OnDriveByShot();
 	static void OnStuntBonus(sStuntDetails* pStuntDetails);
+	static void SetClipAmmo(BYTE bSlot, int bAmmo);
+	static void SetNoReload(bool toggle);
 
 private:
 	static DWORD m_actionMemory[ePlayerAction::COUNT-1];

@@ -42,3 +42,22 @@ void CLocalPlayer::OnStuntBonus(sStuntDetails* pStuntDetails)
 
 	Network::SendRPC(eRPC::ON_STUNT_BONUS, &bitStream);
 }
+
+void CLocalPlayer::SetClipAmmo(BYTE bSlot, int bAmmo)
+{
+	DWORD address = ((*(int*)0xB6F5F0) + 0x588) + (0x28 * bSlot) + 0x8;
+	CMem::PutSingle<int>(address, bAmmo);
+}
+
+void CLocalPlayer::SetNoReload(bool toggle) {
+	if (toggle) 
+	{
+		CMem::PutSingle<BYTE>(0x07428AB, 0x90);
+		CMem::PutSingle<BYTE>(0x07428AC, 0x90);
+	}
+	else
+	{
+		CMem::PutSingle<BYTE>(0x07428AB, 0x85); // test eax,eax
+		CMem::PutSingle<BYTE>(0x07428AC, 0xC0);
+	}
+}

@@ -63,6 +63,21 @@ cell AMX_NATIVE_CALL IsPlayerInPauseMenuProc(AMX* pAmx, cell* pParams)
 	return Network::GetPlayerFromPlayerid(pParams[1])->IsInPauseMenu();
 }
 
+cell AMX_NATIVE_CALL GetPlayerResolutionProc(AMX* pAmx, cell* pParams)
+{
+	//pParams[2] = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionX();
+	//pParams[3] = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionY();
+	
+	cell *cellptr;
+	amx_GetAddr(pAmx, pParams[2], &cellptr);
+	*cellptr = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionX(); 
+
+	amx_GetAddr(pAmx, pParams[3], &cellptr);
+	*cellptr = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionY();
+
+	return 1;
+}
+
 cell AMX_NATIVE_CALL SetWaveHeightForAllProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
@@ -99,6 +114,23 @@ cell AMX_NATIVE_CALL TogglePlayerActionProc(AMX* pAmx, cell* pParams)
 	bitStream.WriteCasted<bool, cell>(pParams[3]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_ACTION, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL SetPlayerClipAmmoProc(AMX* pAmx, cell* pParams) // tips off SA-MP's anti-cheat, wouldn't recomend using... yet...
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // bSlotId
+	bitStream.WriteCasted<DWORD, cell>(pParams[3]); // dwNewAmmo
+
+	return Network::PlayerSendRPC(eRPC::SET_CLIP_AMMO, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]); // bToggle
+
+	return Network::PlayerSendRPC(eRPC::SET_NO_RELOAD, pParams[1], &bitStream);
 }
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
@@ -139,6 +171,10 @@ AMX_NATIVE_INFO PluginNatives[] =
 	/*{ "SetPlayerCheckpointColour", SetPlayerCheckpointColourProc },
 	{ "SetPlayerRaceCheckpointColour", SetPlayerRaceCheckpointColourProc },*/
 	{ "TogglePlayerAction", TogglePlayerActionProc },
+	//{ "SetPlayerAmmoInClip", SetPlayerClipAmmoProc }, // tips off SA-MP's anti-cheat, wouldn't recomend using... yet...
+	{ "SetPlayerNoReload", SetPlayerNoReloadProc },
+	{ "GetPlayerResolution", GetPlayerResolutionProc },
+
 	{ 0, 0 }
 };
 

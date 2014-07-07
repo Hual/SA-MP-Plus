@@ -28,6 +28,7 @@ public:
 	static void DriveByUnknown();
 	static void StuntBonus();
 	static void StuntInfo();
+	static void ChangeResolution();
 
 	static void TestDraw();
 
@@ -50,6 +51,7 @@ public:
 	static DWORD DriveByUnknownJumpBack;
 	static DWORD StuntBonusJumpBack;
 	static DWORD StuntInfoJumpBack;
+	static DWORD ChangeResolutionJumpBack;
 
 	static DWORD HUDColourList[];
 	static sStuntDetails StuntDetails;

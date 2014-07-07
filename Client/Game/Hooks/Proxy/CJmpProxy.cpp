@@ -1,4 +1,5 @@
 #include "CJmpProxy.h"
+#include "../CHooks.h"
 #include "../../CGame.h"
 #include "Network/Network.h"
 #include "../Shared/Network/CRPC.h"
@@ -23,6 +24,7 @@ DWORD CJmpProxy::InactiveRadioDrawJumpBack;
 DWORD CJmpProxy::DriveByUnknownJumpBack;
 DWORD CJmpProxy::StuntBonusJumpBack;
 DWORD CJmpProxy::StuntInfoJumpBack;
+DWORD CJmpProxy::ChangeResolutionJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -137,14 +139,28 @@ JMP_CAVE CJmpProxy::MenuSwitch()
 
 JMP_CAVE CJmpProxy::WorldCreate()
 {
-	__asm pushad;
-
-	CGame::OnWorldCreate();
-
 	__asm
 	{
+		pushad
+		call CGame::OnWorldCreate
+		call CHooks::GetGameVersion
+		cmp eax,2
 		popad
+		je EU_EXE
+		jmp USA_EXE
+		//-------------------------------
+
+	EU_EXE:
+		mov ecx, 0x76BC90
+		jmp DONE
+		//-------------------------------
+
+	USA_EXE:
+
 		mov ds:0xC8D4C0, 9
+		jmp DONE
+		//-------------------------------
+	DONE:
 		jmp[WorldCreateJumpBack]
 	}
 }
@@ -350,4 +366,26 @@ JMP_CAVE CJmpProxy::StuntInfo()
 		jmp[StuntInfoJumpBack]
 	}
 
+}
+
+JMP_CAVE CJmpProxy::ChangeResolution() 
+{
+	__asm
+	{
+		push ebx
+		mov ebx, 0x0C9C040
+		mov [ebx], ecx
+		mov edx, [eax + 04]
+		mov ebx, 0x0C9C044
+		mov [ebx], edx
+		pop ebx
+
+		pushad
+		push edx
+		push ecx
+		call CGame::OnResolutionChange
+		popad
+
+		jmp[ChangeResolutionJumpBack]
+	}
 }

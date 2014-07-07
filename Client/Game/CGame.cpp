@@ -3,6 +3,7 @@
 #include "CGame.h"
 #include "CGraphics.h"
 #include "CCmdlineParams.h"
+#include "Hooks\Proxy\CJmpProxy.h"
 #include "../Network/Network.h"
 #include "../Shared/Network/CRPC.h"
 #include "Utility/CSystem.h"
@@ -86,6 +87,16 @@ void CGame::OnWorldCreate()
 {
 	OnLoad();
 	m_bGameLoaded = true;
+}
+
+void CGame::OnResolutionChange(int X, int Y)
+{
+	CLog::Write("changed");
+	RakNet::BitStream bitStream;
+	bitStream.Write(X);
+	bitStream.Write(Y);
+
+	Network::SendRPC(eRPC::ON_RESOLUTION_CHANGE, &bitStream);
 }
 
 void CGame::OnPauseMenuToggle(bool toggle)
