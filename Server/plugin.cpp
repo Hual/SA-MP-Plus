@@ -64,10 +64,7 @@ cell AMX_NATIVE_CALL IsPlayerInPauseMenuProc(AMX* pAmx, cell* pParams)
 }
 
 cell AMX_NATIVE_CALL GetPlayerResolutionProc(AMX* pAmx, cell* pParams)
-{
-	//pParams[2] = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionX();
-	//pParams[3] = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionY();
-	
+{	
 	cell *cellptr;
 	amx_GetAddr(pAmx, pParams[2], &cellptr);
 	*cellptr = Network::GetPlayerFromPlayerid(pParams[1])->GetResolutionX(); 
@@ -133,6 +130,11 @@ cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::SET_NO_RELOAD, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL IsUsingSAMPPProc(AMX* pAmx, cell* pParams)
+{
+	return Network::IsPlayerConnected(pParams[1]);
+}
+
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
 {
 	return SUPPORTS_VERSION | SUPPORTS_AMX_NATIVES | SUPPORTS_PROCESS_TICK;
@@ -174,6 +176,7 @@ AMX_NATIVE_INFO PluginNatives[] =
 	//{ "SetPlayerAmmoInClip", SetPlayerClipAmmoProc }, // tips off SA-MP's anti-cheat, wouldn't recomend using... yet...
 	{ "SetPlayerNoReload", SetPlayerNoReloadProc },
 	{ "GetPlayerResolution", GetPlayerResolutionProc },
+	{ "IsUsingSAMPP", IsUsingSAMPPProc },
 
 	{ 0, 0 }
 };
