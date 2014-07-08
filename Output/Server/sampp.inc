@@ -136,6 +136,7 @@ native TogglePlayerAction(playerid, actionid, bool:toggle);
 //native SetPlayerAmmoInClip(playerid, slotid, newammo);
 native SetPlayerNoReload(playerid, bool:toggle);
 native GetPlayerResolution(playerid, &X, &Y);
+native bool:IsUsingSAMPP(playerid);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
