@@ -16,6 +16,11 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::TOGGLE_ACTION, ToggleAction);
 	CRPC::Add(eRPC::SET_CLIP_AMMO, SetAmmoInClip);
 	CRPC::Add(eRPC::SET_NO_RELOAD, SetNoReload);
+	CRPC::Add(eRPC::SET_BLUR_INTENSITY, SetBlur);
+	CRPC::Add(eRPC::TOGGLE_DRIVE_ON_WATER, DriveOnWater);
+	CRPC::Add(eRPC::SET_GAME_SPEED, SetSpeed);
+	CRPC::Add(eRPC::TOGGLE_PLAYER_FROZEN, SetFrozen);
+	CRPC::Add(eRPC::SET_PLAYER_ANIMS, SetAnims);
 
 	CGame::OnResolutionChange(*(int*)0x0C9C040, *(int*)0x0C9C044);
 }
@@ -129,5 +134,52 @@ RPC_CALLBACK CRPCCallback::SetNoReload(RakNet::BitStream& bsData, int iExtra)
 	if (bsData.Read(toggle))
 	{
 		CLocalPlayer::SetNoReload(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetSpeed(RakNet::BitStream& bsData, int iExtra)
+{
+
+	float speed;
+
+	if (bsData.Read(speed))
+	{
+		CGame::SetGameSpeed(speed);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::DriveOnWater(RakNet::BitStream& bsData, int iExtra)
+{
+	bool toggle;
+	if (bsData.Read(toggle)) 
+	{
+		CGame::ToggleDriveOnWater(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetBlur(RakNet::BitStream& bsData, int iExtra)
+{
+	int intensity;
+	if (bsData.Read(intensity))
+	{
+		CGame::SetBlurIntensity(intensity);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetFrozen(RakNet::BitStream& bsData, int iExtra)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::ToggleFrozen(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetAnims(RakNet::BitStream& bsData, int iExtra)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::SetPedAnims(toggle);
 	}
 }

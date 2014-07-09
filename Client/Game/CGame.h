@@ -6,7 +6,11 @@
 
 class CGame
 {
+
 public:
+
+	
+
 	static void OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow);
 	static void OnLoad();
 	static void OnUnload();
@@ -20,6 +24,8 @@ public:
 	static bool InMenu();
 	static bool Paused();
 	static bool Playing();
+	static unsigned int IsFrozen();
+	static unsigned int UsePedAnims();
 
 	static int OnCursorMove(int iX, int iY);
 	static BYTE OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID);
@@ -31,11 +37,19 @@ public:
 	static void SetRadioStation(unsigned long ulStation);
 	static void SetWaveHeight(float fLength);
 	static void SetHUDVisible(bool bVisible);
+	static void ToggleDriveOnWater(bool toggle);
+	static void SetGameSpeed(float speed);
+	static void SetBlurIntensity(int intensity);
+	static void ToggleFrozen(bool toggle);
+	static void SetPedAnims(bool toggle);
 
 	static bool InPauseMenu;
 	static bool PauseMenuEnabled;
-
+	static int m_iPlayerPointer;
+	
 private:
 	static bool m_bGameLoaded;
-
+	static bool Frozen;
+	static bool PedAnims;
+	
 };

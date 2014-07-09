@@ -14,6 +14,7 @@ void CHooks::Apply()
 	ApplyDirect3D();
 	ApplyDirectInput();
 	InstallJmp();
+	InstallPatches();
 }
 
 void CHooks::Remove()
@@ -48,7 +49,15 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x469941, CJmpProxy::StuntBonus, CJmpProxy::StuntBonusJumpBack, 6);
 	CMem::InstallJmp(0x69E360, CJmpProxy::StuntInfo, CJmpProxy::StuntInfoJumpBack, 58);
 	CMem::InstallJmp(0x07F6CFD, CJmpProxy::ChangeResolution, CJmpProxy::ChangeResolutionJumpBack, 15);
+	CMem::InstallJmp(0x0609560, CJmpProxy::FreezePed, CJmpProxy::FreezePedJumpBack, 6);
+	CMem::InstallJmp(0x06B4CC0, CJmpProxy::FreezeVehicle, CJmpProxy::FreezeVehicleJumpBack, 6);
+	CMem::InstallJmp(0x0609A1F, CJmpProxy::PedAnims, CJmpProxy::PedAnimsJumpBack, 7);
+}
 
+void CHooks::InstallPatches()
+{
+	memcpy((void*)0x0401190, "\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90", 10); // NOP SetGameSpeed to 1.0 every frame
+	memcpy((void*)0x060CD41, "\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90", 10); // NOP SetGameSpeed to 1.0 on player death
 }
 
 int CHooks::GetGameVersion() {

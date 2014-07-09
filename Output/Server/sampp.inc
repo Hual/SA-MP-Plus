@@ -125,6 +125,9 @@ stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Floa
 #define STUNT_TYPE_WHEELIE 117
 #define STUNT_TYPE_STOPPIE 233
 
+#define DEFAULT_BLUR_INTENSITY 36
+#define NO_BLUR_INTENSITY 0
+
 native ToggleHUDComponentForPlayer(playerid, componentid, bool:toggle);
 native SetRadioStationForPlayer(playerid, stationid);
 native SetWaveHeightForPlayer(playerid, Float:height);
@@ -137,6 +140,11 @@ native TogglePlayerAction(playerid, actionid, bool:toggle);
 native SetPlayerNoReload(playerid, bool:toggle);
 native GetPlayerResolution(playerid, &X, &Y);
 native bool:IsUsingSAMPP(playerid);
+native SetPlayerBlurIntensity(playerid, intensity);
+native SetPlayerGameSpeed(playerid, Float:speed);
+native TogglePlayerDriveOnWater(playerid, bool:toggle);
+native TogglePlayerFrozen(playerid, bool:toggle);
+native SetPlayerPedAnims(playerid, bool:toggle);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);

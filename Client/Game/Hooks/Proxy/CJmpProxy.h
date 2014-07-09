@@ -29,6 +29,9 @@ public:
 	static void StuntBonus();
 	static void StuntInfo();
 	static void ChangeResolution();
+	static void FreezePed();
+	static void FreezeVehicle();
+	static void PedAnims();
 
 	static void TestDraw();
 
@@ -52,6 +55,9 @@ public:
 	static DWORD StuntBonusJumpBack;
 	static DWORD StuntInfoJumpBack;
 	static DWORD ChangeResolutionJumpBack;
+	static DWORD FreezePedJumpBack;
+	static DWORD FreezeVehicleJumpBack;
+	static DWORD PedAnimsJumpBack;
 
 	static DWORD HUDColourList[];
 	static sStuntDetails StuntDetails;

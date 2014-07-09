@@ -11,6 +11,8 @@
 bool CGame::m_bGameLoaded;
 bool CGame::InPauseMenu;
 bool CGame::PauseMenuEnabled;
+bool CGame::Frozen;
+bool CGame::PedAnims;
 
 void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow)
 {
@@ -91,7 +93,6 @@ void CGame::OnWorldCreate()
 
 void CGame::OnResolutionChange(int X, int Y)
 {
-	CLog::Write("changed");
 	RakNet::BitStream bitStream;
 	bitStream.Write(X);
 	bitStream.Write(Y);
@@ -163,4 +164,45 @@ void CGame::UnprotectMemory()
 	CMem::Unprotect(0x72C659, 0x12);
 	CMem::Unprotect(0xC812E8, sizeof(float));
 	//CMem::Unprotect(0x00C7F158, 38 * NUM_CHECKPOINTS);
+}
+
+void CGame::SetBlurIntensity(int intensity) 
+{
+	CMem::PutSingle<BYTE>(0x0704E8A, 0xE8); // call
+	CMem::PutSingle<BYTE>(0x0704E8B, 0x11);
+	CMem::PutSingle<BYTE>(0x0704E8C, 0xE2);
+	CMem::PutSingle<BYTE>(0x0704E8D, 0xFF);
+	CMem::PutSingle<BYTE>(0x0704E8E, 0xFF);
+
+	CMem::PutSingle<int>(0x8D5104, intensity);
+}
+
+void CGame::SetGameSpeed(float speed) 
+{
+	CMem::PutSingle<float>(0xB7CB64, speed);
+}
+
+void CGame::ToggleDriveOnWater(bool toggle) 
+{
+	CMem::PutSingle<BYTE>(0x969152, (BYTE)toggle);
+}
+
+void CGame::ToggleFrozen(bool toggle) 
+{
+	Frozen = toggle;
+}
+
+void CGame::SetPedAnims(bool toggle)
+{
+	PedAnims = toggle;
+}
+
+unsigned int CGame::IsFrozen() 
+{
+	return (unsigned int)Frozen;
+}
+
+unsigned int CGame::UsePedAnims()
+{
+	return (unsigned int)PedAnims;
 }

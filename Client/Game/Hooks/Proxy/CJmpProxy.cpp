@@ -25,6 +25,9 @@ DWORD CJmpProxy::DriveByUnknownJumpBack;
 DWORD CJmpProxy::StuntBonusJumpBack;
 DWORD CJmpProxy::StuntInfoJumpBack;
 DWORD CJmpProxy::ChangeResolutionJumpBack;
+DWORD CJmpProxy::FreezePedJumpBack;
+DWORD CJmpProxy::FreezeVehicleJumpBack;
+DWORD CJmpProxy::PedAnimsJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -387,5 +390,33 @@ JMP_CAVE CJmpProxy::ChangeResolution()
 		popad
 
 		jmp[ChangeResolutionJumpBack]
+	}
+}
+
+JMP_CAVE CJmpProxy::FreezePed()
+{
+	__asm
+	{
+		call CGame::IsFrozen // modify eax, which is all we need to do
+		jmp[FreezePedJumpBack]
+	}
+}
+
+JMP_CAVE CJmpProxy::FreezeVehicle() // freeze vehicle that PED is driving
+{
+	__asm
+	{
+		call CGame::IsFrozen // modify eax, which is all we need to do
+		jmp[FreezeVehicleJumpBack]
+	}
+}
+
+JMP_CAVE CJmpProxy::PedAnims() 
+{
+	__asm
+	{
+		call CGame::UsePedAnims
+		cmp eax,1
+		jmp[PedAnimsJumpBack]
 	}
 }

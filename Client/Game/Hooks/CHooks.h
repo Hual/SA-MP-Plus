@@ -33,5 +33,6 @@ private:
 	static void RemoveDirect3D();
 	static void ApplyCursorPos();
 	static void RemoveCursorPos();
+	static void InstallPatches();
 
 };
