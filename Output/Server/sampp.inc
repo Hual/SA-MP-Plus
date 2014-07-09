@@ -145,6 +145,7 @@ native SetPlayerGameSpeed(playerid, Float:speed);
 native TogglePlayerDriveOnWater(playerid, bool:toggle);
 native TogglePlayerFrozen(playerid, bool:toggle);
 native SetPlayerPedAnims(playerid, bool:toggle);
+native TogglePlayerSwitchReload(playerid, bool:toggle);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);

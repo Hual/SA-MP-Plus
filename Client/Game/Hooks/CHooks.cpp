@@ -52,6 +52,7 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x0609560, CJmpProxy::FreezePed, CJmpProxy::FreezePedJumpBack, 6);
 	CMem::InstallJmp(0x06B4CC0, CJmpProxy::FreezeVehicle, CJmpProxy::FreezeVehicleJumpBack, 6);
 	CMem::InstallJmp(0x0609A1F, CJmpProxy::PedAnims, CJmpProxy::PedAnimsJumpBack, 7);
+	//CMem::InstallJmp(0x060B4F4, CJmpProxy::SwitchWeapon, CJmpProxy::SwitchWeaponJumpBack, 6);
 }
 
 void CHooks::InstallPatches()

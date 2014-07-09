@@ -15,6 +15,12 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * TogglePlayerAction(playerid, actionid, bool:toggle)
   * SetPlayerNoReload(playerid, bool:toggle)
   * GetPlayerResolution(playerid, &width, &height)
+  * SetPlayerBlurIntensity(playerid, intensity);
+  * SetPlayerGameSpeed(playerid, Float:speed);
+  * TogglePlayerDriveOnWater(playerid, bool:toggle);
+  * TogglePlayerFrozen(playerid, bool:toggle);
+  * SetPlayerPedAnims(playerid, bool:toggle);
+  * TogglePlayerSwitchReload(playerid, bool:toggle);
 
 Callbacks:
   

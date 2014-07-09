@@ -32,6 +32,7 @@ public:
 	static void FreezePed();
 	static void FreezeVehicle();
 	static void PedAnims();
+	static void SwitchWeapon();
 
 	static void TestDraw();
 
@@ -58,6 +59,7 @@ public:
 	static DWORD FreezePedJumpBack;
 	static DWORD FreezeVehicleJumpBack;
 	static DWORD PedAnimsJumpBack;
+	static DWORD SwitchWeaponJumpBack;
 
 	static DWORD HUDColourList[];
 	static sStuntDetails StuntDetails;

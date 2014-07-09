@@ -13,6 +13,7 @@ bool CGame::InPauseMenu;
 bool CGame::PauseMenuEnabled;
 bool CGame::Frozen;
 bool CGame::PedAnims;
+int CGame::ClipAmmo[50];
 
 void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow)
 {
@@ -32,6 +33,10 @@ void CGame::OnLoad()
 		Network::Initialize(CCmdlineParams::GetArgumentValue("h"), atoi(CCmdlineParams::GetArgumentValue("p").c_str()) + 1);
 		Network::Connect();
 		CHUD::Initialize();
+
+		/*for (int i = 0; i < sizeof(50); ++i) {
+			CGame::ClipAmmo[i] = 7;
+		}*/
 	}
 }
 
@@ -205,4 +210,17 @@ unsigned int CGame::IsFrozen()
 unsigned int CGame::UsePedAnims()
 {
 	return (unsigned int)PedAnims;
+}
+
+
+void CGame::ToggleSwitchReload(bool toggle) 
+{
+	if (!toggle) 
+	{
+		memcpy((void*)0x060B4FA, "\x90\x90\x90\x90\x90\x90", 6);
+	}
+	else 
+	{
+		memcpy((void*)0x060B4FA, "\x89\x88\xA8\x05\x00\x00", 6); // mov [eax+000005A8],ecx
+	}
 }

@@ -23,6 +23,7 @@ public:
 	static RPC_CALLBACK SetSpeed(RPC_ARGS);
 	static RPC_CALLBACK SetFrozen(RPC_ARGS);
 	static RPC_CALLBACK SetAnims(RPC_ARGS);
+	static RPC_CALLBACK ToggleSwitchReload(RPC_ARGS);
 
 private:
 

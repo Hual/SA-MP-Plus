@@ -42,10 +42,12 @@ public:
 	static void SetBlurIntensity(int intensity);
 	static void ToggleFrozen(bool toggle);
 	static void SetPedAnims(bool toggle);
+	static void ToggleSwitchReload(bool toggle);
 
 	static bool InPauseMenu;
 	static bool PauseMenuEnabled;
 	static int m_iPlayerPointer;
+	static int ClipAmmo[50];
 	
 private:
 	static bool m_bGameLoaded;

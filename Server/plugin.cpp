@@ -170,6 +170,15 @@ cell AMX_NATIVE_CALL SetPedAnimsProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::SET_PLAYER_ANIMS, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL TogglePlayerSwitchReloadProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_SWITCH_RELOAD, pParams[1], &bitStream);
+}
+
+
 
 cell AMX_NATIVE_CALL IsUsingSAMPPProc(AMX* pAmx, cell* pParams)
 {
@@ -223,6 +232,7 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "SetPlayerGameSpeed", SetPlayerGameSpeedProc },
 	{ "TogglePlayerFrozen", TogglePlayerFrozenProc },
 	{ "SetPlayerPedAnims", SetPedAnimsProc },
+	{ "TogglePlayerSwitchReload", TogglePlayerSwitchReloadProc },
 
 	{ 0, 0 }
 };

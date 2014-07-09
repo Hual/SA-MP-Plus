@@ -28,6 +28,7 @@ DWORD CJmpProxy::ChangeResolutionJumpBack;
 DWORD CJmpProxy::FreezePedJumpBack;
 DWORD CJmpProxy::FreezeVehicleJumpBack;
 DWORD CJmpProxy::PedAnimsJumpBack;
+DWORD CJmpProxy::SwitchWeaponJumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -419,4 +420,31 @@ JMP_CAVE CJmpProxy::PedAnims()
 		cmp eax,1
 		jmp[PedAnimsJumpBack]
 	}
+}
+
+DWORD clipAmmo;
+JMP_CAVE CJmpProxy::SwitchWeapon()
+{
+	__asm
+	{
+		cmp ecx, edx
+		jnge DONE
+		mov ecx, edx
+
+		pushad
+	}
+
+	CGame::ClipAmmo[24] = 500;
+	clipAmmo = CGame::ClipAmmo[*(int*)0x0BAA410];
+
+	__asm
+	{
+		popad
+		mov ecx, [clipAmmo]
+		jmp DONE
+
+	DONE:
+		jmp[SwitchWeaponJumpBack]
+	}
+
 }

@@ -21,6 +21,7 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::SET_GAME_SPEED, SetSpeed);
 	CRPC::Add(eRPC::TOGGLE_PLAYER_FROZEN, SetFrozen);
 	CRPC::Add(eRPC::SET_PLAYER_ANIMS, SetAnims);
+	CRPC::Add(eRPC::TOGGLE_SWITCH_RELOAD, ToggleSwitchReload);
 
 	CGame::OnResolutionChange(*(int*)0x0C9C040, *(int*)0x0C9C044);
 }
@@ -181,5 +182,14 @@ RPC_CALLBACK CRPCCallback::SetAnims(RakNet::BitStream& bsData, int iExtra)
 	if (bsData.Read(toggle))
 	{
 		CGame::SetPedAnims(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::ToggleSwitchReload(RakNet::BitStream& bsData, int iExtra)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::ToggleSwitchReload(toggle);
 	}
 }
