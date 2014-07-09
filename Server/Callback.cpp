@@ -93,8 +93,12 @@ namespace Callback
 		case eCallbackType::ON_PLAYER_DISCONNECT:
 		{
 			cell* pPlayerId = nullptr;
+			cell* pReason = nullptr;
+
 			amx_GetAddr(pAmx, pParams[0], &pPlayerId);
-			OnPlayerDisconnect(*pPlayerId);
+			amx_GetAddr(pAmx, pParams[1], &pReason);
+
+			OnPlayerDisconnect(*pPlayerId, *pReason);
 			delete pPlayerId;
 
 			break;
@@ -114,10 +118,14 @@ namespace Callback
 		Utility::Printf("Player connecting, has the SA-MP+ plugin: %i", Network::IsPlayerConnected(uiPlayerid));
 	}
 
-	void OnPlayerDisconnect(unsigned int uiPlayerid)
+	void OnPlayerDisconnect(unsigned int uiPlayerid, unsigned int uiReason)
 	{
-		if (Network::GetPlayers().count(uiPlayerid))
-			Network::CloseConnection(uiPlayerid);
+		if (Network::IsPlayerConnected(uiPlayerid))
+		{
+			if (uiReason == 2)
+				Network::PlayerSend(Network::ePacketType::PACKET_PLAYER_KICKED, uiPlayerid);
 
+			Network::CloseConnection(uiPlayerid);
+		}
 	}
 }

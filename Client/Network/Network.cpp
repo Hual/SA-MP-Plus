@@ -5,17 +5,27 @@
 #include "../Game/CGame.h"
 #include "../Shared/Network/CRPC.h"
 #include "Network/CRPCCallback.h"
+#include "../Shared/RakNet/MessageIdentifiers.h"
 
 namespace Network
 {
 	static CRakClient* pRakClient;
-	static bool bInitialized = false;
-	static bool bConnected = false;
+	static bool bInitialized;
+	static bool bConnected;
+	static bool bServerHasPlugin;
+	static std::string strAddress;
+	static unsigned short usPort;
 
-	void Initialize()
+	void Initialize(std::string address, unsigned short port)
 	{
+		bInitialized = false;
+
+		strAddress = address;
+		usPort = port;
+
 		pRakClient = new CRakClient();
 		bConnected = false;
+		bServerHasPlugin = false;
 
 		if (pRakClient->Startup() != RakNet::StartupResult::RAKNET_STARTED)
 			return;
@@ -28,7 +38,7 @@ namespace Network
 		return bInitialized;
 	}
 
-	void Connect(const std::string& strAddress, unsigned short usPort)
+	void Connect()
 	{
 		if (IsInitialized())
 			pRakClient->Connect(strAddress.c_str(), usPort, NULL);
@@ -38,6 +48,11 @@ namespace Network
 	bool IsConnected()
 	{
 		return bConnected;
+	}
+
+	bool ServerHasPlugin()
+	{
+		return bServerHasPlugin;
 	}
 
 	void Process()
@@ -61,7 +76,10 @@ namespace Network
 			case Network::ePacketType::PACKET_PLAYER_REGISTERED:
 			{
 				bConnected = true;
+				bServerHasPlugin = true;
 				CRPCCallback::Initialize();
+
+				break;
 			}
 			case Network::ePacketType::PACKET_RPC:
 			{
@@ -69,6 +87,23 @@ namespace Network
 
 				if (bitStream.Read<unsigned short>(usRpcId))
 					CRPC::Process(usRpcId, bitStream);
+
+				break;
+			}
+			case Network::ePacketType::PACKET_PLAYER_KICKED:
+			{
+				bServerHasPlugin = false;
+
+				break;
+			}
+				
+			case ID_DISCONNECTION_NOTIFICATION:
+			case ID_CONNECTION_LOST:
+			{
+				bConnected = false;
+
+				if (ServerHasPlugin())
+					Connect();
 
 				break;
 			}

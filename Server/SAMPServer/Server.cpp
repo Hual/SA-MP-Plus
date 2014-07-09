@@ -19,9 +19,12 @@ namespace SAMPServer
 		return atoi(pServerConfig->GetSetting("maxplayers").c_str());
 	}
 
-	std::string& GetListeningAddress()
+	std::string GetListeningAddress()
 	{
-		return pServerConfig->GetSetting("bind");
+		if (pServerConfig->HasSetting("bind"))
+			return pServerConfig->GetSetting("bind");
+		else
+			return "";
 	}
 
 	unsigned short GetListeningPort()

@@ -8,5 +8,5 @@ namespace SAMPServer
 	CServerConfig* GetConfig();
 	unsigned short GetMaxPlayers();
 	unsigned short GetListeningPort();
-	std::string& GetListeningAddress();
+	std::string GetListeningAddress();
 }

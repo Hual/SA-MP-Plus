@@ -22,7 +22,7 @@ namespace Callback
 
 	cell Process(AMX* pAmx, eCallbackType type, cell* pParams);
 	void OnPlayerConnect(unsigned int uiPlayerid);
-	void OnPlayerDisconnect(unsigned int uiPlayerid);
+	void OnPlayerDisconnect(unsigned int uiPlayerid, unsigned int uiReason);
 
 	std::list<AMX*>& GetAMXList();
 }

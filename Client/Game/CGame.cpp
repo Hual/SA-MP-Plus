@@ -27,8 +27,8 @@ void CGame::OnLoad()
 	{
 		CSystem::GetLoadedModules();
 		CGame::UnprotectMemory();
-		Network::Initialize();
-		Network::Connect(CCmdlineParams::GetArgumentValue("h"), atoi(CCmdlineParams::GetArgumentValue("p").c_str())+1);
+		Network::Initialize(CCmdlineParams::GetArgumentValue("h"), atoi(CCmdlineParams::GetArgumentValue("p").c_str()) + 1);
+		Network::Connect();
 		CHUD::Initialize();
 	}
 }
