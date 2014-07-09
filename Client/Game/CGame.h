@@ -20,6 +20,7 @@ public:
 	static bool InMenu();
 	static bool Paused();
 	static bool Playing();
+	static BYTE GetVersion();
 
 	static int OnCursorMove(int iX, int iY);
 	static BYTE OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID);

@@ -164,3 +164,17 @@ void CGame::UnprotectMemory()
 	CMem::Unprotect(0xC812E8, sizeof(float));
 	//CMem::Unprotect(0x00C7F158, 38 * NUM_CHECKPOINTS);
 }
+
+BYTE CGame::GetVersion()
+{
+	unsigned char ucA = CMem::Get<BYTE>(0x748ADD);
+	unsigned char ucB = CMem::Get<BYTE>(0x748ADE);
+	if (ucA == 0xFF && ucB == 0x53)
+		return 1; // usa
+	else if (ucA == 0x0F && ucB == 0x84)
+		return 2; // eu
+	else if (ucA == 0xFE && ucB == 0x10)
+		return 3;
+
+	return 0;
+}
