@@ -147,24 +147,9 @@ JMP_CAVE CJmpProxy::WorldCreate()
 	{
 		pushad
 		call CGame::OnWorldCreate
-		call CHooks::GetGameVersion
-		cmp eax,2
 		popad
-		je EU_EXE
-		jmp USA_EXE
-		//-------------------------------
-
-	EU_EXE:
-		mov ecx, 0x76BC90
-		jmp DONE
-		//-------------------------------
-
-	USA_EXE:
-
-		mov ds:0xC8D4C0, 9
-		jmp DONE
-		//-------------------------------
-	DONE:
+		mov[eax], edx
+		movzx eax, byte ptr[esi + 0x59]
 		jmp[WorldCreateJumpBack]
 	}
 }

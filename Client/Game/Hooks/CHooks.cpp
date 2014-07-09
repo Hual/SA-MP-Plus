@@ -30,8 +30,7 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x5736CF, CJmpProxy::MenuAction2, CJmpProxy::MenuJumpBack2, 6);
 	CMem::InstallJmp(0x57C2F7, CJmpProxy::MenuAction3, CJmpProxy::MenuJumpBack3, 6);
 	CMem::InstallJmp(0x576C27, CJmpProxy::MenuSwitch, CJmpProxy::MenuSwitchJumpBack, 6, 8);
-	if(CHooks::GetGameVersion() == 2) CMem::InstallJmp(0x748CF1, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 5);
-	else CMem::InstallJmp(0x748CF1, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 10);
+	CMem::InstallJmp(0x52B811, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 6);
 	//TODO: fix checkpoints
 	//CMem::InstallJmp(0x722F1A, CJmpProxy::RaceCheckpointUnknown, CJmpProxy::RaceCheckpointUnknownJumpBack, 7, 25);
 	CMem::InstallJmp(0x58F4A2, CJmpProxy::PositiveMoneyDraw, CJmpProxy::PositiveMoneyDrawJumpBack, 8);
@@ -59,29 +58,6 @@ void CHooks::InstallPatches()
 {
 	memcpy((void*)0x0401190, "\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90", 10); // NOP SetGameSpeed to 1.0 every frame
 	memcpy((void*)0x060CD41, "\x90\x90\x90\x90\x90\x90\x90\x90\x90\x90", 10); // NOP SetGameSpeed to 1.0 on player death
-}
-
-int CHooks::GetGameVersion() {
-	unsigned char ucA = *reinterpret_cast < unsigned char* > (0x748ADD);
-	unsigned char ucB = *reinterpret_cast < unsigned char* > (0x748ADE);
-	if (ucA == 0xFF && ucB == 0x53)
-	{
-		return 1; // usa
-	}
-	else if (ucA == 0x0F && ucB == 0x84)
-	{
-		return 2; // eu
-	}
-	else if (ucA == 0xFE && ucB == 0x10)
-	{
-		return 3;
-	}
-	else
-	{
-		return -1;
-	}
-
-	return -1;
 }
 
 void CHooks::ApplyDirectInput()

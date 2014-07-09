@@ -18,7 +18,7 @@ namespace Callback
 	};
 
 	// push arguments in reversed order
-	void Execute(const char* szFunction, const char* szFormat, ...);
+	cell Execute(const char* szFunction, const char* szFormat, ...);
 
 	cell Process(AMX* pAmx, eCallbackType type, cell* pParams);
 	void OnPlayerConnect(unsigned int uiPlayerid);

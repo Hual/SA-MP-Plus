@@ -24,8 +24,12 @@ public:
 	static bool InMenu();
 	static bool Paused();
 	static bool Playing();
+<<<<<<< HEAD
 	static unsigned int IsFrozen();
 	static unsigned int UsePedAnims();
+=======
+	static BYTE GetVersion();
+>>>>>>> upstream/master
 
 	static int OnCursorMove(int iX, int iY);
 	static BYTE OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID);
@@ -43,6 +47,7 @@ public:
 	static void ToggleFrozen(bool toggle);
 	static void SetPedAnims(bool toggle);
 	static void ToggleSwitchReload(bool toggle);
+	static BYTE GetVersion();
 
 	static bool InPauseMenu;
 	static bool PauseMenuEnabled;

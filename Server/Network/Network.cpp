@@ -4,6 +4,7 @@
 #include "../Shared/Network/CRPC.h"
 #include "CRPCCallback.h"
 #include "../Shared/RakNet/SuperFastHash.h"
+#include "Callback.h"
 
 namespace Network
 {
@@ -195,10 +196,18 @@ namespace Network
 			{
 				Utility::Printf("Incoming connection: %s", pPacket->systemAddress.ToString());
 
-				//TODO: read sa-mp's ban list, reject connection if IP is banned
+				if (Callback::Execute("OnPlayerSAMPPConnect", "is", pPacket->systemAddress.GetPort(), pPacket->systemAddress.ToString(false)))
+				{
+					CClientSocketInfo* pSockInfo = new CClientSocketInfo(pPacket->systemAddress, pPacket->guid);
+					unhandledConnections.push_back(pSockInfo);
+				}
+				else
+				{
+					pRakServer->Send(ePacketType::PACKET_CONNECTION_REJECTED, pPacket->systemAddress);
+					pRakServer->CloseConnection(pPacket->systemAddress);
+				}
 
-				CClientSocketInfo* pSockInfo = new CClientSocketInfo(pPacket->systemAddress, pPacket->guid);
-				unhandledConnections.push_back(pSockInfo);
+				//TODO: read sa-mp's ban list, reject connection if IP is banned
 			}
 			else
 				iPlayerId = GetPlayeridFromSystemAddress(pPacket->systemAddress);

@@ -213,14 +213,28 @@ unsigned int CGame::UsePedAnims()
 }
 
 
-void CGame::ToggleSwitchReload(bool toggle) 
+void CGame::ToggleSwitchReload(bool toggle)
 {
-	if (!toggle) 
+	if (!toggle)
 	{
 		memcpy((void*)0x060B4FA, "\x90\x90\x90\x90\x90\x90", 6);
 	}
-	else 
+	else
 	{
 		memcpy((void*)0x060B4FA, "\x89\x88\xA8\x05\x00\x00", 6); // mov [eax+000005A8],ecx
 	}
+}
+
+BYTE CGame::GetVersion()
+{
+	unsigned char ucA = CMem::Get<BYTE>(0x748ADD);
+	unsigned char ucB = CMem::Get<BYTE>(0x748ADE);
+	if (ucA == 0xFF && ucB == 0x53)
+		return 1; // usa
+	else if (ucA == 0x0F && ucB == 0x84)
+		return 2; // eu
+	else if (ucA == 0xFE && ucB == 0x10)
+		return 3;
+
+	return 0;
 }

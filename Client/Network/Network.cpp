@@ -73,7 +73,7 @@ namespace Network
 
 			switch (pPacket->data[0])
 			{
-			case Network::ePacketType::PACKET_PLAYER_REGISTERED:
+			case ePacketType::PACKET_PLAYER_REGISTERED:
 			{
 				bConnected = true;
 				bServerHasPlugin = true;
@@ -81,7 +81,7 @@ namespace Network
 
 				break;
 			}
-			case Network::ePacketType::PACKET_RPC:
+			case ePacketType::PACKET_RPC:
 			{
 				unsigned short usRpcId;
 
@@ -90,13 +90,13 @@ namespace Network
 
 				break;
 			}
-			case Network::ePacketType::PACKET_PLAYER_KICKED:
+			case ePacketType::PACKET_CONNECTION_REJECTED:
+			case ePacketType::PACKET_PLAYER_PROPER_DISCONNECT:
 			{
 				bServerHasPlugin = false;
 
 				break;
 			}
-				
 			case ID_DISCONNECTION_NOTIFICATION:
 			case ID_CONNECTION_LOST:
 			{

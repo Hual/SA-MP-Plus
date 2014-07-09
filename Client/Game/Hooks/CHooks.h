@@ -16,7 +16,6 @@ public:
 	static void Apply();
 	static void InstallJmp();
 	static void Remove();
-	static int GetGameVersion();
 
 private:
 	static Direct3DCreate9_t  m_pfnDirect3DCreate9;
