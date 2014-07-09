@@ -46,7 +46,6 @@ public:
 
 	static bool InPauseMenu;
 	static bool PauseMenuEnabled;
-	static int m_iPlayerPointer;
 	static int ClipAmmo[50];
 	
 private:
