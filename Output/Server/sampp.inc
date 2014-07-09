@@ -23,7 +23,7 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
-	SAMPP_ExecuteCallback(1, playerid);
+	SAMPP_ExecuteCallback(1, playerid, reason);
 
 #if defined SAMPP_OnPlayerDisconnect
 	return SAMPP_OnPlayerDisconnect(playerid, reason);
@@ -133,14 +133,11 @@ native TogglePauseMenuAbility(playerid, bool:toggle);
 native IsPlayerInPauseMenu(playerid);
 native SetPlayerHUDComponentColour(playerid, componentid, colour);
 native TogglePlayerAction(playerid, actionid, bool:toggle);
-//native SetPlayerAmmoInClip(playerid, slotid, newammo);
-native SetPlayerNoReload(playerid, bool:toggle);
-native GetPlayerResolution(playerid, &X, &Y);
-native bool:IsUsingSAMPP(playerid);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
 forward OnDriverDriveByShot(playerid);
 forward OnPlayerStunt(playerid, stuntid, money, details[]);
-forward OnPlayerResolutionChange(playerid, X, Y);
+forward OnPlayerSAMPPConnect(address[], port);
+forward OnPlayerSAMPPJoin(playerid, bool:has_plugin);

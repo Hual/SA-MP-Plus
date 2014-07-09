@@ -1,5 +1,6 @@
 #include "Utility.h"
 #include "../Platform.h"
+#include <ctime>
 
 extern void* pAMXFunctions;
 
@@ -45,7 +46,7 @@ namespace Utility
 		vsnprintf(szBuffer, sizeof(szBuffer), szFormat, vaArgs);
 		va_end(vaArgs);
 
-		return logprintf("[SA-MP+] %s", szBuffer);
+		return logprintf("[SA-MP+] [%u] %s", (unsigned __int32)time(NULL), szBuffer);
 	}
 
 	void* GetAMXFunctions()
