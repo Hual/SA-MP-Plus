@@ -17,3 +17,11 @@ void CMem::ApplyJmp(BYTE* pAddress, DWORD dwProxy, DWORD dwLen)
 
 	VirtualProtect((void*)pAddress, dwLen, dwOld, &m_dwUnprotectDummy);
 }
+
+
+void CMem::Cpy(void* address, const void* src, int size)
+{
+	CMem::Unprotect(address, size);
+	memcpy(address, src, size);
+	VirtualProtect(address, size, m_dwUnprotectDummy, NULL);
+}
