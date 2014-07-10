@@ -41,7 +41,7 @@ class CRPC
 {
 public:
 	static void Add(unsigned short usRPCId, RPCFunct_t func);
-	static void Process(unsigned short usRPCId, RakNet::BitStream& bsData, int iExtra = NULL);
+	static void Process(unsigned short usRPCId, RakNet::BitStream& bsData, int iExtra = 0);
 
 private:
 	static std::map<unsigned short, RPCFunct_t> m_functions;
