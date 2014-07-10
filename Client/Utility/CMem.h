@@ -17,6 +17,7 @@ public:
 	template <class T, class U> static void InstallJmp(T address, U proxy, DWORD dwLen = 5);
 
 	static void ApplyJmp(BYTE* pAddress, DWORD dwProxy, DWORD dwLen);
+	static void Cpy(void* address, const void* src, int size);
 
 private:
 	static DWORD m_dwUnprotectDummy;
