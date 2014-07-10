@@ -142,12 +142,17 @@ native TogglePlayerDriveOnWater(playerid, bool:toggle);
 native TogglePlayerFrozen(playerid, bool:toggle);
 native SetPlayerPedAnims(playerid, bool:toggle);
 native TogglePlayerSwitchReload(playerid, bool:toggle);
+native bool:IsUsingSAMPP(playerid);
+native GetPlayerResolution(playerid, &X, &Y);
+native SetPlayerNoReload(playerid, bool:toggle);
+
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
 forward OnDriverDriveByShot(playerid);
 forward OnPlayerStunt(playerid, stuntid, money, details[]);
+forward OnPlayerResolutionChange(playerid, X, Y);
 forward OnPlayerSAMPPConnect(address[], port);
 forward OnPlayerSAMPPJoin(playerid, bool:has_plugin);
 
