@@ -28,7 +28,7 @@ namespace Network
 		pRakServer = new CRakServer();
 		if (pRakServer->Startup(szHostAddress, usPort, iConnections) != RakNet::StartupResult::RAKNET_STARTED)
 #ifdef LINUX
-			pthread_close(0);
+			pthread_exit(0);
 #else
 			ExitThread(0);
 #endif
