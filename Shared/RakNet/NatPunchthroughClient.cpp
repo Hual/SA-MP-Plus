@@ -814,7 +814,7 @@ char *TestModeToString(NatPunchthroughClient::SendPing::TestMode tm)
 			return (char*)"PUNCHING_FIXED_PORT";
 		break;
 	}
-	return "";
+	return (char*)"";
 }
 void NatPunchthroughClient::SendOutOfBand(SystemAddress sa, MessageID oobId)
 {
