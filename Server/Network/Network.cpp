@@ -6,6 +6,11 @@
 #include "../Shared/RakNet/SuperFastHash.h"
 #include "Callback.h"
 
+#ifdef LINUX
+#include <pthread.h>
+#else
+#endif
+
 namespace Network
 {
 	static CRakServer* pRakServer;
