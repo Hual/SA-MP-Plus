@@ -1,6 +1,7 @@
 #include "CLocalPlayer.h"
 #include "Network/CRPCCallback.h"
 #include "Network/Network.h"
+#include "CGame.h"
 
 DWORD CLocalPlayer::m_actionMemory[ePlayerAction::COUNT - 1] =
 {
@@ -45,8 +46,11 @@ void CLocalPlayer::OnStuntBonus(sStuntDetails* pStuntDetails)
 
 void CLocalPlayer::SetClipAmmo(BYTE bSlot, int bAmmo)
 {
-	DWORD address = ((*(int*)0xB6F5F0) + 0x588) + (0x28 * bSlot) + 0x8;
-	CMem::PutSingle<int>(address, bAmmo);
+	if (bSlot < 50) {
+		//DWORD address = ((*(int*)0xB6F5F0) + 0x588) + (0x28 * bSlot) + 0x8;
+		//CMem::PutSingle<int>(address, bAmmo);
+		CGame::ClipAmmo[bSlot] = bAmmo;
+	}
 }
 
 void CLocalPlayer::SetNoReload(bool toggle) {

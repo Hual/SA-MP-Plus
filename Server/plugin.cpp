@@ -130,6 +130,56 @@ cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::SET_NO_RELOAD, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL SetPlayerBlurIntensityProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<int, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::SET_BLUR_INTENSITY, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL TogglePlayerDriveOnWaterProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_DRIVE_ON_WATER, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL SetPlayerGameSpeedProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(amx_ctof(pParams[2]));
+
+	return Network::PlayerSendRPC(eRPC::SET_GAME_SPEED, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL TogglePlayerFrozenProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_PLAYER_FROZEN, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL SetPedAnimsProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::SET_PLAYER_ANIMS, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL TogglePlayerSwitchReloadProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_SWITCH_RELOAD, pParams[1], &bitStream);
+}
+
+
+
 cell AMX_NATIVE_CALL IsUsingSAMPPProc(AMX* pAmx, cell* pParams)
 {
 	return Network::IsPlayerConnected(pParams[1]);
@@ -177,6 +227,12 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "SetPlayerNoReload", SetPlayerNoReloadProc },
 	{ "GetPlayerResolution", GetPlayerResolutionProc },
 	{ "IsUsingSAMPP", IsUsingSAMPPProc },
+	{ "SetPlayerBlurIntensity", SetPlayerBlurIntensityProc },
+	{ "TogglePlayerDriveOnWater", TogglePlayerDriveOnWaterProc },
+	{ "SetPlayerGameSpeed", SetPlayerGameSpeedProc },
+	{ "TogglePlayerFrozen", TogglePlayerFrozenProc },
+	{ "SetPlayerPedAnims", SetPedAnimsProc },
+	{ "TogglePlayerSwitchReload", TogglePlayerSwitchReloadProc },
 
 	{ 0, 0 }
 };

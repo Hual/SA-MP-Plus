@@ -11,6 +11,9 @@
 bool CGame::m_bGameLoaded;
 bool CGame::InPauseMenu;
 bool CGame::PauseMenuEnabled;
+bool CGame::Frozen;
+bool CGame::PedAnims;
+int CGame::ClipAmmo[50];
 
 void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow)
 {
@@ -30,6 +33,10 @@ void CGame::OnLoad()
 		Network::Initialize(CCmdlineParams::GetArgumentValue("h"), atoi(CCmdlineParams::GetArgumentValue("p").c_str()) + 1);
 		Network::Connect();
 		CHUD::Initialize();
+
+		/*for (int i = 0; i < sizeof(50); ++i) {
+			CGame::ClipAmmo[i] = 7;
+		}*/
 	}
 }
 
@@ -91,7 +98,6 @@ void CGame::OnWorldCreate()
 
 void CGame::OnResolutionChange(int X, int Y)
 {
-	CLog::Write("changed");
 	RakNet::BitStream bitStream;
 	bitStream.Write(X);
 	bitStream.Write(Y);
@@ -163,6 +169,60 @@ void CGame::UnprotectMemory()
 	CMem::Unprotect(0x72C659, 0x12);
 	CMem::Unprotect(0xC812E8, sizeof(float));
 	//CMem::Unprotect(0x00C7F158, 38 * NUM_CHECKPOINTS);
+}
+
+void CGame::SetBlurIntensity(int intensity) 
+{
+	CMem::PutSingle<BYTE>(0x0704E8A, 0xE8); // call
+	CMem::PutSingle<BYTE>(0x0704E8B, 0x11);
+	CMem::PutSingle<BYTE>(0x0704E8C, 0xE2);
+	CMem::PutSingle<BYTE>(0x0704E8D, 0xFF);
+	CMem::PutSingle<BYTE>(0x0704E8E, 0xFF);
+
+	CMem::PutSingle<int>(0x8D5104, intensity);
+}
+
+void CGame::SetGameSpeed(float speed) 
+{
+	CMem::PutSingle<float>(0xB7CB64, speed);
+}
+
+void CGame::ToggleDriveOnWater(bool toggle) 
+{
+	CMem::PutSingle<BYTE>(0x969152, (BYTE)toggle);
+}
+
+void CGame::ToggleFrozen(bool toggle) 
+{
+	Frozen = toggle;
+}
+
+void CGame::SetPedAnims(bool toggle)
+{
+	PedAnims = toggle;
+}
+
+unsigned int CGame::IsFrozen() 
+{
+	return (unsigned int)Frozen;
+}
+
+unsigned int CGame::UsePedAnims()
+{
+	return (unsigned int)PedAnims;
+}
+
+
+void CGame::ToggleSwitchReload(bool toggle)
+{
+	if (!toggle)
+	{
+		memcpy((void*)0x060B4FA, "\x90\x90\x90\x90\x90\x90", 6);
+	}
+	else
+	{
+		memcpy((void*)0x060B4FA, "\x89\x88\xA8\x05\x00\x00", 6); // mov [eax+000005A8],ecx
+	}
 }
 
 BYTE CGame::GetVersion()
