@@ -11,13 +11,17 @@ DWORD CLocalPlayer::m_actionMemory[ePlayerAction::COUNT - 1] =
 	0xB73573,
 	0xB73574,
 	0xB73575,
-	0xB73576
+	0xB73576,
+	0xB7CEE4
 };
 
 void CLocalPlayer::SetActionEnabled(unsigned char action, bool bEnabled)
 {
 	if (action >= ePlayerAction::COUNT)
 		return;
+
+	if (action == ePlayerAction::INFINITE_RUN) // A little fix ( Works in reverse )
+		bEnabled = !bEnabled;
 
 	if (action == ePlayerAction::ALL)
 	{

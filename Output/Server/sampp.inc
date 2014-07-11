@@ -118,7 +118,8 @@ stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Floa
 #define PLAYER_ACTION_FIRE_WEAPON 4
 #define PLAYER_ACTION_UNKNOWN 5
 #define PLAYER_ACTION_SWITCH_WEAPON 6
-#define PLAYER_ACTION JUMP 7
+#define PLAYER_ACTION_JUMP 7
+#define PLAYER_ACTION_INFINITE_RUN 8
 
 #define STUNT_TYPE_TWO_WHEELS 247
 #define STUNT_TYPE_INSANE 173

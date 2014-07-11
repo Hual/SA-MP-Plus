@@ -16,6 +16,7 @@ public:
 		UNKNOWN,
 		SWITCH_WEAPON,
 		JUMP,
+		INFINITE_RUN,
 		COUNT
 	};
 
