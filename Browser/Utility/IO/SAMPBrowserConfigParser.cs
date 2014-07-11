@@ -24,7 +24,7 @@ namespace SAMP_Server_Browser_File_Parser.IO
 
             if (key == null)
             {
-                MessageBox.Show(null, "SA-MP doesn't appear to be installed. The system will now exit", "SA-MP+ error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(null, "SA-MP doesn't appear to be installed. SA-MP+ will now exit", "SA-MP+ error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
             }
             else
@@ -42,6 +42,16 @@ namespace SAMP_Server_Browser_File_Parser.IO
         public static string GetGameDirectory()
         {
             return m_strGameDir;
+        }
+
+        public static void SetPlayerName(string strUsername)
+        {
+            m_strUsername = strUsername;
+        }
+
+        public static void SetGameDirectory(string strGameDir)
+        {
+            m_strGameDir = strGameDir;
         }
 
         public static bool ReadServers(String strFilePath, ref List<Server> lServers)
@@ -116,6 +126,14 @@ namespace SAMP_Server_Browser_File_Parser.IO
             }
 
             binaryWriter.Close();
+        }
+
+        public static void SaveClientInformation()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("SAMP");
+
+            key.SetValue("gta_sa_exe", m_strGameDir);
+            key.SetValue("PlayerName", m_strUsername);
         }
     }
 }
