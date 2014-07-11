@@ -2,22 +2,53 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Win32;
+using System.Windows.Forms;
 
 namespace SAMP_Server_Browser_File_Parser.IO
 {
     class SAMPBrowserConfigParser
     {
         private static readonly byte[] m_byteSAMP = { 0x53, 0x41, 0x4d, 0x50 };
+        private static string m_strUsername;
+        private static string m_strGameDir;
 
         public static String GetDataFilePath()
         {
             return (System.Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + @"\GTA San Andreas User Files\SAMP\USERDATA.DAT");
         }
 
-        public static bool Load(String strFilePath, ref List<Server> lServers)
+        public static void Initialize()
+        {
+            RegistryKey key = Registry.CurrentUser.OpenSubKey("Software").OpenSubKey("SAMP");
+
+            if (key == null)
+            {
+                MessageBox.Show(null, "SA-MP doesn't appear to be installed. The system will now exit", "SA-MP+ error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            else
+            {
+                m_strGameDir = key.GetValue("gta_sa_exe").ToString();
+                m_strUsername = key.GetValue("PlayerName").ToString();
+            }
+        }
+
+        public static string GetPlayerName()
+        {
+            return m_strUsername;
+        }
+
+        public static string GetGameDirectory()
+        {
+            return m_strGameDir;
+        }
+
+        public static bool ReadServers(String strFilePath, ref List<Server> lServers)
         {
             if(!File.Exists(strFilePath))
                 return false;
+
 
             byte[] contents = File.ReadAllBytes(strFilePath);
 
@@ -55,7 +86,7 @@ namespace SAMP_Server_Browser_File_Parser.IO
                     iPos += iLen + 16;
 
                     lServers.Add(new Server(strAddress, uiPort, strHostname));
-                    //TODO: add to list
+                    
                 }
 
                 return true;
@@ -66,7 +97,7 @@ namespace SAMP_Server_Browser_File_Parser.IO
             }
         }
 
-        public static void Save(String strFilePath, List<Server> lServers)
+        public static void SaveServers(String strFilePath, List<Server> lServers)
         {
             BinaryWriter binaryWriter = new BinaryWriter(File.Open(strFilePath, FileMode.Create, FileAccess.Write, FileShare.Write));
 
