@@ -21,6 +21,7 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * TogglePlayerFrozen(playerid, bool:toggle);
   * SetPlayerPedAnims(playerid, bool:toggle);
   * TogglePlayerSwitchReload(playerid, bool:toggle);
+  * TogglePlayerInfiniteRun(playerid, bool:toggle);
 
 Callbacks:
   
