@@ -119,7 +119,6 @@ stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Floa
 #define PLAYER_ACTION_UNKNOWN 5
 #define PLAYER_ACTION_SWITCH_WEAPON 6
 #define PLAYER_ACTION_JUMP 7
-#define PLAYER_ACTION_INFINITE_RUN 8
 
 #define STUNT_TYPE_TWO_WHEELS 247
 #define STUNT_TYPE_INSANE 173
@@ -146,7 +145,7 @@ native TogglePlayerSwitchReload(playerid, bool:toggle);
 native bool:IsUsingSAMPP(playerid);
 native GetPlayerResolution(playerid, &X, &Y);
 native SetPlayerNoReload(playerid, bool:toggle);
-
+native TogglePlayerInfiniteRun(playerid, bool:toggle);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
