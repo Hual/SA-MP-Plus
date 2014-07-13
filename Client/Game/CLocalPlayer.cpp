@@ -53,6 +53,7 @@ void CLocalPlayer::SetClipAmmo(BYTE bSlot, int bAmmo)
 	}
 }
 
+
 void CLocalPlayer::SetNoReload(bool toggle) {
 	if (toggle) 
 	{
@@ -64,4 +65,9 @@ void CLocalPlayer::SetNoReload(bool toggle) {
 		CMem::PutSingle<BYTE>(0x07428AB, 0x85); // test eax,eax
 		CMem::PutSingle<BYTE>(0x07428AC, 0xC0);
 	}
+}
+
+void CLocalPlayer::ToggleInfiniteRun(bool toggle)
+{
+	CMem::PutSingle<BYTE>(0xB7CEE4, toggle ? 1 : 0);
 }

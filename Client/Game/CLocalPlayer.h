@@ -24,6 +24,7 @@ public:
 	static void OnStuntBonus(sStuntDetails* pStuntDetails);
 	static void SetClipAmmo(BYTE bSlot, int bAmmo);
 	static void SetNoReload(bool toggle);
+	static void ToggleInfiniteRun(bool toggle);
 
 private:
 	static DWORD m_actionMemory[ePlayerAction::COUNT-1];

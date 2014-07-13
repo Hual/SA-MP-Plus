@@ -22,6 +22,7 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::TOGGLE_PLAYER_FROZEN, SetFrozen);
 	CRPC::Add(eRPC::SET_PLAYER_ANIMS, SetAnims);
 	CRPC::Add(eRPC::TOGGLE_SWITCH_RELOAD, ToggleSwitchReload);
+	CRPC::Add(eRPC::TOGGLE_INFINITE_RUN, ToggleInfiniteRun);
 
 	CGame::OnResolutionChange(*(int*)0x0C9C040, *(int*)0x0C9C044);
 }
@@ -135,6 +136,15 @@ RPC_CALLBACK CRPCCallback::SetNoReload(RakNet::BitStream& bsData, int iExtra)
 	if (bsData.Read(toggle))
 	{
 		CLocalPlayer::SetNoReload(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::ToggleInfiniteRun(RakNet::BitStream& bsData, int iExtra)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CLocalPlayer::ToggleInfiniteRun(toggle);
 	}
 }
 

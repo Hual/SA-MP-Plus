@@ -18,6 +18,7 @@ public:
 	static RPC_CALLBACK ToggleAction(RPC_ARGS);
 	static RPC_CALLBACK SetAmmoInClip(RPC_ARGS);
 	static RPC_CALLBACK SetNoReload(RPC_ARGS);
+	static RPC_CALLBACK ToggleInfiniteRun(RPC_ARGS);
 	static RPC_CALLBACK DriveOnWater(RPC_ARGS);
 	static RPC_CALLBACK SetBlur(RPC_ARGS);
 	static RPC_CALLBACK SetSpeed(RPC_ARGS);

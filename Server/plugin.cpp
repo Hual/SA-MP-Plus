@@ -178,6 +178,13 @@ cell AMX_NATIVE_CALL TogglePlayerSwitchReloadProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::TOGGLE_SWITCH_RELOAD, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL TogglePlayerInfiniteRunProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.WriteCasted<bool, cell>(pParams[2]);
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_INFINITE_RUN, pParams[1], &bitStream);
+}
 
 
 cell AMX_NATIVE_CALL IsUsingSAMPPProc(AMX* pAmx, cell* pParams)
@@ -233,7 +240,7 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "TogglePlayerFrozen", TogglePlayerFrozenProc },
 	{ "SetPlayerPedAnims", SetPedAnimsProc },
 	{ "TogglePlayerSwitchReload", TogglePlayerSwitchReloadProc },
-
+	{ "TogglePlayerInfiniteRun", TogglePlayerInfiniteRunProc },
 	{ 0, 0 }
 };
 
