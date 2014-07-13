@@ -13,6 +13,7 @@ bool CGame::InPauseMenu;
 bool CGame::PauseMenuEnabled;
 bool CGame::Frozen;
 bool CGame::PedAnims;
+float CGame::AircraftMaxHeight;
 int CGame::ClipAmmo[50];
 
 void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow)
@@ -24,6 +25,7 @@ void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND 
 	CGraphics::Initialize(pDirect3D, pDevice);
 }
 
+
 void CGame::OnLoad()
 {
 	if (!CCmdlineParams::ArgumentExists("d") && CCmdlineParams::ArgumentExists("c"))
@@ -33,6 +35,9 @@ void CGame::OnLoad()
 		Network::Initialize(CCmdlineParams::GetArgumentValue("h"), atoi(CCmdlineParams::GetArgumentValue("p").c_str()) + 1);
 		Network::Connect();
 		CHUD::Initialize();
+		
+		CGame::SetAircraftMaxHeight(800.0f);
+
 
 		/*for (int i = 0; i < sizeof(50); ++i) {
 			CGame::ClipAmmo[i] = 7;
@@ -237,4 +242,14 @@ BYTE CGame::GetVersion()
 		return 3;
 
 	return 0;
+}
+
+void CGame::SetAircraftMaxHeight(float height)
+{
+	AircraftMaxHeight = height;
+}
+
+void CGame::SetJetpackMaxHeight(float height)
+{
+	CMem::PutSingle<float>(0x8703D8, height);
 }

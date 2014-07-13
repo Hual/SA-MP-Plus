@@ -33,6 +33,8 @@ public:
 	static void FreezeVehicle();
 	static void PedAnims();
 	static void SwitchWeapon();
+	static void AircraftMaxHeight1();
+	static void AircraftMaxHeight2();
 
 	static void TestDraw();
 
@@ -60,6 +62,8 @@ public:
 	static DWORD FreezeVehicleJumpBack;
 	static DWORD PedAnimsJumpBack;
 	static DWORD SwitchWeaponJumpBack;
+	static DWORD AircraftMaxHeight1JumpBack;
+	static DWORD AircraftMaxHeight2JumpBack;
 
 	static DWORD HUDColourList[];
 	static sStuntDetails StuntDetails;

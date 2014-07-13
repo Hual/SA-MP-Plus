@@ -44,14 +44,16 @@ public:
 	static void ToggleFrozen(bool toggle);
 	static void SetPedAnims(bool toggle);
 	static void ToggleSwitchReload(bool toggle);
+	static void SetAircraftMaxHeight(float height);
+	static void SetJetpackMaxHeight(float height);
 
 	static bool InPauseMenu;
 	static bool PauseMenuEnabled;
 	static int ClipAmmo[50];
+	static float AircraftMaxHeight;
 	
 private:
 	static bool m_bGameLoaded;
 	static bool Frozen;
 	static bool PedAnims;
-	
 };

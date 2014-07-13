@@ -16,6 +16,10 @@ public:
 	int GetResolutionX();
 	int GetResolutionY();
 	void SetResolution(int X, int Y);
+	float GetAircraftHeight();
+	float GetJetpackHeight();
+	void SetAircraftHeight(float height);
+	void SetJetpackHeight(float height);
 
 private:
 	CClientSocketInfo* m_pSockInfo;
@@ -23,5 +27,7 @@ private:
 	unsigned char m_ucMenuId;
 	int m_iResolutionX;
 	int m_iResolutionY;
+	float m_fAircraftHeight;
+	float m_fJetpackHeight;
 
 };

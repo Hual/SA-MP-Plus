@@ -23,6 +23,8 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::SET_PLAYER_ANIMS, SetAnims);
 	CRPC::Add(eRPC::TOGGLE_SWITCH_RELOAD, ToggleSwitchReload);
 	CRPC::Add(eRPC::TOGGLE_INFINITE_RUN, ToggleInfiniteRun);
+	CRPC::Add(eRPC::SET_AIRCRAFT_HEIGHT, SetAircraftHeight);
+	CRPC::Add(eRPC::SET_JETPACK_HEIGHT, SetJetpackHeight);
 
 	CGame::OnResolutionChange(*(int*)0x0C9C040, *(int*)0x0C9C044);
 }
@@ -201,5 +203,23 @@ RPC_CALLBACK CRPCCallback::ToggleSwitchReload(RakNet::BitStream& bsData, int iEx
 	if (bsData.Read(toggle))
 	{
 		CGame::ToggleSwitchReload(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetAircraftHeight(RakNet::BitStream& bsData, int iExtra)
+{
+	float height;
+	if (bsData.Read(height))
+	{
+		CGame::SetAircraftMaxHeight(height);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetJetpackHeight(RakNet::BitStream& bsData, int iExtra)
+{
+	float height;
+	if (bsData.Read(height))
+	{
+		CGame::SetJetpackMaxHeight(height);
 	}
 }
