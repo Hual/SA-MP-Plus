@@ -5,6 +5,8 @@ CPlayer::CPlayer(CClientSocketInfo* socketInfo)
 	m_pSockInfo = socketInfo;
 	m_bInPauseMenu = false;
 	m_ucMenuId = 42;
+	m_fAircraftHeight = 800.0f;
+	m_fJetpackHeight = 100.0f;
 }
 
 CPlayer::~CPlayer()
@@ -43,6 +45,25 @@ void CPlayer::SetResolution(int X, int Y)
 	m_iResolutionY = Y;
 }
 
+float CPlayer::GetAircraftHeight()
+{
+	return m_fAircraftHeight;
+}
+
+float CPlayer::GetJetpackHeight()
+{
+	return m_fJetpackHeight;
+}
+
+void CPlayer::SetAircraftHeight(float height)
+{
+	m_fAircraftHeight = height;
+}
+
+void CPlayer::SetJetpackHeight(float height)
+{
+	m_fJetpackHeight = height;
+}
 
 void CPlayer::SetCurrentMenuId(unsigned char ucMenuId)
 {

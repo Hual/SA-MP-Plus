@@ -128,6 +128,9 @@ stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Floa
 #define DEFAULT_BLUR_INTENSITY 36
 #define NO_BLUR_INTENSITY 0
 
+#define DEFAULT_AIRCRAFT_HEIGHT 800
+#define DEFAULT_JETPACK_HEIGHT 100
+
 native ToggleHUDComponentForPlayer(playerid, componentid, bool:toggle);
 native SetRadioStationForPlayer(playerid, stationid);
 native SetWaveHeightForPlayer(playerid, Float:height);
@@ -146,6 +149,10 @@ native bool:IsUsingSAMPP(playerid);
 native GetPlayerResolution(playerid, &X, &Y);
 native SetPlayerNoReload(playerid, bool:toggle);
 native TogglePlayerInfiniteRun(playerid, bool:toggle);
+native SetPlayerAircraftHeight(playerid, Float:height);
+native Float:GetPlayerAircraftHeight(playerid);
+native SetPlayerJetpackHeight(playerid, Float:height);
+native Float:GetPlayerJetpackHeight(playerid);
 
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);

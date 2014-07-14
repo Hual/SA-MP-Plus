@@ -186,6 +186,36 @@ cell AMX_NATIVE_CALL TogglePlayerInfiniteRunProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::TOGGLE_INFINITE_RUN, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL SetPlayerAircraftHeightProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(amx_ctof(pParams[2]));
+
+	Network::GetPlayerFromPlayerid(pParams[1])->SetAircraftHeight(amx_ctof(pParams[2]));
+	return Network::PlayerSendRPC(eRPC::SET_AIRCRAFT_HEIGHT, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL GetPlayerAircraftHeightProc(AMX* pAmx, cell* pParams)
+{
+	float f = Network::GetPlayerFromPlayerid(pParams[1])->GetAircraftHeight();
+	return amx_ftoc(f);
+}
+
+cell AMX_NATIVE_CALL SetPlayerJetpackHeightProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(amx_ctof(pParams[2]));
+
+	Network::GetPlayerFromPlayerid(pParams[1])->SetJetpackHeight(amx_ctof(pParams[2]));
+	return Network::PlayerSendRPC(eRPC::SET_JETPACK_HEIGHT, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL GetPlayerJetpackHeightProc(AMX* pAmx, cell* pParams)
+{
+	float f = Network::GetPlayerFromPlayerid(pParams[1])->GetJetpackHeight();
+	return amx_ftoc(f);
+}
+
 
 cell AMX_NATIVE_CALL IsUsingSAMPPProc(AMX* pAmx, cell* pParams)
 {
@@ -241,6 +271,10 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "SetPlayerPedAnims", SetPedAnimsProc },
 	{ "TogglePlayerSwitchReload", TogglePlayerSwitchReloadProc },
 	{ "TogglePlayerInfiniteRun", TogglePlayerInfiniteRunProc },
+	{ "SetPlayerAircraftHeight", SetPlayerAircraftHeightProc },
+	{ "GetPlayerAircraftHeight", GetPlayerAircraftHeightProc },
+	{ "SetPlayerJetpackHeight", SetPlayerJetpackHeightProc },
+	{ "GetPlayerJetpackHeight", GetPlayerJetpackHeightProc },
 	{ 0, 0 }
 };
 

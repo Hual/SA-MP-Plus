@@ -29,6 +29,8 @@ DWORD CJmpProxy::FreezePedJumpBack;
 DWORD CJmpProxy::FreezeVehicleJumpBack;
 DWORD CJmpProxy::PedAnimsJumpBack;
 DWORD CJmpProxy::SwitchWeaponJumpBack;
+DWORD CJmpProxy::AircraftMaxHeight1JumpBack;
+DWORD CJmpProxy::AircraftMaxHeight2JumpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -404,6 +406,24 @@ JMP_CAVE CJmpProxy::PedAnims()
 		call CGame::UsePedAnims
 		cmp eax,1
 		jmp[PedAnimsJumpBack]
+	}
+}
+
+JMP_CAVE CJmpProxy::AircraftMaxHeight1()
+{
+	__asm
+	{
+		fcomp dword ptr[CGame::AircraftMaxHeight]
+			jmp[AircraftMaxHeight1JumpBack]
+	}
+}
+
+JMP_CAVE CJmpProxy::AircraftMaxHeight2()
+{
+	__asm
+	{
+		fsub dword ptr[CGame::AircraftMaxHeight]
+		jmp[AircraftMaxHeight2JumpBack]
 	}
 }
 
