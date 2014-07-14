@@ -6,6 +6,11 @@
 #include "../Shared/RakNet/SuperFastHash.h"
 #include "Callback.h"
 
+#ifdef LINUX
+#include <pthread.h>
+#else
+#endif
+
 namespace Network
 {
 	static CRakServer* pRakServer;
@@ -27,8 +32,11 @@ namespace Network
 	{
 		pRakServer = new CRakServer();
 		if (pRakServer->Startup(szHostAddress, usPort, iConnections) != RakNet::StartupResult::RAKNET_STARTED)
+#ifdef LINUX
+			pthread_exit(0);
+#else
 			ExitThread(0);
-
+#endif
 		bInitialized = true;
 	}
 
