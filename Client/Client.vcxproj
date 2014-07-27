@@ -42,6 +42,7 @@
     <OutDir>$(SolutionDir)\Output\Client\$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
     <TargetName>sampp</TargetName>
+    <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -362,6 +363,7 @@
     <ClInclude Include="..\Shared\RakNet\WSAStartupSingleton.h" />
     <ClInclude Include="..\Shared\RakNet\XBox360Includes.h" />
     <ClInclude Include="..\Shared\RakNet\_FindFirst.h" />
+    <ClInclude Include="CVector.h" />
     <ClInclude Include="Game\CCmdlineParams.h" />
     <ClInclude Include="Game\CGame.h" />
     <ClInclude Include="Game\CGraphics.h" />

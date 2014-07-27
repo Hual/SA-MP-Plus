@@ -920,6 +920,9 @@
     <ClInclude Include="Game\CLocalPlayer.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="CVector.h">
+      <Filter>Game</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shared">

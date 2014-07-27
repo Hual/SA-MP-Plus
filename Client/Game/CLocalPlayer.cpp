@@ -69,5 +69,5 @@ void CLocalPlayer::SetNoReload(bool toggle) {
 
 void CLocalPlayer::ToggleInfiniteRun(bool toggle)
 {
-	CMem::PutSingle<BYTE>(0xB7CEE4, toggle ? 1 : 0);
+	CMem::PutSingle<BYTE>(0xB7CEE4, toggle);
 }

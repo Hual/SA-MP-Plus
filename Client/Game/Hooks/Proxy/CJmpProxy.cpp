@@ -156,25 +156,6 @@ JMP_CAVE CJmpProxy::WorldCreate()
 	}
 }
 
-/*JMP_CAVE CJmpProxy::RaceCheckpointUnknown()
-{
-	__asm
-	{
-		//mov	dl, RaceCheckpointByteRed
-		mov[esi + 0x08], dl
-		mov dl, [esp + 0x70]
-		mov[esi + 0x2C], ecx
-		mov cl, [esp + 0x6C]
-		//mov al, RaceCheckpointByteGreen
-		mov[esi + 0x09], al
-		mov ax, [esp+0x7C]
-		mov[esi+0x0B], dl
-		//mov cl, RaceCheckpointByteBlue
-		mov[esi+0x0A], cl
-		jmp[RaceCheckpointUnknownJumpBack]
-	}
-}*/
-
 JMP_CAVE CJmpProxy::PositiveMoneyDraw()
 {
 	__asm

@@ -31,8 +31,6 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x57C2F7, CJmpProxy::MenuAction3, CJmpProxy::MenuJumpBack3, 6);
 	CMem::InstallJmp(0x576C27, CJmpProxy::MenuSwitch, CJmpProxy::MenuSwitchJumpBack, 6, 8);
 	CMem::InstallJmp(0x52B811, CJmpProxy::WorldCreate, CJmpProxy::WorldCreateJumpBack, 6);
-	//TODO: fix checkpoints
-	//CMem::InstallJmp(0x722F1A, CJmpProxy::RaceCheckpointUnknown, CJmpProxy::RaceCheckpointUnknownJumpBack, 7, 25);
 	CMem::InstallJmp(0x58F4A2, CJmpProxy::PositiveMoneyDraw, CJmpProxy::PositiveMoneyDrawJumpBack, 8);
 	//CMem::InstallJmp(0x58EBDA, CJmpProxy::UnknownMoneyDraw1, CJmpProxy::UnknownMoneyDraw1JumpBack, 8);
 	CMem::InstallJmp(0x58F4E4, CJmpProxy::NegativeMoneyDraw, CJmpProxy::NegativeMoneyDrawJumpBack, 8);
@@ -47,7 +45,7 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x60F583, CJmpProxy::DriveByUnknown, CJmpProxy::DriveByUnknownJumpBack, 6);
 	CMem::InstallJmp(0x469941, CJmpProxy::StuntBonus, CJmpProxy::StuntBonusJumpBack, 6);
 	CMem::InstallJmp(0x69E360, CJmpProxy::StuntInfo, CJmpProxy::StuntInfoJumpBack, 58);
-	CMem::InstallJmp(0x07F6CFD, CJmpProxy::ChangeResolution, CJmpProxy::ChangeResolutionJumpBack, 15);
+	//CMem::InstallJmp(0x07F6CFD, CJmpProxy::ChangeResolution, CJmpProxy::ChangeResolutionJumpBack, 15);
 	CMem::InstallJmp(0x0609560, CJmpProxy::FreezePed, CJmpProxy::FreezePedJumpBack, 6);
 	CMem::InstallJmp(0x06B4CC0, CJmpProxy::FreezeVehicle, CJmpProxy::FreezeVehicleJumpBack, 6);
 	CMem::InstallJmp(0x0609A1F, CJmpProxy::PedAnims, CJmpProxy::PedAnimsJumpBack, 7);

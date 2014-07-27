@@ -1,16 +1,23 @@
 #pragma once
 
 #include <DirectX/d3d9.h>
+#include "CVector.h"
 
-#define NUM_CHECKPOINTS 2
+#define CHECKPOINT_ADDR 0xC7DD58
+#define CHECKPOINT_PLACE 0x725120
+#define CHECKPOINT_OFFSET 0xA0
+#define MAX_CHECKPOINTS 32
+
+#define RACE_CHECKPOINT_ADDR 0xC7F158
+#define RACE_CHECKPOINT_OFFSET 0x38
+#define MAX_RACE_CHECKPOINTS 32
+
+typedef void* (*PlaceCheckpoint_t)(unsigned int, unsigned short, CVector*, float, unsigned char, unsigned char, unsigned char, unsigned char, unsigned short, float, short, float, float, float, bool);
+
 
 class CGame
 {
-
 public:
-
-	
-
 	static void OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow);
 	static void OnLoad();
 	static void OnUnload();
@@ -49,6 +56,7 @@ public:
 
 	static bool InPauseMenu;
 	static bool PauseMenuEnabled;
+	static bool RecreateMarkers;
 	static int ClipAmmo[50];
 	static float AircraftMaxHeight;
 	

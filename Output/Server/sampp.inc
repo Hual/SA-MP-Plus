@@ -1,61 +1,3 @@
-native SAMPP_ExecuteCallback(type, {Float,_}:...);
-
-public OnPlayerConnect(playerid)
-{
-	SAMPP_ExecuteCallback(0, playerid);
-
-#if defined SAMPP_OnPlayerConnect
-	return SAMPP_OnPlayerConnect(playerid);
-#else
-	return 1;
-#endif
-}
-
-#if defined SAMPP_OnPlayerConnect
-	forward SAMPP_OnPlayerConnect(playerid);
-#endif
-#if defined _ALS_OnPlayerConnect
-	#undef OnPlayerConnect
-#else
-	#define _ALS_OnPlayerConnect
-#endif
-#define OnPlayerConnect SAMPP_OnPlayerConnect
-
-public OnPlayerDisconnect(playerid, reason)
-{
-	SAMPP_ExecuteCallback(1, playerid, reason);
-
-#if defined SAMPP_OnPlayerDisconnect
-	return SAMPP_OnPlayerDisconnect(playerid, reason);
-#else
-	return 1;
-#endif
-}
-
-#if defined SAMPP_OnPlayerDisconnect
-	forward SAMPP_OnPlayerDisconnect(playerid, reason);
-#endif
-#if defined _ALS_OnPlayerDisconnect
-	#undef OnPlayerDisconnect
-#else
-	#define _ALS_OnPlayerDisconnect
-#endif
-#define OnPlayerDisconnect SAMPP_OnPlayerDisconnect
-
-/*native SetPlayerCheckpointColour(playerid, inner, middle, outer);
-native SetPlayerRaceCheckpointColour(playerid, colour);
-
-stock SAMPP_hook_SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size, inner_colour = 0xFF0000FF, middle_colour = 0xFF0000FF, outer_colour = 0xFF0000FF)
-{
-	return SetPlayerCheckpoint(playerid, x, y, z, size) && SetPlayerCheckpointColour(playerid, inner_colour, middle_colour, outer_colour);
-}
-#define SetPlayerCheckpoint SAMPP_hook_SetPlayerCheckpoint
-
-stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size, colour = 0xFF0000FF)
-{
-	return SetPlayerRaceCheckpoint(playerid, type, x, y, z, nextx, nexty, nextz, size) && SetPlayerRaceCheckpointColour(playerid, colour);
-}
-#define SetPlayerRaceCheckpoint SAMPP_hook_SetPlayerRaceCP*/
 
 #define HUD_COMPONENT_ALL 0
 #define HUD_COMPONENT_AMMO 1
@@ -131,6 +73,12 @@ stock SAMPP_hook_SetPlayerRaceCP(playerid, type, Float:x, Float:y, Float:z, Floa
 #define DEFAULT_AIRCRAFT_HEIGHT 800
 #define DEFAULT_JETPACK_HEIGHT 100
 
+native SetPlayerCheckpointEx(playerid, Float:x, Float:y, Float:z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0, bool:check_z = true);
+native SetPlayerCheckpointColour(playerid, colour);
+
+native SetPlayerRaceCheckpointEx(playerid, type, Float:x, Float:y, Float:z, Float:point_x, Float:point_y, Float:point_z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0);
+native SetPlayerRaceCheckpointColour(playerid, colour);
+
 native ToggleHUDComponentForPlayer(playerid, componentid, bool:toggle);
 native SetRadioStationForPlayer(playerid, stationid);
 native SetWaveHeightForPlayer(playerid, Float:height);
@@ -154,6 +102,8 @@ native Float:GetPlayerAircraftHeight(playerid);
 native SetPlayerJetpackHeight(playerid, Float:height);
 native Float:GetPlayerJetpackHeight(playerid);
 
+native SAMPP_ExecuteCallback(type, {Float,_}:...);
+
 forward OnPlayerOpenPauseMenu(playerid);
 forward OnPlayerClosePauseMenu(playerid);
 forward OnPlayerEnterPauseSubmenu(playerid, from, to);
@@ -163,3 +113,44 @@ forward OnPlayerResolutionChange(playerid, X, Y);
 forward OnPlayerSAMPPConnect(address[], port);
 forward OnPlayerSAMPPJoin(playerid, bool:has_plugin);
 
+public OnPlayerConnect(playerid)
+{
+	SAMPP_ExecuteCallback(0, playerid);
+
+#if defined SAMPP_OnPlayerConnect
+	return SAMPP_OnPlayerConnect(playerid);
+#else
+	return 1;
+#endif
+}
+
+#if defined SAMPP_OnPlayerConnect
+	forward SAMPP_OnPlayerConnect(playerid);
+#endif
+#if defined _ALS_OnPlayerConnect
+	#undef OnPlayerConnect
+#else
+	#define _ALS_OnPlayerConnect
+#endif
+#define OnPlayerConnect SAMPP_OnPlayerConnect
+
+public OnPlayerDisconnect(playerid, reason)
+{
+	SAMPP_ExecuteCallback(1, playerid, reason);
+
+#if defined SAMPP_OnPlayerDisconnect
+	return SAMPP_OnPlayerDisconnect(playerid, reason);
+#else
+	return 1;
+#endif
+}
+
+#if defined SAMPP_OnPlayerDisconnect
+	forward SAMPP_OnPlayerDisconnect(playerid, reason);
+#endif
+#if defined _ALS_OnPlayerDisconnect
+	#undef OnPlayerDisconnect
+#else
+	#define _ALS_OnPlayerDisconnect
+#endif
+#define OnPlayerDisconnect SAMPP_OnPlayerDisconnect

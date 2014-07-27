@@ -1,6 +1,7 @@
 #include "CRPCCallback.h"
 #include "Game/CHUD.h"
 #include "Game/CGame.h"
+#include "Game/Hooks/CHooks.h"
 #include "Game/Hooks/Proxy/CJmpProxy.h"
 #include "Game/CLocalPlayer.h"
 
@@ -11,8 +12,10 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::SET_WAVE_HEIGHT, SetWaveHeight);
 	CRPC::Add(eRPC::TOGGLE_PAUSE_MENU, TogglePauseMenu);
 	CRPC::Add(eRPC::SET_HUD_COMPONENT_COLOUR, SetHUDComponentColour);
-	//CRPC::Add(eRPC::SET_CHECKPOINT_COLOUR, SetCheckpointColour);
-	//CRPC::Add(eRPC::SET_RACE_CHECKPOINT_COLOUR, SetRaceCheckpointColour);
+	CRPC::Add(eRPC::SET_CHECKPOINT_EX, SetPlayerCheckpointEx);
+	CRPC::Add(eRPC::SET_RACE_CHECKPOINT_EX, SetPlayerRaceCheckpointEx);
+	CRPC::Add(eRPC::SET_CHECKPOINT_COLOUR, SetCheckpointColour);
+	CRPC::Add(eRPC::SET_RACE_CHECKPOINT_COLOUR, SetRaceCheckpointColour);
 	CRPC::Add(eRPC::TOGGLE_ACTION, ToggleAction);
 	CRPC::Add(eRPC::SET_CLIP_AMMO, SetAmmoInClip);
 	CRPC::Add(eRPC::SET_NO_RELOAD, SetNoReload);
@@ -77,33 +80,106 @@ RPC_CALLBACK CRPCCallback::TogglePauseMenu(RakNet::BitStream& bsData, int iExtra
 
 }
 
-// TODO: fix checkpoint colours
-/*RPC_CALLBACK CRPCCallback::SetCheckpointColour(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetCheckpointColour(RakNet::BitStream& bsData, int iExtra)
 {
-	DWORD dwColour[3];
-
-	if (bsData.Read(dwColour[0]) && bsData.Read(dwColour[1]) && bsData.Read(dwColour[2]))
+	int dwColour;
+	if (bsData.Read(dwColour))
 	{
-		CMem::PutSingle<DWORD>(0xC7DD58 + 0x58, dwColour[0]);
-		CMem::PutSingle<DWORD>(0xC7DD58 + 0xA0 + 0xA0 + 0xA0 + 0x58, dwColour[1]);
-		CMem::PutSingle<DWORD>(0xC7DD58 + 0xA0 + 0xA0 + 0xA0 + 0xA0 + 0x58, dwColour[2]);
+		int colR = (dwColour & 0xFF000000) >> 24;
+		int colG = (dwColour & 0x00FF0000) >> 16;
+		int colB = (dwColour & 0x0000FF00) >> 8;
+		int colA = (dwColour & 0x000000FF);
+		
+		for(int i = 0; i < MAX_CHECKPOINTS; ++i)
+		{
+			unsigned char *thisCheckpoint = (unsigned char*) (CHECKPOINT_ADDR + (i * CHECKPOINT_OFFSET));
+
+			if(*((unsigned short*) (thisCheckpoint + 80)) == 1)
+			{
+				*((unsigned long*) (thisCheckpoint + 88)) = ((colA << 24) | (colB << 16) | (colG << 8) | colR);
+			}
+		}
 	}
 }
 
 RPC_CALLBACK CRPCCallback::SetRaceCheckpointColour(RakNet::BitStream& bsData, int iExtra)
 {
-	DWORD dwColour;
-
+	int dwColour;
 	if (bsData.Read(dwColour))
 	{
-		CJmpProxy::RaceCheckpointByteRed = (BYTE)(dwColour & 0xFF);
-		CJmpProxy::RaceCheckpointByteGreen = (BYTE)(dwColour >> 8 & 0xFF);
-		CJmpProxy::RaceCheckpointByteBlue = (BYTE)(dwColour >> 16 & 0xFF);
+		int colR = (dwColour & 0xFF000000) >> 24;
+		int colG = (dwColour & 0x00FF0000) >> 16;
+		int colB = (dwColour & 0x0000FF00) >> 8;
+		int colA = (dwColour & 0x000000FF);
 
-		CMem::PutSingle<DWORD>(0xC7F158 + 0x8, dwColour);
+		for(int i = 0; i < MAX_RACE_CHECKPOINTS; ++i)
+		{
+			unsigned char *thisCheckpoint = (unsigned char*) (RACE_CHECKPOINT_ADDR + (i * RACE_CHECKPOINT_OFFSET));
+
+			if(*((bool*) (thisCheckpoint + 2)))
+			{
+				*((bool*) (thisCheckpoint + 2)) = false;
+				*((unsigned long*) (thisCheckpoint + 8)) = ((colA << 24) | (colB << 16) | (colG << 8) | colR);
+			}
+		}
+
+		CGame::RecreateMarkers = true;
 	}
 }
-*/
+
+RPC_CALLBACK CRPCCallback::SetPlayerCheckpointEx(RakNet::BitStream& bsData, int iExtra)
+{
+	CVector pos;
+	float size;
+	unsigned int col;
+	unsigned short period;
+	float pulse;
+	short rot_rate;
+	bool checkZ;
+
+	if(bsData.Read(pos.x) && bsData.Read(pos.y) && bsData.Read(pos.z) && bsData.Read(size) && bsData.Read(col) && bsData.Read(period) && bsData.Read(pulse) && bsData.Read(rot_rate) && bsData.Read(checkZ))
+	{
+		// Crash
+		//((PlaceCheckpoint_t) CHECKPOINT_PLACE)(1, 5, &pos, size, (col & 0xFF000000) >> 24, (col & 0x00FF0000) >> 16, (col & 0x0000FF00) >> 8, col & 0x000000FF, period, pulse, rot_rate, 0.0f, 0.0f, 0.0f, checkZ);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::SetPlayerRaceCheckpointEx(RakNet::BitStream& bsData, int iExtra)
+{
+	unsigned char type;
+	float pos[3];
+	float next[3];
+	float size;
+	unsigned int col;
+	unsigned short period;
+	float pulse;
+	short rot_rate;
+
+	if(bsData.Read(type) && bsData.Read(pos[0]) && bsData.Read(pos[1]) && bsData.Read(pos[2]) && bsData.Read(next[0]) && bsData.Read(next[1]) && bsData.Read(next[2]) && bsData.Read(size) && bsData.Read(col) && bsData.Read(period) && bsData.Read(pulse) && bsData.Read(rot_rate))
+	{
+		char *thisCheckpoint = (char*) (RACE_CHECKPOINT_ADDR);
+
+		float length = sqrtf(powf((pos[0]-next[0]), 2) + powf((pos[1]-next[1]), 2) + powf((pos[2]-next[2]), 2) );
+
+		*((unsigned short*) (thisCheckpoint)) = type;
+		*((bool*) (thisCheckpoint + 2)) = true;
+		*((bool*) (thisCheckpoint + 3)) = true;
+		*((unsigned long*) (thisCheckpoint + 4)) = 1;
+		*((unsigned long*) (thisCheckpoint + 8)) = ((col & 0x000000FF) << 24) | ((col & 0x0000FF00) << 8) | ((col & 0x00FF0000) >> 8) | ((col & 0xFF000000) >> 24);
+		*((unsigned short*) (thisCheckpoint + 12)) = period;
+		*((short*) (thisCheckpoint + 14)) = rot_rate;
+		((CVector*) (thisCheckpoint + 16))->x = pos[0];
+		((CVector*) (thisCheckpoint + 16))->y = pos[1];
+		((CVector*) (thisCheckpoint + 16))->z = pos[2];
+		((CVector*) (thisCheckpoint + 28))->x = (next[0]-pos[0]) / length;
+		((CVector*) (thisCheckpoint + 28))->y = (next[1]-pos[1]) / length;
+		((CVector*) (thisCheckpoint + 28))->z = (next[2]-pos[2]) / length;
+		*((float*) (thisCheckpoint + 40)) = pulse;
+		*((float*) (thisCheckpoint + 44)) = size;
+		*((float*) (thisCheckpoint + 48)) = 43.84f;
+		*((float*) (thisCheckpoint + 52)) = 0.0;
+	}
+}
 
 RPC_CALLBACK CRPCCallback::ToggleAction(RakNet::BitStream& bsData, int iExtra)
 {
@@ -120,7 +196,6 @@ RPC_CALLBACK CRPCCallback::ToggleAction(RakNet::BitStream& bsData, int iExtra)
 
 RPC_CALLBACK CRPCCallback::SetAmmoInClip(RakNet::BitStream& bsData, int iExtra)
 {
-
 	DWORD dwNewAmmo;
 	BYTE bSlotId;
 

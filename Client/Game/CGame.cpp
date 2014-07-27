@@ -13,6 +13,7 @@ bool CGame::InPauseMenu;
 bool CGame::PauseMenuEnabled;
 bool CGame::Frozen;
 bool CGame::PedAnims;
+bool CGame::RecreateMarkers = false;
 float CGame::AircraftMaxHeight;
 int CGame::ClipAmmo[50];
 
@@ -78,23 +79,27 @@ void CGame::PostDeviceReset()
 
 void CGame::PreEndScene()
 {
-	/*if (IsLoaded())
+	if(RecreateMarkers)
 	{
-		//TODO: stuff???
-	}*/
+		for(int i = 0; i < MAX_RACE_CHECKPOINTS; ++i)
+		{
+			char *thisCheckpoint = (char*) (RACE_CHECKPOINT_ADDR + (i * RACE_CHECKPOINT_OFFSET));
+
+			if(*((unsigned short*) (thisCheckpoint)) != 257)
+				*((bool*) (thisCheckpoint + 2)) = true;
+		}
+
+		RecreateMarkers = false;
+	}
 
 	CGraphics::PreEndScene();
 }
 
 void CGame::PostEndScene()
 {
-	/*if (!InMainMenu() && !IsLoaded())
-	{
-
-	}*/
+	
 }
 
-// crash
 void CGame::OnWorldCreate()
 {
 	OnLoad();

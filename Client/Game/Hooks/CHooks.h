@@ -6,6 +6,8 @@
 #include "Proxy/CDInput8Proxy.h"
 #include "Proxy/CMessageProxy.h"
 
+#include "CVector.h"
+
 typedef IDirect3D9 *(WINAPI* Direct3DCreate9_t)(UINT);
 typedef HRESULT(WINAPI* DirectInput8Create_t)(HINSTANCE, DWORD, REFIID, LPVOID*, LPUNKNOWN);
 typedef BOOL(WINAPI* SetCursorPos_t)(int, int);

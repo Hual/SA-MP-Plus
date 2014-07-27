@@ -5,5 +5,6 @@
 class CSystem
 {
 public:
-	static std::string GetLoadedModules();
+	static bool CSystem::GetLoadedModules();
+	static bool CSystem::GetLoadedModules(std::string *output, char separator);
 };
