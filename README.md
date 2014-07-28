@@ -3,7 +3,7 @@ SA-MP+
 
 A client modification that uses SA-MP's plugin SDK to interact with the server and add new features
 
-  Functions:
+####Functions:
   
   * ToggleHUDComponentForPlayer(playerid, componentid, bool:toggle);
   * SetRadioStationForPlayer(playerid, stationid);
@@ -28,7 +28,7 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * Float:GetPlayerJetpackHeight(playerid);
   * bool:IsUsingSAMPP(playerid);
 
-Callbacks:
+####Callbacks:
   
   * OnPlayerOpenPauseMenu(playerid)
   * OnPlayerClosePauseMenu(playerid)
@@ -37,7 +37,7 @@ Callbacks:
   * OnPlayerStunt(playerid, stuntid, money, details[])
   * OnPlayerResolutionChange(playerid, X, Y)
 
-Experimental:
+####Experimental:
 
   * SetPlayerCheckpointEx(playerid, Float:x, Float:y, Float:z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0, bool:check_z = true);
   * SetPlayerRaceCheckpointEx(playerid, type, Float:x, Float:y, Float:z, Float:point_x, Float:point_y, Float:point_z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0);
