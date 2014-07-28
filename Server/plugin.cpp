@@ -15,7 +15,7 @@ cell AMX_NATIVE_CALL ToggleHUDComponentForPlayerProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
 	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // component
-	bitStream.WriteCasted<unsigned char, cell>(pParams[3]); // toggle
+	bitStream.WriteCasted<bool, cell>(pParams[3]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_HUD_COMPONENT, pParams[1], &bitStream);
 }
@@ -53,7 +53,7 @@ cell AMX_NATIVE_CALL SetWaveHeightForPlayerProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL TogglePauseMenuAbilityProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // toggle
+	bitStream.WriteCasted<bool, cell>(pParams[2]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_PAUSE_MENU, pParams[1], &bitStream);
 }

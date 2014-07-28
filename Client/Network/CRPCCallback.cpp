@@ -34,7 +34,8 @@ void CRPCCallback::Initialize()
 
 RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iExtra)
 {
-	unsigned char ucComponent, bToggle;
+	unsigned char ucComponent;
+	bool bToggle;
 
 	if (bsData.Read(ucComponent) && bsData.Read(bToggle))
 		CHUD::ToggleComponent(ucComponent, bToggle);
@@ -73,7 +74,7 @@ RPC_CALLBACK CRPCCallback::SetWaveHeight(RakNet::BitStream& bsData, int iExtra)
 
 RPC_CALLBACK CRPCCallback::TogglePauseMenu(RakNet::BitStream& bsData, int iExtra)
 {
-	unsigned char ucToggle;
+	bool ucToggle;
 
 	if (bsData.Read(ucToggle))
 		CGame::PauseMenuEnabled = ucToggle;

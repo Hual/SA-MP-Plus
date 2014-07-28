@@ -59,7 +59,7 @@ namespace Network
 
 	bool IsPlayerConnected(unsigned int uiPlayerid)
 	{
-		return players.count(uiPlayerid);
+		return !!players.count(uiPlayerid);
 	}
 
 	int GetPlayeridFromSystemAddress(const RakNet::SystemAddress& systemAddress)
