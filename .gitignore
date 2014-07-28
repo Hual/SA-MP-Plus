@@ -25,3 +25,5 @@ Browser/Library/MetroFramework.Fonts/obj
 *.FileListAbsolute.txt
 *.opensdf
 *.sdf
+Build\Release\sampp_server.lib
+Build\Debug\sampp_server.lib
