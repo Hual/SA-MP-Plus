@@ -39,9 +39,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\Output\Client\$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
-    <TargetName>sampp</TargetName>
+    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\Temp\Client\$(Configuration)\</IntDir>
+    <TargetName>sampp_client</TargetName>
     <TargetExt>.asi</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -376,10 +376,10 @@
     <ClInclude Include="Game\Hooks\Proxy\CDInput8Proxy.h" />
     <ClInclude Include="Game\Hooks\Proxy\CJmpProxy.h" />
     <ClInclude Include="Game\Hooks\Proxy\CMessageProxy.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Network\CRakClient.h" />
     <ClInclude Include="Network\CRPCCallback.h" />
     <ClInclude Include="Network\Network.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Utility\CLog.h" />
     <ClInclude Include="Utility\CMem.h" />
     <ClInclude Include="Utility\CPoint2D.h" />

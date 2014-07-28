@@ -1,28 +1,25 @@
-# Compiled Object files
+# Directories
+Build/Temp
+Browser/obj
+Browser/Library/MetroFramework/obj
+Browser/Library/MetroFramework.Design/obj
+Browser/Library/MetroFramework.Fonts/obj
+
+# Files
 *.slo
 *.lo
 *.o
 *.obj
-
-# Compiled Dynamic libraries
 *.dylib
-
-# Compiled Static libraries
 *.lai
-
-# Executables
 *.out
 *.app
-
-# Log files
 *.log
 *.tlog
-
-# Debug symbols
 *.pdb
 *.exp
-
-# Temp files
+*.vshost.*
+*.exe.config
 *TemporaryGeneratedFile*
 *.cache
 *.FileListAbsolute.txt

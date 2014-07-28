@@ -1,4 +1,4 @@
-#include <stdafx.h>
+#include "main.h"
 #include "CDInput8DeviceProxy.h"
 #include "../Game/CGraphics.h"
 

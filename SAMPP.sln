@@ -7,8 +7,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "Server\Server.vcx
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "Client\Client.vcxproj", "{14D55EBE-A874-4AEC-AA4E-8103DB779038}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Loader", "Loader\Loader.vcxproj", "{79766CA2-D75F-4F4F-836F-A576DD2B6890}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Browser", "Browser\Browser.csproj", "{8C68E69F-BF5E-44BF-85D8-4DD136B629BD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Browser", "Browser", "{9CB7508A-3EEC-48AF-BCD6-637733EAC4A9}"
@@ -51,16 +49,6 @@ Global
 		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Win32.ActiveCfg = Release|Win32
 		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Win32.Build.0 = Release|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Debug|Win32.ActiveCfg = Debug|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Debug|Win32.Build.0 = Debug|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Release|Any CPU.ActiveCfg = Release|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Release|Win32.ActiveCfg = Release|Win32
-		{79766CA2-D75F-4F4F-836F-A576DD2B6890}.Release|Win32.Build.0 = Release|Win32
 		{8C68E69F-BF5E-44BF-85D8-4DD136B629BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8C68E69F-BF5E-44BF-85D8-4DD136B629BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C68E69F-BF5E-44BF-85D8-4DD136B629BD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

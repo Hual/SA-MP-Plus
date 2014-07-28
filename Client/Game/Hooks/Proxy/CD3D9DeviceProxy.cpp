@@ -1,4 +1,4 @@
-#include <stdafx.h>
+#include "main.h"
 #include "CD3D9DeviceProxy.h"
 #include "../Game/CGame.h"
 #include "../Network/Network.h"

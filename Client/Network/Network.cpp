@@ -1,5 +1,5 @@
 #include "Network.h"
-#include "../stdafx.h"
+#include "main.h"
 #include "../Game/CHUD.h"
 #include "../Game/Hooks/CHooks.h"
 #include "../Game/CGame.h"

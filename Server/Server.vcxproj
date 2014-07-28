@@ -357,9 +357,9 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)\Output\Server\$(Configuration)\</OutDir>
-    <IntDir>$(Configuration)\</IntDir>
-    <TargetName>sampp</TargetName>
+    <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Build\Temp\Server\$(Configuration)\</IntDir>
+    <TargetName>sampp_server</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -390,7 +390,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ModuleDefinitionFile>plugin.def</ModuleDefinitionFile>
-      <OutputFile>$(SolutionDir)\Output\Server\$(TargetName)$(TargetExt)</OutputFile>
+      <OutputFile>$(OutDir)$(TargetName)$(TargetExt)</OutputFile>
       <AdditionalDependencies>ws2_32.lib;$(ProjectDir)\SDK\sampgdk\lib\sampgdk.lib;$(ProjectDir)\SDK\sampgdk\lib\subhook.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>WINDOWS</SubSystem>
     </Link>

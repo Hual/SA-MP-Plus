@@ -1,5 +1,5 @@
 #include "CSystem.h"
-#include <stdafx.h>
+#include "main.h"
 #include <Windows.h>
 #include <TlHelp32.h>
 

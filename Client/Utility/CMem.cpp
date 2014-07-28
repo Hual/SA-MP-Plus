@@ -1,5 +1,5 @@
 #include "CMem.h"
-#include <stdafx.h>
+#include "main.h"
 
 DWORD CMem::m_dwUnprotectDummy;
 

@@ -1,4 +1,4 @@
-#include <stdafx.h>
+#include "main.h"
 #include "Game/CCmdlineParams.h"
 #include "Game/Hooks/CHooks.h"
 

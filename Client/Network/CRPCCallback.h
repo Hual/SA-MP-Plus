@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Shared/Network/CRPC.h"
-#include <stdafx.h>
+#include "main.h"
 
 class CRPCCallback
 {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdafx.h>
+#include "main.h"
 #include "../Shared/Game/Definitions.h"
 #include "../Game/CLocalPlayer.h"
 

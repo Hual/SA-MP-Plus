@@ -1,4 +1,4 @@
-#include <stdafx.h>
+#include "main.h"
 #include "CHUD.h"
 #include "CGame.h"
 #include "CGraphics.h"

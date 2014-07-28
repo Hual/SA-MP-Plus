@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdafx.h>
+#include "main.h"
 #include "../Utility/CPoint2D.h"
 #include "CGame.h"
 

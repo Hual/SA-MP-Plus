@@ -1,4 +1,4 @@
-#include <stdafx.h>
+#include "main.h"
 #include "CHooks.h"
 #include "../Utility/CLog.h"
 #include <Detours/detours.h>

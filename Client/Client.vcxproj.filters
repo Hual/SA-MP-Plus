@@ -394,7 +394,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="Network\CRakClient.h">
       <Filter>Network</Filter>
     </ClInclude>
@@ -923,6 +922,7 @@
     <ClInclude Include="CVector.h">
       <Filter>Game</Filter>
     </ClInclude>
+    <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Shared">

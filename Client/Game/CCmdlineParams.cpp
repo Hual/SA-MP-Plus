@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "main.h"
 #include "CCmdlineParams.h"
 
 std::map<std::string, std::string> CCmdlineParams::m_paramMap;

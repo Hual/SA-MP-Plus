@@ -1,6 +1,6 @@
 #pragma once
 
-#include <stdafx.h>
+#include "main.h"
 
 enum eHUDComponent : unsigned char
 {

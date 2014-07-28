@@ -1,4 +1,4 @@
-#include <stdafx.h>
+#include "main.h"
 #include "CMessageProxy.h"
 #include "../Game/CGame.h"
 #include "../Game/CGraphics.h"
