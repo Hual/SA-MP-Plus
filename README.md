@@ -18,13 +18,13 @@ Download
 Installation (Client)
 ---------
   * Download and install an [ASI Loader for GTA San Andreas](http://www.gtagarage.com/mods/show.php?id=8321) if you don't have one,
-  * Place the [sampp_client.asi](Build/Release/sampp_client.asi?raw=true) file in your GTA:SA's folder, along with gta_sa.exe
+  * Place the [sampp_client.asi](Build/Release/sampp_client.asi?raw=true) file in your GTA:SA's folder, along with *gta_sa.exe*.
 
 Installation (Server)
 ---------
-  * Download the [windows](Build/Release/sampp_server.dll?raw=true) or [linux](Build/Release/sampp_server.so?raw=true) server plugin,
-  * Place the file in the "plugins" folder of your server.
-  * Add the plugin to your server's "server.cfg"
+  * Download the [Windows](Build/Release/sampp_server.dll?raw=true) or [Linux](Build/Release/sampp_server.so?raw=true) server plugin.
+  * Place the file in the *plugins* folder of your server.
+  * Add the plugin to your server's *server.cfg*.
 
 Functions
 ---------
