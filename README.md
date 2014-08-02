@@ -70,6 +70,7 @@ Compilation
 
 ####Windows:
   * Open the provided solution file (.sln) in Visual Studio.
+  * Make sure to change the target to *"Release"* unless you want a build with debug symbols.
 
 ####Linux:
   * Open a terminal and use the following commands:
