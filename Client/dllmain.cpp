@@ -1,6 +1,6 @@
-#include "main.h"
-#include "Game/CCmdlineParams.h"
-#include "Game/Hooks/CHooks.h"
+#include <SAMP+/client/Client.h>
+#include <SAMP+/client/CCmdlineParams.h>
+#include <SAMP+/client/CHooks.h>
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD dwReason, LPVOID lpReserved)
 {

@@ -1,10 +1,11 @@
-#include "plugin.h"
-#include "../Shared/Utility/Utility.h"
-#include "../Shared/RakNet/BitStream.h"
-#include "../Shared/Network/CRPC.h"
-#include "SDK/sampgdk/core.h"
-#include "SDK/sampgdk/a_players.h"
-#include "Callback.h"
+#include <RakNet/BitStream.h>
+
+#include <SAMP+/Utility.h>
+#include <SAMP+/CRPC.h>
+#include <SAMP+/svr/Plugin.h>
+#include <SAMP+/svr/Callback.h>
+
+#include <sampgdk.h>
 
 cell AMX_NATIVE_CALL CallbackProc(AMX* pAmx, cell* pParams)
 {	
@@ -97,6 +98,8 @@ cell AMX_NATIVE_CALL SetPlayerCheckpointExProc(AMX* pAmx, cell* pParams)
 	bitStream.WriteCasted<short, cell>(pParams[9]); //rot_rate
 	bitStream.WriteCasted<bool, cell>(pParams[10]); //check_z
 
+	DisablePlayerCheckpoint(pParams[1]);
+
 	Network::PlayerSendRPC(eRPC::SET_CHECKPOINT_EX, pParams[1], &bitStream);
 	return 1;
 }
@@ -116,6 +119,8 @@ cell AMX_NATIVE_CALL SetPlayerRaceCheckpointExProc(AMX* pAmx, cell* pParams)
 	bitStream.WriteCasted<unsigned short, cell>(pParams[11]); //period
 	bitStream.Write<float>(amx_ctof(pParams[12])); //pulse
 	bitStream.WriteCasted<short, cell>(pParams[13]); //rot_rate
+
+	DisablePlayerRaceCheckpoint(pParams[1]);
 
 	Network::PlayerSendRPC(eRPC::SET_RACE_CHECKPOINT_EX, pParams[1], &bitStream);
 	return 1;
@@ -256,7 +261,7 @@ cell AMX_NATIVE_CALL GetPlayerJetpackHeightProc(AMX* pAmx, cell* pParams)
 
 cell AMX_NATIVE_CALL IsUsingSAMPPProc(AMX* pAmx, cell* pParams)
 {
-	return Network::IsPlayerConnected(pParams[1]);
+	return Network::isConnected(pParams[1]);
 }
 
 PLUGIN_EXPORT unsigned int PLUGIN_CALL Supports()
@@ -274,14 +279,14 @@ PLUGIN_EXPORT bool PLUGIN_CALL Load(void **ppData)
 	Utility::Initialize(ppData);
 	Utility::Printf("Loaded");
 	SAMPServer::Initialize("server.cfg");
-	Network::Initialize(SAMPServer::GetListeningAddress(), SAMPServer::GetListeningPort()+1, SAMPServer::GetMaxPlayers());
-	return sampgdk::Load(sampgdk::GetCurrentPluginHandle(), ppData);
+	Network::Initialize(SAMPServer::GetListeningAddress(), SAMPServer::GetListeningPort()+1, SAMPServer::getMaxPlayers());
+	return sampgdk::Load(ppData);
 }
 
 PLUGIN_EXPORT void PLUGIN_CALL Unload()
 {
 	Utility::Printf("Unloaded");
-	return sampgdk::Unload(sampgdk::GetCurrentPluginHandle());
+	return sampgdk::Unload();
 }
 
 AMX_NATIVE_INFO PluginNatives[] =

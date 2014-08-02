@@ -1,6 +1,9 @@
-#include "Callback.h"
-#include "../Shared/Utility/Utility.h"
-#include "Network/Network.h"
+#include <stdarg.h>
+
+#include <SAMP+/Utility.h>
+
+#include <SAMP+/svr/Network.h>
+#include <SAMP+/svr/Callback.h>
 
 namespace Callback
 {
@@ -127,14 +130,14 @@ namespace Callback
 		if (Network::HandleConnection(uiPlayerid))
 			Network::PlayerSend(Network::ePacketType::PACKET_PLAYER_REGISTERED, uiPlayerid);
 
-		Utility::Printf("Player connecting, has the SA-MP+ plugin: %i", Network::IsPlayerConnected(uiPlayerid));
+		Utility::Printf("Player connecting, has the SA-MP+ plugin: %i", Network::isConnected(uiPlayerid));
 
-		Execute("OnPlayerSAMPPJoin", "ii", Network::IsPlayerConnected(uiPlayerid), uiPlayerid);
+		Execute("OnPlayerSAMPPJoin", "ii", Network::isConnected(uiPlayerid), uiPlayerid);
 	}
 
 	void OnPlayerDisconnect(unsigned int uiPlayerid, unsigned int uiReason)
 	{
-		if (Network::IsPlayerConnected(uiPlayerid))
+		if (Network::isConnected(uiPlayerid))
 		{
 			if (uiReason)
 				Network::PlayerSend(Network::ePacketType::PACKET_PLAYER_PROPER_DISCONNECT, uiPlayerid);
