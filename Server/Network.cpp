@@ -29,8 +29,9 @@ namespace Network
 	void Initialize(const char* szHostAddress, t_port usPort, int iConnections)
 	{
 		pRakServer = new CRakServer();
+		
 		if (pRakServer->Startup(szHostAddress, usPort, iConnections) != RakNet::StartupResult::RAKNET_STARTED)
-			ExitThread(0);
+			abort();
 
 		bInitialized = true;
 	}
@@ -57,6 +58,8 @@ namespace Network
 
 	CPlayer* GetPlayerFromPlayerid(unsigned int uiPlayerid)
 	{
+		if(!isConnected(uiPlayerid)) return NULL;
+		
 		return players[uiPlayerid];
 	}
 

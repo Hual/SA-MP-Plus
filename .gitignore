@@ -1,11 +1,12 @@
 # Directories
-Build/Temp
+Build/Temp/*
 Browser/obj
 Browser/Library/MetroFramework/obj
 Browser/Library/MetroFramework.Design/obj
 Browser/Library/MetroFramework.Fonts/obj
 
 # Files
+.directory
 *.slo
 *.lo
 *.o
@@ -25,5 +26,6 @@ Browser/Library/MetroFramework.Fonts/obj
 *.FileListAbsolute.txt
 *.opensdf
 *.sdf
+*.suo
+Build/Debug/*
 Build/Release/sampp_server.lib
-Build/Debug/sampp_server.lib

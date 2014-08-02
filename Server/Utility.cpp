@@ -1,21 +1,26 @@
 #include <SAMP+/Utility.h>
 #include <SAMP+/Platform.h>
+
 #include <ctime>
+#include <stdarg.h>
+
+#ifdef LINUX
+	#include <unistd.h>
+#endif
 
 extern void* pAMXFunctions;
 
 namespace Utility
 {
-	static char* m_szPath;
+	static char m_szPath[MAX_PATH + 1];
 	static logprintf_t logprintf;
 
 	void Initialize(void** ppData)
 	{
-		m_szPath = new char[MAX_PATH + 1];
-#ifdef WIN32
-		GetModuleFileNameA((HINSTANCE)&__ImageBase, m_szPath, MAX_PATH + 1);
+#ifdef _WIN32
+		GetModuleFileNameA((HINSTANCE)&__ImageBase, m_szPath, sizeof(m_szPath));
 #else
-		readlink("/proc/self/exe", szAppPath, sizeof(szAppPath));
+		readlink("/proc/self/exe", m_szPath, sizeof(m_szPath));
 #endif
 		pAMXFunctions = ppData[PLUGIN_DATA_AMX_EXPORTS];
 		logprintf = (logprintf_t)ppData[PLUGIN_DATA_LOGPRINTF];
@@ -23,15 +28,25 @@ namespace Utility
 
 	std::string GetApplicationPath(const char* szAppend)
 	{
+		Printf(m_szPath);
 		std::string strPath(m_szPath);
 
+#ifdef _WIN32
 		std::string::size_type ptr = strPath.find_last_of("\\");
 
 		if (ptr)
-			strPath.erase(ptr-7);
+			strPath.erase(ptr, strPath.length()-ptr);
 		else
 			strPath.erase(strPath.find_last_of("/plugins")-7);
-
+#else
+		std::string::size_type ptr = strPath.find_last_of("/");
+		
+		if(ptr)
+		{
+			strPath.erase(ptr+1, strPath.length()-ptr-1);
+		}
+#endif
+		
 		if (szAppend)
 			strPath += szAppend;
 
@@ -46,7 +61,7 @@ namespace Utility
 		vsnprintf(szBuffer, sizeof(szBuffer), szFormat, vaArgs);
 		va_end(vaArgs);
 
-		return logprintf("[SA-MP+] [%u] %s", (unsigned __int32)time(NULL), szBuffer);
+		return logprintf("[SA-MP+] %s", szBuffer);
 	}
 
 	void* GetAMXFunctions()

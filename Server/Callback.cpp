@@ -101,8 +101,7 @@ namespace Callback
 			cell* pPlayerId = nullptr;
 			amx_GetAddr(pAmx, pParams[0], &pPlayerId);
 			OnPlayerConnect(*pPlayerId);
-			delete pPlayerId;
-
+			
 			break;
 		}
 		case eCallbackType::ON_PLAYER_DISCONNECT:
@@ -114,8 +113,7 @@ namespace Callback
 			amx_GetAddr(pAmx, pParams[1], &pReason);
 
 			OnPlayerDisconnect(*pPlayerId, *pReason);
-			delete pPlayerId;
-
+			
 			break;
 		}
 		default:

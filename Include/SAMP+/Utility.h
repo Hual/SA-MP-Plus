@@ -4,6 +4,7 @@
 
 #include <string>
 #include <plugincommon.h>
+#include <SAMP+/Definitions.h>
 
 typedef void(*logprintf_t)(char* format, ...);
 
