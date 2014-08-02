@@ -18,7 +18,7 @@ namespace Utility
 	void Initialize(void** ppData)
 	{
 #ifdef _WIN32
-		GetModuleFileNameA((HINSTANCE)&__ImageBase, m_szPath, sizeof(m_szPath));
+		GetModuleFileNameA(NULL, m_szPath, sizeof(m_szPath));
 #else
 		readlink("/proc/self/exe", m_szPath, sizeof(m_szPath));
 #endif
@@ -28,24 +28,18 @@ namespace Utility
 
 	std::string GetApplicationPath(const char* szAppend)
 	{
-		Printf(m_szPath);
 		std::string strPath(m_szPath);
 
 #ifdef _WIN32
 		std::string::size_type ptr = strPath.find_last_of("\\");
-
-		if (ptr)
-			strPath.erase(ptr, strPath.length()-ptr);
-		else
-			strPath.erase(strPath.find_last_of("/plugins")-7);
 #else
 		std::string::size_type ptr = strPath.find_last_of("/");
-		
+#endif
+
 		if(ptr)
 		{
 			strPath.erase(ptr+1, strPath.length()-ptr-1);
 		}
-#endif
 		
 		if (szAppend)
 			strPath += szAppend;
