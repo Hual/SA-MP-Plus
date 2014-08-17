@@ -3,8 +3,31 @@ SA-MP+
 
 A client modification that uses SA-MP's plugin SDK to interact with the server and add new features
 
-  Functions:
-  
+Download
+---------
+  * [PAWN include.](Build/sampp.inc?raw=true)
+  * [Source code.](https://github.com/v01d-/SA-MP-Plus/archive/master.zip)
+
+####Windows:
+  * [Server plugin.](Build/Release/sampp_server.dll?raw=true)
+  * [Client addon.](Build/Release/sampp_client.asi?raw=true)
+
+####Linux:
+  * [Server plugin.](Build/Release/sampp_server.so?raw=true)
+
+Installation (Client)
+---------
+  * Download and install an [ASI Loader for GTA San Andreas](http://www.gtagarage.com/mods/show.php?id=8321) if you don't have one,
+  * Place the [sampp_client.asi](Build/Release/sampp_client.asi?raw=true) file in your GTA:SA's folder, along with *gta_sa.exe*.
+
+Installation (Server)
+---------
+  * Download the [Windows](Build/Release/sampp_server.dll?raw=true) or [Linux](Build/Release/sampp_server.so?raw=true) server plugin.
+  * Place the file in the *plugins* folder of your server.
+  * Add the plugin to your server's *server.cfg*.
+
+Functions
+---------
   * ToggleHUDComponentForPlayer(playerid, componentid, bool:toggle);
   * SetRadioStationForPlayer(playerid, stationid);
   * SetWaveHeightForPlayer(playerid, Float:height);
@@ -27,9 +50,11 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
   * SetPlayerJetpackHeight(playerid, Float:height);
   * Float:GetPlayerJetpackHeight(playerid);
   * bool:IsUsingSAMPP(playerid);
+  * SetPlayerRaceCheckpointEx(playerid, type, Float:x, Float:y, Float:z, Float:point_x, Float:point_y, Float:point_z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0);
+  * SetPlayerCheckpointColour(playerid, colour)
+  * SetPlayerRaceCheckpointColour(playerid, colour)
 
-Callbacks:
-  
+####Callbacks:
   * OnPlayerOpenPauseMenu(playerid)
   * OnPlayerClosePauseMenu(playerid)
   * OnPlayerEnterPauseSubmenu(playerid, from, to)
@@ -37,9 +62,23 @@ Callbacks:
   * OnPlayerStunt(playerid, stuntid, money, details[])
   * OnPlayerResolutionChange(playerid, X, Y)
 
-Experimental:
+####Experimental/Unstable:
+  * SetPlayerCheckpointEx(playerid, Float:x, Float:y, Float:z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0, bool:check_z = true);
 
-  * SetPlayerCheckpoint(playerid, Float:x, Float:y, Float:z, Float:size, inner_colour = 0xFF0000FF, middle_colour = 0xFF0000FF, outer_colour = 0xFF0000FF)
-  * SetPlayerRaceCheckpoint(playerid, type, Float:x, Float:y, Float:z, Float:nextx, Float:nexty, Float:nextz, Float:size, colour = 0xFF0000FF)
-  * SetPlayerCheckpointColour(playerid, inner, middle, outer)
-  * SetPlayerRaceCheckpointColour(playerid, colour)
+Compilation
+---------
+
+####Windows:
+  * Open the provided solution file (.sln) in Visual Studio.
+  * Make sure to change the target to *"Release"* unless you want a build with debug symbols.
+
+####Linux:
+  * Open a terminal and use the following commands:
+```sh
+cd Build
+mkdir Temp
+cd Temp
+cmake ../..
+make
+```
+  * Pass the *-DSAMPP_DEBUG=1* parameter to CMake for generating a build with debug symbols.

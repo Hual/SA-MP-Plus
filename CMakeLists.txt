@@ -1,0 +1,28 @@
+project(SAMPP)
+cmake_minimum_required (VERSION 2.6)
+
+include_directories("${PROJECT_SOURCE_DIR}/Include" "${PROJECT_SOURCE_DIR}/Include/amx" "${PROJECT_SOURCE_DIR}/Include/RakNet")
+
+add_definitions(-DLINUX -D_LINUX -D_LINUX_ -D_GNU_SOURCE -DSAMPGDK_AMALGAMATION)
+
+if(SAMPP_DEBUG EQUAL 1)
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/Build/Debug")
+	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/Build/Debug")
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/Build/Debug")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 -g3")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O0 -g3")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -O0 -g3")
+	message(STATUS "Using DEBUG mode")
+else()
+	set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/Build/Release")
+	set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/Build/Release")
+	set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/Build/Release")
+	set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -g0")
+	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -g0")
+	set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -O3 -g0")
+	message(STATUS "Using RELEASE mode")
+endif()
+
+add_subdirectory(Common)
+add_subdirectory(Server)
+#add_subdirectory(Client)
