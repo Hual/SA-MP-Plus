@@ -32,10 +32,8 @@ namespace Network
 		
 		if (pRakServer->Startup(szHostAddress, usPort, iConnections) != RakNet::StartupResult::RAKNET_STARTED)
 		{
-			if (MessageBoxA(NULL, "Couldn't start", "SA-MP+ - Error", MB_OK | MB_ICONERROR))
-				exit(EXIT_FAILURE);
-				//Not really sure if there's anything to clean up at this stage.
-			//abort();
+			Utility::Printf("Couldn't start SA-MP+ plugin");
+			exit(EXIT_FAILURE);
 		}
 
 		bInitialized = true;
