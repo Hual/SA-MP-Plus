@@ -31,7 +31,10 @@ namespace Network
 		pRakServer = new CRakServer();
 		
 		if (pRakServer->Startup(szHostAddress, usPort, iConnections) != RakNet::StartupResult::RAKNET_STARTED)
-			abort();
+		{
+			Utility::Printf("Couldn't start SA-MP+ plugin");
+			exit(EXIT_FAILURE);
+		}
 
 		bInitialized = true;
 	}
