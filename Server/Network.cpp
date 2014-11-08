@@ -31,7 +31,12 @@ namespace Network
 		pRakServer = new CRakServer();
 		
 		if (pRakServer->Startup(szHostAddress, usPort, iConnections) != RakNet::StartupResult::RAKNET_STARTED)
-			abort();
+		{
+			if (MessageBoxA(NULL, "Couldn't start", "SA-MP+ - Error", MB_OK | MB_ICONERROR))
+				exit(EXIT_FAILURE);
+				//Not really sure if there's anything to clean up at this stage.
+			//abort();
+		}
 
 		bInitialized = true;
 	}
