@@ -31,6 +31,8 @@ DWORD CJmpProxy::PedAnimsJumpBack;
 DWORD CJmpProxy::SwitchWeaponJumpBack;
 DWORD CJmpProxy::AircraftMaxHeight1JumpBack;
 DWORD CJmpProxy::AircraftMaxHeight2JumpBack;
+DWORD CJmpProxy::MarkersHookJmpBack;
+
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -73,6 +75,40 @@ JMP_CAVE CJmpProxy::MenuAction1()
 		mov[ESI + 0x15D], al
 		jmp[MenuJumpBack1]
 	}
+}
+
+DWORD gtasa_markers_jmp_pointer = 0x584A79;
+JMP_CAVE CJmpProxy::MarkersHook()
+{
+	__asm pushad
+
+	if (CGame::VehicleBlips == false)
+	{
+		__asm
+		{
+			popad
+				mov eax, [esp + 04h]
+				cmp eax, 000003ECh
+				je return_hook
+				mov eax, gtasa_markers_jmp_pointer
+				jmp dword ptr[eax]
+
+
+			return_hook:
+				mov eax, 0h
+					ret
+		}
+	}
+	else
+	{
+		__asm
+		{
+			popad
+				mov eax, gtasa_markers_jmp_pointer
+				jmp dword ptr[eax]
+		}
+	}
+
 }
 
 JMP_CAVE CJmpProxy::MenuAction2()

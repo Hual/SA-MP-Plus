@@ -101,6 +101,8 @@ native SetPlayerAircraftHeight(playerid, Float:height);
 native Float:GetPlayerAircraftHeight(playerid);
 native SetPlayerJetpackHeight(playerid, Float:height);
 native Float:GetPlayerJetpackHeight(playerid);
+native TogglePlayerVehicleBlips(playerid, bool:toggle);
+native GetPlayerVehicleBlips(playerid);
 
 native SAMPP_ExecuteCallback(type, {Float,_}:...);
 

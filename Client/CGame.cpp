@@ -14,8 +14,10 @@ bool CGame::PauseMenuEnabled;
 bool CGame::Frozen;
 bool CGame::PedAnims;
 bool CGame::RecreateMarkers = false;
+bool CGame::VehicleBlips;
 float CGame::AircraftMaxHeight;
 int CGame::ClipAmmo[50];
+
 
 void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow)
 {
@@ -123,6 +125,11 @@ void CGame::OnPauseMenuToggle(bool toggle)
 	bitStream.Write(CGame::InPauseMenu);
 
 	Network::SendRPC(eRPC::ON_PAUSE_MENU_TOGGLE, &bitStream);
+}
+
+void CGame::ToggleVehicleBlips(bool toggle)
+{
+	VehicleBlips = toggle;
 }
 
 bool CGame::IsLoaded()
