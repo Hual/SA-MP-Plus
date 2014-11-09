@@ -16,7 +16,7 @@ cell AMX_NATIVE_CALL ToggleHUDComponentForPlayerProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
 	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // component
-	bitStream.WriteCasted<bool, cell>(pParams[3]); // toggle
+	bitStream.Write(!!pParams[3]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_HUD_COMPONENT, pParams[1], &bitStream);
 }
@@ -54,7 +54,7 @@ cell AMX_NATIVE_CALL SetWaveHeightForPlayerProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL TogglePauseMenuAbilityProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<bool, cell>(pParams[2]); // toggle
+	bitStream.Write(!!pParams[2]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_PAUSE_MENU, pParams[1], &bitStream);
 }
@@ -96,7 +96,7 @@ cell AMX_NATIVE_CALL SetPlayerCheckpointExProc(AMX* pAmx, cell* pParams)
 	bitStream.WriteCasted<unsigned short, cell>(pParams[7]); //period
 	bitStream.Write<float>(amx_ctof(pParams[8])); //pulse
 	bitStream.WriteCasted<short, cell>(pParams[9]); //rot_rate
-	bitStream.WriteCasted<bool, cell>(pParams[10]); //check_z
+	bitStream.Write(!!pParams[10]); //check_z
 
 	DisablePlayerCheckpoint(pParams[1]);
 
@@ -150,7 +150,7 @@ cell AMX_NATIVE_CALL TogglePlayerActionProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
 	bitStream.WriteCasted<unsigned char, cell>(pParams[2]); // action
-	bitStream.WriteCasted<bool, cell>(pParams[3]); // toggle
+	bitStream.Write(!!pParams[3]); // toggle
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_ACTION, pParams[1], &bitStream);
 }
@@ -167,7 +167,7 @@ cell AMX_NATIVE_CALL SetPlayerClipAmmoProc(AMX* pAmx, cell* pParams) // tips off
 cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<bool, cell>(pParams[2]); // bToggle
+	bitStream.Write(!!pParams[2]); // bToggle
 
 	return Network::PlayerSendRPC(eRPC::SET_NO_RELOAD, pParams[1], &bitStream);
 }
@@ -175,7 +175,7 @@ cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL SetPlayerBlurIntensityProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<int, cell>(pParams[2]);
+	bitStream.Write(pParams[2]);
 
 	return Network::PlayerSendRPC(eRPC::SET_BLUR_INTENSITY, pParams[1], &bitStream);
 }
@@ -183,7 +183,7 @@ cell AMX_NATIVE_CALL SetPlayerBlurIntensityProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL TogglePlayerDriveOnWaterProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<bool, cell>(pParams[2]);
+	bitStream.Write(!!pParams[2]);
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_DRIVE_ON_WATER, pParams[1], &bitStream);
 }
@@ -199,7 +199,7 @@ cell AMX_NATIVE_CALL SetPlayerGameSpeedProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL TogglePlayerFrozenProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<bool, cell>(pParams[2]);
+	bitStream.Write(!!pParams[2]);
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_PLAYER_FROZEN, pParams[1], &bitStream);
 }
@@ -207,7 +207,7 @@ cell AMX_NATIVE_CALL TogglePlayerFrozenProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL SetPedAnimsProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<bool, cell>(pParams[2]);
+	bitStream.Write(!!pParams[2]);
 
 	return Network::PlayerSendRPC(eRPC::SET_PLAYER_ANIMS, pParams[1], &bitStream);
 }
@@ -215,7 +215,7 @@ cell AMX_NATIVE_CALL SetPedAnimsProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL TogglePlayerSwitchReloadProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<bool, cell>(pParams[2]);
+	bitStream.Write(!!pParams[2]);
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_SWITCH_RELOAD, pParams[1], &bitStream);
 }
@@ -223,7 +223,7 @@ cell AMX_NATIVE_CALL TogglePlayerSwitchReloadProc(AMX* pAmx, cell* pParams)
 cell AMX_NATIVE_CALL TogglePlayerInfiniteRunProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
-	bitStream.WriteCasted<bool, cell>(pParams[2]);
+	bitStream.Write(!!pParams[2]);
 
 	return Network::PlayerSendRPC(eRPC::TOGGLE_INFINITE_RUN, pParams[1], &bitStream);
 }
@@ -258,6 +258,19 @@ cell AMX_NATIVE_CALL GetPlayerJetpackHeightProc(AMX* pAmx, cell* pParams)
 	return amx_ftoc(f);
 }
 
+cell AMX_NATIVE_CALL TogglePlayerVehicleBlipsProc(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(!!pParams[2]);
+
+	Network::GetPlayerFromPlayerid(pParams[1])->ToggleVehicleBlips(!!pParams[2]);
+	return Network::PlayerSendRPC(eRPC::TOGGLE_VEHICLE_BLIPS, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL GetPlayerVehicleBlipsProc(AMX* pAmx, cell* pParams)
+{
+	return Network::GetPlayerFromPlayerid(pParams[1])->GetVehicleBlips();
+}
 
 cell AMX_NATIVE_CALL IsUsingSAMPPProc(AMX* pAmx, cell* pParams)
 {
@@ -319,6 +332,8 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "GetPlayerAircraftHeight", GetPlayerAircraftHeightProc },
 	{ "SetPlayerJetpackHeight", SetPlayerJetpackHeightProc },
 	{ "GetPlayerJetpackHeight", GetPlayerJetpackHeightProc },
+	{ "TogglePlayerVehicleBlips", TogglePlayerVehicleBlipsProc },
+	{ "GetPlayerVehicleBlips", GetPlayerVehicleBlipsProc },
 	{ 0, 0 }
 };
 

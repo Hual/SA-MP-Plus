@@ -73,6 +73,10 @@
 #define DEFAULT_AIRCRAFT_HEIGHT 800
 #define DEFAULT_JETPACK_HEIGHT 100
 
+#define MOUSE_LEFT_CLICK 0
+#define MOUSE_RIGHT_CLICK 1
+#define MOUSE_MIDDLE_CLICK 2
+
 native SetPlayerCheckpointEx(playerid, Float:x, Float:y, Float:z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0, bool:check_z = true);
 native SetPlayerCheckpointColour(playerid, colour);
 
@@ -112,6 +116,7 @@ forward OnPlayerStunt(playerid, stuntid, money, details[]);
 forward OnPlayerResolutionChange(playerid, X, Y);
 forward OnPlayerSAMPPConnect(address[], port);
 forward OnPlayerSAMPPJoin(playerid, bool:has_plugin);
+forward OnPlayerClick(playerid, type, X, Y);
 
 public OnPlayerConnect(playerid)
 {

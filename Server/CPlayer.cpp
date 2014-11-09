@@ -70,6 +70,16 @@ void CPlayer::SetCurrentMenuId(unsigned char ucMenuId)
 	m_ucMenuId = ucMenuId;
 }
 
+void CPlayer::ToggleVehicleBlips(bool toggle)
+{
+	m_bVehicleBlips = toggle;
+}
+
+bool CPlayer::GetVehicleBlips()
+{
+	return m_bVehicleBlips;
+}
+
 unsigned char CPlayer::GetCurrentMenuId()
 {
 	return m_ucMenuId;

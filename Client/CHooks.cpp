@@ -53,6 +53,7 @@ void CHooks::InstallJmp()
 	CMem::InstallJmp(0x06D2612, CJmpProxy::AircraftMaxHeight1, CJmpProxy::AircraftMaxHeight1JumpBack, 6);
 	CMem::InstallJmp(0x06D2623, CJmpProxy::AircraftMaxHeight2, CJmpProxy::AircraftMaxHeight2JumpBack, 6);
 	//CMem::InstallJmp(0x060B4F4, CJmpProxy::SwitchWeapon, CJmpProxy::SwitchWeaponJumpBack, 6);
+	CMem::InstallJmp(0x0584770, CJmpProxy::MarkersHook, CJmpProxy::MarkersHookJmpBack, 6);
 }
 
 void CHooks::InstallPatches()

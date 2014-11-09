@@ -2,6 +2,7 @@
 #include <SAMP+/client/CGame.h>
 #include <SAMP+/client/CGraphics.h>
 #include <SAMP+/client/Proxy/CMessageProxy.h>
+#include <windowsx.h>
 
 HWND CMessageProxy::m_hWindowOrig;
 WNDPROC CMessageProxy::m_wProcOrig;
@@ -43,19 +44,36 @@ LRESULT CALLBACK CMessageProxy::Process(HWND wnd, UINT umsg, WPARAM wparam, LPAR
 
 	switch (umsg)
 	{
-	case WM_MOUSEMOVE:
-	{
-		return 0;
-	}
-	case WM_SYSKEYDOWN:
-	case WM_KEYDOWN:
-	{
-		if (vKey == VK_F2 && (GetKeyState(VK_SHIFT) & 0x8000))
+		case WM_MOUSEMOVE:
 		{
-			CGraphics::ToggleCursor(!CGraphics::IsCursorEnabled());
 			return 0;
 		}
-	}
+		//case WM_SYSKEYDOWN:
+		case WM_KEYDOWN:
+		{
+			if (vKey == VK_F2 && (GetKeyState(VK_SHIFT) & 0x8000))
+			{
+				CGraphics::ToggleCursor(!CGraphics::IsCursorEnabled());
+				return 0;
+			}
+			break;
+		}
+
+		case WM_LBUTTONDOWN:
+		{
+			CGame::OnMouseClick(0, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+			break;
+		}
+		case WM_RBUTTONDOWN:
+		{
+			CGame::OnMouseClick(1, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+			break;
+		}
+		case WM_MBUTTONDOWN:
+		{
+			CGame::OnMouseClick(2, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+			break;
+		}
 	}
 
 retnOriginal:
