@@ -14,7 +14,7 @@ bool CGame::PauseMenuEnabled;
 bool CGame::Frozen;
 bool CGame::PedAnims;
 bool CGame::RecreateMarkers = false;
-bool CGame::VehicleBlips;
+bool CGame::VehicleBlips = true;
 float CGame::AircraftMaxHeight;
 int CGame::ClipAmmo[50];
 
