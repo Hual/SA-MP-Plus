@@ -60,7 +60,8 @@ Functions
   * OnPlayerEnterPauseSubmenu(playerid, from, to)
   * OnDriverDriveByShot(playerid)
   * OnPlayerStunt(playerid, stuntid, money, details[])
-  * OnPlayerResolutionChange(playerid, X, Y)
+  * OnPlayerResolutionChange(playerid, width, height)
+  * OnPlayerClick(playerid, type, X, Y)
 
 ####Experimental/Unstable:
   * SetPlayerCheckpointEx(playerid, Float:x, Float:y, Float:z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0, bool:check_z = true);
