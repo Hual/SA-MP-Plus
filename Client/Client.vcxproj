@@ -62,6 +62,7 @@
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>DEBUG;DIRECTINPUT_VERSION#0x0800;_WIN32_WINNT#0x0500;WIN32_LEAN_AND_MEAN;WIN32;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CallingConvention>StdCall</CallingConvention>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -75,9 +76,10 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <CallingConvention>StdCall</CallingConvention>
-      <PreprocessorDefinitions>DEBUG;DIRECTINPUT_VERSION#0x0800;_WIN32_WINNT#0x0500;WIN32_LEAN_AND_MEAN;WIN32;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>DEBUG;DIRECTINPUT_VERSION#0x0800;_WIN32_WINNT#0x0500;WIN32_LEAN_AND_MEAN;WIN32;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(ProjectDir);$(ProjectDir)\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -188,6 +188,7 @@
       <SDLCheck>false</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\SDK;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;HAVE_STDINT_H;DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;SAMPGDK_AMALGAMATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -205,7 +206,8 @@
       <AdditionalIncludeDirectories>$(ProjectDir)\SDK;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;HAVE_STDINT_H;DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_SECURE_NO_DEPRECATE;SAMPGDK_AMALGAMATION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DisableSpecificWarnings>4996;4309</DisableSpecificWarnings>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
