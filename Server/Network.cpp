@@ -198,22 +198,24 @@ namespace Network
 			if (!pPacket->length)
 				return;
 
-			int iPlayerId;
+			int iPlayerId = 0;
 			RakNet::BitStream bitStream(&pPacket->data[1], pPacket->length - 1, false);
 
 			if (pPacket->data[0] == ID_NEW_INCOMING_CONNECTION)
 			{
-				Utility::Printf("Incoming connection: %s", pPacket->systemAddress.ToString());
-
 				if (Callback::Execute("OnPlayerSAMPPConnect", "is", pPacket->systemAddress.GetPort(), pPacket->systemAddress.ToString(false)))
 				{
 					CClientSocketInfo* pSockInfo = new CClientSocketInfo(pPacket->systemAddress, pPacket->guid);
 					unhandledConnections.push_back(pSockInfo);
+
+					Utility::Printf("Unhandled connection accepted: %s:%i", pPacket->systemAddress.ToString(false), pPacket->systemAddress.GetPort());
 				}
 				else
 				{
 					pRakServer->Send(ePacketType::PACKET_CONNECTION_REJECTED, pPacket->systemAddress);
 					pRakServer->CloseConnection(pPacket->systemAddress);
+
+					Utility::Printf("Unhandled connection rejected: %s:%i", pPacket->systemAddress.ToString(false), pPacket->systemAddress.GetPort());
 				}
 
 				//TODO: read sa-mp's ban list, reject connection if IP is banned

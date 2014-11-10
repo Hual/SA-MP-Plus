@@ -6,6 +6,7 @@ std::ofstream CLog::m_pOfstream;
 void CLog::Initialize()
 {
 	m_pOfstream.open("log.txt", std::ofstream::out | std::ofstream::trunc);
+	Write("Logging initiated");
 }
 
 void CLog::Finalize()

@@ -31,9 +31,10 @@ void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND 
 
 void CGame::OnLoad()
 {
-	if (!CCmdlineParams::ArgumentExists("d") && CCmdlineParams::ArgumentExists("c"))
+	if (!CCmdlineParams::ArgumentExists("d") && CCmdlineParams::ArgumentExists("h"))
 	{
-		CSystem::GetLoadedModules();
+		//CSystem::GetLoadedModules();
+		CLog::Write("OnLoad success");
 		CGame::UnprotectMemory();
 		Network::Initialize(CCmdlineParams::GetArgumentValue("h"), atoi(CCmdlineParams::GetArgumentValue("p").c_str()) + 1);
 		Network::Connect();
@@ -104,8 +105,11 @@ void CGame::PostEndScene()
 
 void CGame::OnWorldCreate()
 {
-	OnLoad();
-	m_bGameLoaded = true;
+	if (!IsLoaded())
+	{
+		OnLoad();
+		m_bGameLoaded = true;
+	}
 }
 
 void CGame::OnResolutionChange(int X, int Y)
