@@ -177,9 +177,7 @@ cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
 	bitStream.Write(!!pParams[2]); // bToggle
-
-	Utility::Printf("SetPlayerNoReloadProc");
-
+	
 	return Network::PlayerSendRPC(eRPC::SET_NO_RELOAD, pParams[1], &bitStream);
 }
 
