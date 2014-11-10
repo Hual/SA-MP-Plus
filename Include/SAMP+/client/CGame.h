@@ -53,7 +53,10 @@ public:
 	static void ToggleSwitchReload(bool toggle);
 	static void SetAircraftMaxHeight(float height);
 	static void SetJetpackMaxHeight(float height);
+	static void ToggleVehicleBlips(bool toggle);
+	static void OnMouseClick(int type, int X, int Y);
 
+	static bool VehicleBlips;
 	static bool InPauseMenu;
 	static bool PauseMenuEnabled;
 	static bool RecreateMarkers;

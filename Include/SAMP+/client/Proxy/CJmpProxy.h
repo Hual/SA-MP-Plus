@@ -35,6 +35,7 @@ public:
 	static void SwitchWeapon();
 	static void AircraftMaxHeight1();
 	static void AircraftMaxHeight2();
+	static void MarkersHook();
 
 	static void TestDraw();
 
@@ -64,6 +65,7 @@ public:
 	static DWORD SwitchWeaponJumpBack;
 	static DWORD AircraftMaxHeight1JumpBack;
 	static DWORD AircraftMaxHeight2JumpBack;
+	static DWORD MarkersHookJmpBack; // unused
 
 	static DWORD HUDColourList[];
 	static sStuntDetails StuntDetails;

@@ -20,6 +20,8 @@ public:
 	float GetJetpackHeight();
 	void SetAircraftHeight(float height);
 	void SetJetpackHeight(float height);
+	void ToggleVehicleBlips(bool toggle);
+	bool GetVehicleBlips();
 
 private:
 	CClientSocketInfo* m_pSockInfo;
@@ -29,5 +31,6 @@ private:
 	int m_iResolutionY;
 	float m_fAircraftHeight;
 	float m_fJetpackHeight;
+	bool m_bVehicleBlips;
 
 };

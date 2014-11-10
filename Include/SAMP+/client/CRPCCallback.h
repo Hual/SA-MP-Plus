@@ -29,6 +29,7 @@ public:
 	static RPC_CALLBACK ToggleSwitchReload(RPC_ARGS);
 	static RPC_CALLBACK SetJetpackHeight(RPC_ARGS);
 	static RPC_CALLBACK SetAircraftHeight(RPC_ARGS);
+	static RPC_CALLBACK ToggleVehicleBlips(RPC_ARGS);
 
 private:
 
