@@ -14,6 +14,7 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::ON_DRIVE_BY_SHOT, CRPCCallback::PlayerDriveByShot);
 	CRPC::Add(eRPC::ON_STUNT_BONUS, CRPCCallback::StuntBonus);
 	CRPC::Add(eRPC::ON_RESOLUTION_CHANGE, CRPCCallback::ResolutionChange);
+	CRPC::Add(eRPC::ON_MOUSE_CLICK, CRPCCallback::PlayerClick);
 }
 
 RPC_CALLBACK CRPCCallback::PlayerPauseMenuSwitch(RPC_ARGS)
@@ -63,4 +64,13 @@ RPC_CALLBACK CRPCCallback::ResolutionChange(RPC_ARGS)
 
 	Network::GetPlayerFromPlayerid(iExtra)->SetResolution(X, Y);
 
+}
+
+RPC_CALLBACK CRPCCallback::PlayerClick(RPC_ARGS)
+{
+	int type;
+	int X, Y;
+
+	if (bsData.Read(type) && bsData.Read(X) && bsData.Read(Y))
+		Callback::Execute("OnPlayerClick", "iiii", Y, X, type, iExtra);
 }

@@ -117,6 +117,16 @@ void CGame::OnResolutionChange(int X, int Y)
 	Network::SendRPC(eRPC::ON_RESOLUTION_CHANGE, &bitStream);
 }
 
+void CGame::OnMouseClick(int type, int X, int Y)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(type);
+	bitStream.Write(X);
+	bitStream.Write(Y);
+
+	Network::SendRPC(eRPC::ON_MOUSE_CLICK, &bitStream);
+}
+
 void CGame::OnPauseMenuToggle(bool toggle)
 {
 	InPauseMenu = toggle;
