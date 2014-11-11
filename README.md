@@ -55,7 +55,6 @@ Functions
   * SetPlayerRaceCheckpointColour(playerid, colour)
   * TogglePlayerVehicleBlips(playerid, bool:toggle)
   * GetPlayerVehicleBlips(playerid)
-  * GetPlayerRadioStation(playerid)
 
 ####Callbacks:
   * OnPlayerOpenPauseMenu(playerid)
@@ -65,7 +64,6 @@ Functions
   * OnPlayerStunt(playerid, stuntid, money, details[])
   * OnPlayerResolutionChange(playerid, width, height)
   * OnPlayerClick(playerid, type, X, Y)
-  * OnPlayerChangeRadioStation(playerid, stationid)
 
 ####Experimental/Unstable:
   * SetPlayerCheckpointEx(playerid, Float:x, Float:y, Float:z, Float:size, colour = 0xFF000020, period = 1024, Float:pulse = 0.1, rotation_rate = 0, bool:check_z = true);

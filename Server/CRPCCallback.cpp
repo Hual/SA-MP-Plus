@@ -15,7 +15,6 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::ON_STUNT_BONUS, CRPCCallback::StuntBonus);
 	CRPC::Add(eRPC::ON_RESOLUTION_CHANGE, CRPCCallback::ResolutionChange);
 	CRPC::Add(eRPC::ON_MOUSE_CLICK, CRPCCallback::PlayerClick);
-	CRPC::Add(eRPC::ON_RADIO_CHANGE, CRPCCallback::RadioChange);
 }
 
 RPC_CALLBACK CRPCCallback::PlayerPauseMenuSwitch(RPC_ARGS)
@@ -74,16 +73,4 @@ RPC_CALLBACK CRPCCallback::PlayerClick(RPC_ARGS)
 
 	if (bsData.Read(type) && bsData.Read(X) && bsData.Read(Y))
 		Callback::Execute("OnPlayerClick", "iiii", Y, X, type, iExtra);
-}
-
-RPC_CALLBACK CRPCCallback::RadioChange(RPC_ARGS)
-{
-	int id;
-
-	if (bsData.Read(id))
-	{
-		Network::GetPlayerFromPlayerid(iExtra)->SetRadio(id);
-		if (IsPlayerInAnyVehicle(iExtra))
-			Callback::Execute("OnPlayerChangeRadioStation", "ii", id, iExtra);
-	}
 }
