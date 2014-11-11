@@ -42,8 +42,6 @@ void CGame::OnLoad()
 		
 		CGame::SetAircraftMaxHeight(800.0f);
 
-		CLog::Write("CGame::OnLoad");
-
 		/*for (int i = 0; i < sizeof(50); ++i) {
 			CGame::ClipAmmo[i] = 7;
 		}*/
@@ -283,7 +281,6 @@ void CGame::SetJetpackMaxHeight(float height)
 
 void CGame::OnRadioChange(int id)
 {
-	CLog::Write("CGame::OnRadioChange(%d)", id);
 	RakNet::BitStream bitStream;
 	bitStream.Write(id);
 
