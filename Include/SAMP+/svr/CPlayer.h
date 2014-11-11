@@ -22,6 +22,8 @@ public:
 	void SetJetpackHeight(float height);
 	void ToggleVehicleBlips(bool toggle);
 	bool GetVehicleBlips();
+	void SetRadio(int id);
+	int GetRadio();
 
 private:
 	CClientSocketInfo* m_pSockInfo;
@@ -32,5 +34,6 @@ private:
 	float m_fAircraftHeight;
 	float m_fJetpackHeight;
 	bool m_bVehicleBlips;
+	int m_iRadioStation;
 
 };

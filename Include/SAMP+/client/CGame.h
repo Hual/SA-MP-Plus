@@ -40,6 +40,7 @@ public:
 	static void OnWorldCreate();
 	static void OnPauseMenuToggle(bool toggle);
 	static void OnResolutionChange(int X, int Y);
+	static void OnRadioChange(int id);
 
 	static void UnprotectMemory();
 	static void SetRadioStation(unsigned long ulStation);

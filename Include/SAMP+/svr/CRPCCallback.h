@@ -13,4 +13,5 @@ public:
 	static RPC_CALLBACK StuntBonus(RPC_ARGS);
 	static RPC_CALLBACK ResolutionChange(RPC_ARGS);
 	static RPC_CALLBACK PlayerClick(RPC_ARGS);
+	static RPC_CALLBACK RadioChange(RPC_ARGS);
 };

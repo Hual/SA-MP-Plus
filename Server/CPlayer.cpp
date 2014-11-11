@@ -84,3 +84,13 @@ unsigned char CPlayer::GetCurrentMenuId()
 {
 	return m_ucMenuId;
 }
+
+void CPlayer::SetRadio(int id)
+{
+	m_iRadioStation = id;
+}
+
+int CPlayer::GetRadio()
+{
+	return m_iRadioStation;
+}
