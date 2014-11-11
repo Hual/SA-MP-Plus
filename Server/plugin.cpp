@@ -43,6 +43,15 @@ cell AMX_NATIVE_CALL SetRadioStationForPlayerProc(AMX* pAmx, cell* pParams)
 	return 1;
 }
 
+cell AMX_NATIVE_CALL GetRadioStation(AMX* pAmx, cell* pParams)
+{
+	if (IsPlayerInAnyVehicle(pParams[1]))
+	{
+		return Network::GetPlayerFromPlayerid(pParams[1])->GetRadio();
+	}
+	return 0;
+}
+
 cell AMX_NATIVE_CALL SetWaveHeightForPlayerProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
@@ -168,7 +177,7 @@ cell AMX_NATIVE_CALL SetPlayerNoReloadProc(AMX* pAmx, cell* pParams)
 {
 	RakNet::BitStream bitStream;
 	bitStream.Write(!!pParams[2]); // bToggle
-
+	
 	return Network::PlayerSendRPC(eRPC::SET_NO_RELOAD, pParams[1], &bitStream);
 }
 
@@ -334,6 +343,7 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "GetPlayerJetpackHeight", GetPlayerJetpackHeightProc },
 	{ "TogglePlayerVehicleBlips", TogglePlayerVehicleBlipsProc },
 	{ "GetPlayerVehicleBlips", GetPlayerVehicleBlipsProc },
+	{ "GetPlayerRadioStation", GetRadioStation },
 	{ 0, 0 }
 };
 
