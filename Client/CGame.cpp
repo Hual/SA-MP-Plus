@@ -42,7 +42,6 @@ void CGame::OnLoad()
 		
 		CGame::SetAircraftMaxHeight(800.0f);
 
-
 		/*for (int i = 0; i < sizeof(50); ++i) {
 			CGame::ClipAmmo[i] = 7;
 		}*/
@@ -278,4 +277,12 @@ void CGame::SetAircraftMaxHeight(float height)
 void CGame::SetJetpackMaxHeight(float height)
 {
 	CMem::PutSingle<float>(0x8703D8, height);
+}
+
+void CGame::OnRadioChange(int id)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(id);
+
+	Network::SendRPC(eRPC::ON_RADIO_CHANGE, &bitStream);
 }

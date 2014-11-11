@@ -32,6 +32,7 @@ DWORD CJmpProxy::SwitchWeaponJumpBack;
 DWORD CJmpProxy::AircraftMaxHeight1JumpBack;
 DWORD CJmpProxy::AircraftMaxHeight2JumpBack;
 DWORD CJmpProxy::MarkersHookJmpBack;
+DWORD CJmpProxy::RadioHookJmpBack;
 
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
@@ -469,4 +470,22 @@ JMP_CAVE CJmpProxy::SwitchWeapon()
 		jmp[SwitchWeaponJumpBack]
 	}
 
+}
+
+JMP_CAVE CJmpProxy::RadioHook()
+{
+	__asm
+	{
+		mov [esi + 0xAD], bl
+
+		pushad
+
+		push bl
+
+		call CGame::OnRadioChange
+		popad
+
+		jmp[RadioHookJmpBack]
+
+	}
 }

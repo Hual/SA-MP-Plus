@@ -107,6 +107,7 @@ native SetPlayerJetpackHeight(playerid, Float:height);
 native Float:GetPlayerJetpackHeight(playerid);
 native TogglePlayerVehicleBlips(playerid, bool:toggle);
 native GetPlayerVehicleBlips(playerid);
+native GetPlayerRadioStation(playerid);
 
 native SAMPP_ExecuteCallback(type, {Float,_}:...);
 
@@ -119,6 +120,7 @@ forward OnPlayerResolutionChange(playerid, X, Y);
 forward OnPlayerSAMPPConnect(address[], port);
 forward OnPlayerSAMPPJoin(playerid, bool:has_plugin);
 forward OnPlayerClick(playerid, type, X, Y);
+forward OnPlayerChangeRadioStation(playerid, stationid);
 
 public OnPlayerConnect(playerid)
 {
