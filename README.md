@@ -17,8 +17,13 @@ Download
 
 Installation (Client)
 ---------
+ * Download and run the [Installer](https://github.com/KingHual/SA-MP-Plus/blob/master/Build/Release/sampp-v1.0.exe)
+ 
+ Alternatively:
+
   * Download and install an [ASI Loader for GTA San Andreas](http://www.gtagarage.com/mods/show.php?id=8321) if you don't have one,
   * Place the [sampp_client.asi](Build/Release/sampp_client.asi?raw=true) file in your GTA:SA's folder, along with *gta_sa.exe*.
+  
 
 Installation (Server)
 ---------
