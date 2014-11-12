@@ -38,7 +38,7 @@ SetCompressor /SOLID lzma
 ;--------------------------------
 ;Pages
 
-  ;!insertmacro MUI_PAGE_LICENSE "License.txt"
+  !insertmacro MUI_PAGE_LICENSE "License.txt"
   !insertmacro MUI_PAGE_COMPONENTS
   !define MUI_PAGE_CUSTOMFUNCTION_PRE DetermineGTADir
   !define MUI_PAGE_CUSTOMFUNCTION_LEAVE MyFuncDir
