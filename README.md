@@ -17,7 +17,7 @@ Download
 
 Installation (Client)
 ---------
- * Download and run the [Installer](https://github.com/KingHual/SA-MP-Plus/blob/master/Build/Release/sampp-v1.0.exe)
+ * Download and run the [Installer](https://github.com/KingHual/SA-MP-Plus/blob/master/Build/Release/sampp-v1.0.exe?raw=true)
  
  Alternatively:
 
