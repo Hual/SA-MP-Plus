@@ -4,7 +4,7 @@ language: cpp
 
 script:
   - sudo apt-get update -qq
-  - sudo apt-get install -y libc6-dev-i386
+  - sudo apt-get install -y g++-4.8-multilib
   - bash build.sh
 
 notifications:
