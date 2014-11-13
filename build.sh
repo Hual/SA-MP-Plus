@@ -2,7 +2,7 @@
 
 set -e
 
-if [[ ! -d build ]]; then
+if [[ ! -d Build ]]; then
 	mkdir -p Build
 fi
 
@@ -11,4 +11,4 @@ pushd Build
 	make
 popd
 
-echo -e "\nDone!"
+echo -e "\nLinux server binary built!"

@@ -2,3 +2,8 @@ language: cpp
 
 script:
   - bash build.sh
+
+notifications:
+  irc: "foco.ca.irc.tl#sa-mp+"
+  on_failure: always
+  on_success: change
