@@ -4,7 +4,7 @@ language: cpp
 
 script:
   - sudo apt-get update -qq
-  - sudo apt-get install -y ia32-libs libc6-i386 libc6-dev-i386 lib32gcc1 lib32stdc++6
+  - sudo apt-get install -y ia32-libs ia32-libs-multiarch libc6-i386 libc6-dev-i386 lib32gcc1 lib32stdc++6
   - bash build.sh
 
 notifications:
