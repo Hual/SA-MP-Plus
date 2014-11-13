@@ -120,7 +120,7 @@ forward OnPlayerResolutionChange(playerid, X, Y);
 forward OnPlayerSAMPPConnect(address[], port);
 forward OnPlayerSAMPPJoin(playerid, bool:has_plugin);
 forward OnPlayerClick(playerid, type, X, Y);
-forward OnPlayerChangeRadioStation(playerid, stationid);
+forward OnPlayerChangeRadioStation(playerid, stationid, vehicleid);
 
 public OnPlayerConnect(playerid)
 {

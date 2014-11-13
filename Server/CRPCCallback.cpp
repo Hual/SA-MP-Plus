@@ -84,6 +84,6 @@ RPC_CALLBACK CRPCCallback::RadioChange(RPC_ARGS)
 	{
 		Network::GetPlayerFromPlayerid(iExtra)->SetRadio(id);
 		if (IsPlayerInAnyVehicle(iExtra))
-			Callback::Execute("OnPlayerChangeRadioStation", "ii", id, iExtra);
+			Callback::Execute("OnPlayerChangeRadioStation", "iii", GetPlayerVehicleID(iExtra), id, iExtra);
 	}
 }
