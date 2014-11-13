@@ -1,5 +1,4 @@
 language: cpp
-compiler:
-  - gcc
-  - clang
-script: cmake --build ./
+
+script:
+  - bash build.sh
