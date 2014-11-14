@@ -8,7 +8,6 @@
 #include <SAMP+/client/Network.h>
 #include <SAMP+/client/CSystem.h>
 
-//Travis CI test
 
 bool CGame::m_bGameLoaded;
 bool CGame::InPauseMenu;
