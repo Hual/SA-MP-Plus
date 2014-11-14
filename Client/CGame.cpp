@@ -8,6 +8,7 @@
 #include <SAMP+/client/Network.h>
 #include <SAMP+/client/CSystem.h>
 
+
 bool CGame::m_bGameLoaded;
 bool CGame::InPauseMenu;
 bool CGame::PauseMenuEnabled;
@@ -285,4 +286,9 @@ void CGame::OnRadioChange(int id)
 	bitStream.Write(id);
 
 	Network::SendRPC(eRPC::ON_RADIO_CHANGE, &bitStream);
+}
+
+void CGame::OnDrinkSprunk()
+{
+	Network::SendRPC(eRPC::ON_DRINK_SPRUNK);
 }

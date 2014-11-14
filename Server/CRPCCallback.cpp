@@ -16,6 +16,7 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::ON_RESOLUTION_CHANGE, CRPCCallback::ResolutionChange);
 	CRPC::Add(eRPC::ON_MOUSE_CLICK, CRPCCallback::PlayerClick);
 	CRPC::Add(eRPC::ON_RADIO_CHANGE, CRPCCallback::RadioChange);
+	CRPC::Add(eRPC::ON_DRINK_SPRUNK, CRPCCallback::DrinkSprunk);
 }
 
 RPC_CALLBACK CRPCCallback::PlayerPauseMenuSwitch(RPC_ARGS)
@@ -86,4 +87,9 @@ RPC_CALLBACK CRPCCallback::RadioChange(RPC_ARGS)
 		if (IsPlayerInAnyVehicle(iExtra))
 			Callback::Execute("OnPlayerChangeRadioStation", "iii", GetPlayerVehicleID(iExtra), id, iExtra);
 	}
+}
+
+RPC_CALLBACK CRPCCallback::DrinkSprunk(RPC_ARGS)
+{
+	Callback::Execute("OnPlayerDrinkSprunk", "i", iExtra);
 }

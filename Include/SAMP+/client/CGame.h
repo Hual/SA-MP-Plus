@@ -56,6 +56,7 @@ public:
 	static void SetJetpackMaxHeight(float height);
 	static void ToggleVehicleBlips(bool toggle);
 	static void OnMouseClick(int type, int X, int Y);
+	static void OnDrinkSprunk();
 
 	static bool VehicleBlips;
 	static bool InPauseMenu;

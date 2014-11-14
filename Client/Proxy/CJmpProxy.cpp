@@ -33,7 +33,7 @@ DWORD CJmpProxy::AircraftMaxHeight1JumpBack;
 DWORD CJmpProxy::AircraftMaxHeight2JumpBack;
 DWORD CJmpProxy::MarkersHookJmpBack;
 DWORD CJmpProxy::RadioHookJmpBack;
-
+DWORD CJmpProxy::DrinkSprungJmpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -487,5 +487,17 @@ JMP_CAVE CJmpProxy::RadioHook()
 
 		jmp[RadioHookJmpBack]
 
+	}
+}
+
+JMP_CAVE CJmpProxy::DrinkSprunkHook()
+{
+	__asm
+	{
+		fld dword ptr[esp + 18]
+
+		call CGame::OnDrinkSprunk
+
+		jmp[DrinkSprungJmpBack]
 	}
 }
