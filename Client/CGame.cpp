@@ -288,3 +288,8 @@ void CGame::OnRadioChange(int id)
 
 	Network::SendRPC(eRPC::ON_RADIO_CHANGE, &bitStream);
 }
+
+void CGame::OnDrinkSprunk()
+{
+	Network::SendRPC(eRPC::ON_DRINK_SPRUNK);
+}
