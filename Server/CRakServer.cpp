@@ -20,7 +20,7 @@ RakNet::StartupResult CRakServer::Startup(const char* szHostAddress, t_port usPo
 	RakNet::StartupResult iResult = m_pPeer->Startup(iConnections, m_pSocketDescriptor, 1, SAMPP_DEFAULT_THREAD_PRIORITY);
 	
 	if (iResult == RakNet::StartupResult::RAKNET_STARTED)
-		m_pPeer->SetMaximumIncomingConnections(iConnections);
+		m_pPeer->SetMaximumIncomingConnections(iConnections+1);
 
 	return iResult;
 }
