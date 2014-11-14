@@ -5,4 +5,5 @@ CClientSocketInfo::CClientSocketInfo(RakNet::SystemAddress systemAddress, RakNet
 	m_systemAddress = systemAddress;
 	m_guid = guid;
 	m_state = eClientConnectionState::AWAITING;
+	m_creationTime = time(NULL);
 }

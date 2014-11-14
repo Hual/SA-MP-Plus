@@ -203,6 +203,15 @@ namespace Network
 
 			if (pPacket->data[0] == ID_NEW_INCOMING_CONNECTION)
 			{
+				for (std::list<CClientSocketInfo*>::iterator it = unhandledConnections.begin(); it != unhandledConnections.end(); ++it)
+				{
+					if (time(NULL) - (*it)->GetCreationTime() >= 60)
+					{
+						delete *it;
+						unhandledConnections.erase(it);
+					}
+				}
+
 				if (Callback::Execute("OnPlayerSAMPPConnect", "is", pPacket->systemAddress.GetPort(), pPacket->systemAddress.ToString(false)))
 				{
 					CClientSocketInfo* pSockInfo = new CClientSocketInfo(pPacket->systemAddress, pPacket->guid);
