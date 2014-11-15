@@ -124,7 +124,7 @@ void CGame::OnResolutionChange(int X, int Y)
 void CGame::OnMouseClick(int type, int X, int Y)
 {
 	RakNet::BitStream bitStream;
-	bitStream.Write(type);
+	bitStream.WriteCasted<BYTE>(type);
 	bitStream.Write(X);
 	bitStream.Write(Y);
 
@@ -283,7 +283,8 @@ void CGame::SetJetpackMaxHeight(float height)
 void CGame::OnRadioChange(int id)
 {
 	RakNet::BitStream bitStream;
-	bitStream.Write(id);
+	
+	bitStream.WriteCasted<BYTE>(id);
 
 	Network::SendRPC(eRPC::ON_RADIO_CHANGE, &bitStream);
 }
