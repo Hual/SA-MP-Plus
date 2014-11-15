@@ -70,7 +70,7 @@ RPC_CALLBACK CRPCCallback::ResolutionChange(RPC_ARGS)
 
 RPC_CALLBACK CRPCCallback::PlayerClick(RPC_ARGS)
 {
-	int type;
+	uint8_t type;
 	int X, Y;
 
 	if (bsData.Read(type) && bsData.Read(X) && bsData.Read(Y))
@@ -79,7 +79,7 @@ RPC_CALLBACK CRPCCallback::PlayerClick(RPC_ARGS)
 
 RPC_CALLBACK CRPCCallback::RadioChange(RPC_ARGS)
 {
-	int id;
+	uint8_t id;
 
 	if (bsData.Read(id))
 	{

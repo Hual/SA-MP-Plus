@@ -34,7 +34,7 @@ void CRPCCallback::Initialize()
 	CMem::InstallJmp(0x0584770, CJmpProxy::MarkersHook, CJmpProxy::MarkersHookJmpBack, 6);
 }
 
-RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RPC_ARGS)
 {
 	unsigned char ucComponent;
 	bool bToggle;
@@ -44,7 +44,7 @@ RPC_CALLBACK CRPCCallback::ToggleHUDComponent(RakNet::BitStream& bsData, int iEx
 
 }
 
-RPC_CALLBACK CRPCCallback::SetHUDComponentColour(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetHUDComponentColour(RPC_ARGS)
 {
 	unsigned char ucComponent;
 	DWORD dwColour;
@@ -57,7 +57,7 @@ RPC_CALLBACK CRPCCallback::SetHUDComponentColour(RakNet::BitStream& bsData, int 
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetRadioStation(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetRadioStation(RPC_ARGS)
 {
 	unsigned char ucStation;
 
@@ -65,7 +65,7 @@ RPC_CALLBACK CRPCCallback::SetRadioStation(RakNet::BitStream& bsData, int iExtra
 		CGame::SetRadioStation(ucStation);
 }
 
-RPC_CALLBACK CRPCCallback::SetWaveHeight(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetWaveHeight(RPC_ARGS)
 {
 	float fHeight;
 
@@ -74,7 +74,7 @@ RPC_CALLBACK CRPCCallback::SetWaveHeight(RakNet::BitStream& bsData, int iExtra)
 
 }
 
-RPC_CALLBACK CRPCCallback::TogglePauseMenu(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::TogglePauseMenu(RPC_ARGS)
 {
 	bool ucToggle;
 
@@ -83,7 +83,7 @@ RPC_CALLBACK CRPCCallback::TogglePauseMenu(RakNet::BitStream& bsData, int iExtra
 
 }
 
-RPC_CALLBACK CRPCCallback::SetCheckpointColour(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetCheckpointColour(RPC_ARGS)
 {
 	int dwColour;
 	if (bsData.Read(dwColour))
@@ -105,7 +105,7 @@ RPC_CALLBACK CRPCCallback::SetCheckpointColour(RakNet::BitStream& bsData, int iE
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetRaceCheckpointColour(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetRaceCheckpointColour(RPC_ARGS)
 {
 	int dwColour;
 	if (bsData.Read(dwColour))
@@ -130,7 +130,7 @@ RPC_CALLBACK CRPCCallback::SetRaceCheckpointColour(RakNet::BitStream& bsData, in
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetPlayerCheckpointEx(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetPlayerCheckpointEx(RPC_ARGS)
 {
 	CVector pos;
 	float size;
@@ -147,7 +147,7 @@ RPC_CALLBACK CRPCCallback::SetPlayerCheckpointEx(RakNet::BitStream& bsData, int 
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetPlayerRaceCheckpointEx(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetPlayerRaceCheckpointEx(RPC_ARGS)
 {
 	unsigned char type;
 	float pos[3];
@@ -184,7 +184,7 @@ RPC_CALLBACK CRPCCallback::SetPlayerRaceCheckpointEx(RakNet::BitStream& bsData, 
 	}
 }
 
-RPC_CALLBACK CRPCCallback::ToggleAction(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::ToggleAction(RPC_ARGS)
 {
 	BYTE action;
 	bool bToggle;
@@ -197,7 +197,7 @@ RPC_CALLBACK CRPCCallback::ToggleAction(RakNet::BitStream& bsData, int iExtra)
 
 }
 
-RPC_CALLBACK CRPCCallback::SetAmmoInClip(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetAmmoInClip(RPC_ARGS)
 {
 	DWORD dwNewAmmo;
 	BYTE bSlotId;
@@ -208,7 +208,7 @@ RPC_CALLBACK CRPCCallback::SetAmmoInClip(RakNet::BitStream& bsData, int iExtra)
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetNoReload(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetNoReload(RPC_ARGS)
 {
 
 	bool toggle;
@@ -219,7 +219,7 @@ RPC_CALLBACK CRPCCallback::SetNoReload(RakNet::BitStream& bsData, int iExtra)
 	}
 }
 
-RPC_CALLBACK CRPCCallback::ToggleInfiniteRun(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::ToggleInfiniteRun(RPC_ARGS)
 {
 	bool toggle;
 	if (bsData.Read(toggle))
@@ -228,7 +228,7 @@ RPC_CALLBACK CRPCCallback::ToggleInfiniteRun(RakNet::BitStream& bsData, int iExt
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetSpeed(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetSpeed(RPC_ARGS)
 {
 
 	float speed;
@@ -239,7 +239,7 @@ RPC_CALLBACK CRPCCallback::SetSpeed(RakNet::BitStream& bsData, int iExtra)
 	}
 }
 
-RPC_CALLBACK CRPCCallback::DriveOnWater(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::DriveOnWater(RPC_ARGS)
 {
 	bool toggle;
 	if (bsData.Read(toggle)) 
@@ -248,7 +248,7 @@ RPC_CALLBACK CRPCCallback::DriveOnWater(RakNet::BitStream& bsData, int iExtra)
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetBlur(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetBlur(RPC_ARGS)
 {
 	int intensity;
 	if (bsData.Read(intensity))
@@ -257,7 +257,7 @@ RPC_CALLBACK CRPCCallback::SetBlur(RakNet::BitStream& bsData, int iExtra)
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetFrozen(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetFrozen(RPC_ARGS)
 {
 	bool toggle;
 	if (bsData.Read(toggle))
@@ -266,7 +266,7 @@ RPC_CALLBACK CRPCCallback::SetFrozen(RakNet::BitStream& bsData, int iExtra)
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetAnims(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetAnims(RPC_ARGS)
 {
 	bool toggle;
 	if (bsData.Read(toggle))
@@ -275,7 +275,7 @@ RPC_CALLBACK CRPCCallback::SetAnims(RakNet::BitStream& bsData, int iExtra)
 	}
 }
 
-RPC_CALLBACK CRPCCallback::ToggleSwitchReload(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::ToggleSwitchReload(RPC_ARGS)
 {
 	bool toggle;
 	if (bsData.Read(toggle))
@@ -284,7 +284,7 @@ RPC_CALLBACK CRPCCallback::ToggleSwitchReload(RakNet::BitStream& bsData, int iEx
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetAircraftHeight(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetAircraftHeight(RPC_ARGS)
 {
 	float height;
 	if (bsData.Read(height))
@@ -293,7 +293,7 @@ RPC_CALLBACK CRPCCallback::SetAircraftHeight(RakNet::BitStream& bsData, int iExt
 	}
 }
 
-RPC_CALLBACK CRPCCallback::SetJetpackHeight(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::SetJetpackHeight(RPC_ARGS)
 {
 	float height;
 	if (bsData.Read(height))
@@ -302,7 +302,7 @@ RPC_CALLBACK CRPCCallback::SetJetpackHeight(RakNet::BitStream& bsData, int iExtr
 	}
 }
 
-RPC_CALLBACK CRPCCallback::ToggleVehicleBlips(RakNet::BitStream& bsData, int iExtra)
+RPC_CALLBACK CRPCCallback::ToggleVehicleBlips(RPC_ARGS)
 {
 	bool toggle;
 	if (bsData.Read(toggle))
