@@ -40,7 +40,7 @@ public:
 	static void OnWorldCreate();
 	static void OnPauseMenuToggle(bool toggle);
 	static void OnResolutionChange(int X, int Y);
-	static void OnRadioChange(int id);
+	static void OnRadioChange(BYTE id);
 
 	static void UnprotectMemory();
 	static void SetRadioStation(unsigned long ulStation);
@@ -55,7 +55,7 @@ public:
 	static void SetAircraftMaxHeight(float height);
 	static void SetJetpackMaxHeight(float height);
 	static void ToggleVehicleBlips(bool toggle);
-	static void OnMouseClick(int type, int X, int Y);
+	static void OnMouseClick(BYTE type, int X, int Y);
 	static void OnDrinkSprunk();
 
 	static bool VehicleBlips;

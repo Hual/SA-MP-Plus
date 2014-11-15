@@ -73,15 +73,15 @@ RPC_CALLBACK CRPCCallback::PlayerClick(RPC_ARGS)
 	uint8_t type;
 	int X, Y;
 
-	if (bsData.ReadCasted<uint8_t>(type) && bsData.Read(X) && bsData.Read(Y))
+	if (bsData.Read(type) && bsData.Read(X) && bsData.Read(Y))
 		Callback::Execute("OnPlayerClick", "iiii", Y, X, type, iExtra);
 }
 
 RPC_CALLBACK CRPCCallback::RadioChange(RPC_ARGS)
 {
-	int id;
+	uint8_t id;
 
-	if (bsData.ReadCasted<uint8_t>(id))
+	if (bsData.Read(id))
 	{
 		Network::GetPlayerFromPlayerid(iExtra)->SetRadio(id);
 		if (IsPlayerInAnyVehicle(iExtra))
