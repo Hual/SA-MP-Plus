@@ -69,7 +69,7 @@ public:
 	static DWORD AircraftMaxHeight2JumpBack;
 	static DWORD MarkersHookJmpBack; // unused
 	static DWORD RadioHookJmpBack;
-	static DWORD DrinkSprungJmpBack;
+	static DWORD DrinkSprunkJmpBack;
 
 	static DWORD HUDColourList[];
 	static sStuntDetails StuntDetails;
