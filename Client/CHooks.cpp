@@ -56,8 +56,8 @@ void CHooks::InstallJmp()
 
 	CMem::InstallJmp(0x0584770, CJmpProxy::MarkersHook, CJmpProxy::MarkersHookJmpBack, 6);
 	CMem::InstallJmp(0x4EB484, CJmpProxy::RadioHook, CJmpProxy::RadioHookJmpBack, 6);
-	CMem::InstallJmp(0x55C330, CJmpProxy::DrinkSprunkHook, CJmpProxy::DrinkSprungJmpBack, 6);
-
+	CMem::InstallJmp(0x55C330, CJmpProxy::DrinkSprunkHook, CJmpProxy::DrinkSprunkJmpBack, 6);
+	
 }
 
 void CHooks::InstallPatches()

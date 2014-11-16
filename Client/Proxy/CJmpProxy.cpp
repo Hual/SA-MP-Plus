@@ -33,7 +33,7 @@ DWORD CJmpProxy::AircraftMaxHeight1JumpBack;
 DWORD CJmpProxy::AircraftMaxHeight2JumpBack;
 DWORD CJmpProxy::MarkersHookJmpBack;
 DWORD CJmpProxy::RadioHookJmpBack;
-DWORD CJmpProxy::DrinkSprungJmpBack;
+DWORD CJmpProxy::DrinkSprunkJmpBack;
 
 /*BYTE CJmpProxy::RaceCheckpointByteRed = NULL;
 BYTE CJmpProxy::RaceCheckpointByteGreen = NULL;
@@ -480,7 +480,7 @@ JMP_CAVE CJmpProxy::RadioHook()
 
 		pushad
 
-		push bl
+		push ebx
 
 		call CGame::OnRadioChange
 		popad
@@ -498,6 +498,6 @@ JMP_CAVE CJmpProxy::DrinkSprunkHook()
 
 		call CGame::OnDrinkSprunk
 
-		jmp[DrinkSprungJmpBack]
+		jmp[DrinkSprunkJmpBack]
 	}
 }
