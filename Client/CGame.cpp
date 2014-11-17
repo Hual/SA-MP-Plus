@@ -293,3 +293,21 @@ void CGame::OnDrinkSprunk()
 {
 	Network::SendRPC(eRPC::ON_DRINK_SPRUNK);
 }
+
+void CGame::ToggleInfiniteOxygen(bool toggle)
+{
+	CMem::PutSingle<BYTE>(0x96916E, (BYTE)toggle);
+}
+
+void CGame::ToggleWaterBuoyancy(bool toggle)
+{
+	CMem::PutSingle <BYTE>(0x6C3F80, (BYTE) toggle);
+	if (toggle)
+	{
+		memcpy((void*) 0x6C3F80, "\x90\x90\x90\x90\x90\x90\x90", 7); //NOP
+	}
+	else
+	{
+		memcpy((void*) 0x6C3F80, "\xC6\x87\x98\x00\x00\x00\x01", 7); //MOV BYTE PTR DS:[EDI+98],1
+	}
+}

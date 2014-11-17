@@ -29,6 +29,8 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::SET_AIRCRAFT_HEIGHT, SetAircraftHeight);
 	CRPC::Add(eRPC::SET_JETPACK_HEIGHT, SetJetpackHeight);
 	CRPC::Add(eRPC::TOGGLE_VEHICLE_BLIPS, ToggleVehicleBlips);
+	CRPC::Add(eRPC::TOGGLE_INFINITE_OXYGEN, ToggleInfiniteOxygen);
+	CRPC::Add(eRPC::TOGGLE_WATER_BUOYANCY, ToggleWaterBuoyancy);
 
 	CGame::OnResolutionChange(*(int*)0x0C9C040, *(int*)0x0C9C044);
 	CMem::InstallJmp(0x0584770, CJmpProxy::MarkersHook, CJmpProxy::MarkersHookJmpBack, 6);
@@ -308,5 +310,23 @@ RPC_CALLBACK CRPCCallback::ToggleVehicleBlips(RPC_ARGS)
 	if (bsData.Read(toggle))
 	{
 		CGame::ToggleVehicleBlips(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::ToggleInfiniteOxygen(RPC_ARGS)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::ToggleInfiniteOxygen(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::ToggleWaterBuoyancy(RPC_ARGS)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::ToggleWaterBuoyancy(toggle);
 	}
 }

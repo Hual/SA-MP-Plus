@@ -41,6 +41,8 @@ public:
 	static void OnPauseMenuToggle(bool toggle);
 	static void OnResolutionChange(int X, int Y);
 	static void OnRadioChange(BYTE id);
+	static void OnMouseClick(BYTE type, int X, int Y);
+	static void OnDrinkSprunk();
 
 	static void UnprotectMemory();
 	static void SetRadioStation(unsigned long ulStation);
@@ -55,8 +57,8 @@ public:
 	static void SetAircraftMaxHeight(float height);
 	static void SetJetpackMaxHeight(float height);
 	static void ToggleVehicleBlips(bool toggle);
-	static void OnMouseClick(BYTE type, int X, int Y);
-	static void OnDrinkSprunk();
+	static void ToggleInfiniteOxygen(bool toggle);
+	static void ToggleWaterBuoyancy(bool toggle);
 
 	static bool VehicleBlips;
 	static bool InPauseMenu;
