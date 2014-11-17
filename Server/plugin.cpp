@@ -68,6 +68,22 @@ cell AMX_NATIVE_CALL TogglePauseMenuAbilityProc(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::TOGGLE_PAUSE_MENU, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL ToggleInfiniteOxygen(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(!!pParams[2]); // toggle
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_INFINITE_OXYGEN, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL TogglePlayerWaterBuoyancy(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(!!pParams[2]); // toggle
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_WATER_BUOYANCY, pParams[1], &bitStream);
+}
+
 cell AMX_NATIVE_CALL IsPlayerInPauseMenuProc(AMX* pAmx, cell* pParams)
 {
 	return Network::GetPlayerFromPlayerid(pParams[1])->IsInPauseMenu();
@@ -344,6 +360,8 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "TogglePlayerVehicleBlips", TogglePlayerVehicleBlipsProc },
 	{ "GetPlayerVehicleBlips", GetPlayerVehicleBlipsProc },
 	{ "GetPlayerRadioStation", GetRadioStation },
+	{ "TogglePlayerInfiniteOxygen", ToggleInfiniteOxygen },
+	{ "ToggleWaterBuoyancy", TogglePlayerWaterBuoyancy },
 	{ 0, 0 }
 };
 
