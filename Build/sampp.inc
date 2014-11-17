@@ -108,7 +108,8 @@ native Float:GetPlayerJetpackHeight(playerid);
 native TogglePlayerVehicleBlips(playerid, bool:toggle);
 native GetPlayerVehicleBlips(playerid);
 native GetPlayerRadioStation(playerid);
-
+native TogglePlayerInfiniteOxygen(playerid, bool:toggle);
+native TogglePlayerWaterBuoyancy(playerid, bool:toggle);
 native SAMPP_ExecuteCallback(type, {Float,_}:...);
 
 forward OnPlayerOpenPauseMenu(playerid);
@@ -121,6 +122,7 @@ forward OnPlayerSAMPPConnect(address[], port);
 forward OnPlayerSAMPPJoin(playerid, bool:has_plugin);
 forward OnPlayerClick(playerid, type, X, Y);
 forward OnPlayerChangeRadioStation(playerid, stationid, vehicleid);
+forward OnPlayerDrinkSprunk(playerid);
 
 public OnPlayerConnect(playerid)
 {
