@@ -19,7 +19,7 @@ SetCompressor /SOLID lzma
   !define VERSION "v1.0"
   !define AUTHOR ""
   Name "SA:MP-Plus-${VERSION}"
-  OutFile "sampp-${VERSION}.exe"
+  OutFile "sampp-installer.exe"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\Rockstar Games\GTA San Andreas"
