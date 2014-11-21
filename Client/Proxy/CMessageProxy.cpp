@@ -37,46 +37,45 @@ WNDPROC CMessageProxy::GetOriginalProcedure()
 //TODO: use Process for something useful
 LRESULT CALLBACK CMessageProxy::Process(HWND wnd, UINT umsg, WPARAM wparam, LPARAM lparam)
 {
-	if (!CGame::Playing())
-		goto retnOriginal;
-
-	UINT vKey = (UINT)wparam;
-
-	switch (umsg)
+	if (CGame::Playing())
 	{
-		case WM_MOUSEMOVE:
+		UINT vKey = (UINT)wparam;
+	
+		switch (umsg)
 		{
-			return 0;
-		}
-		//case WM_SYSKEYDOWN:
-		case WM_KEYDOWN:
-		{
-			if (vKey == VK_F2 && (GetKeyState(VK_SHIFT) & 0x8000))
+			case WM_MOUSEMOVE:
 			{
-				CGraphics::ToggleCursor(!CGraphics::IsCursorEnabled());
 				return 0;
 			}
-			break;
-		}
-
-		case WM_LBUTTONDOWN:
-		{
-			CGame::OnMouseClick(0, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-			break;
-		}
-		case WM_RBUTTONDOWN:
-		{
-			CGame::OnMouseClick(1, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-			break;
-		}
-		case WM_MBUTTONDOWN:
-		{
-			CGame::OnMouseClick(2, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
-			break;
+			//case WM_SYSKEYDOWN:
+			case WM_KEYDOWN:
+			{
+				if (vKey == VK_F2 && (GetKeyState(VK_SHIFT) & 0x8000))
+				{
+					CGraphics::ToggleCursor(!CGraphics::IsCursorEnabled());
+					return 0;
+				}
+				break;
+			}
+	
+			case WM_LBUTTONDOWN:
+			{
+				CGame::OnMouseClick(0, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+				break;
+			}
+			case WM_RBUTTONDOWN:
+			{
+				CGame::OnMouseClick(1, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+				break;
+			}
+			case WM_MBUTTONDOWN:
+			{
+				CGame::OnMouseClick(2, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+				break;
+			}
 		}
 	}
 
-retnOriginal:
 	return CallWindowProc(CMessageProxy::GetOriginalProcedure(), wnd, umsg, wparam, lparam);
 }
 
