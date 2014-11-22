@@ -221,6 +221,17 @@
     <ClCompile Include="Proxy\CDInput8Proxy.cpp" />
     <ClCompile Include="Proxy\CJmpProxy.cpp" />
     <ClCompile Include="Proxy\CMessageProxy.cpp" />
+    <ClCompile Include="CSprite.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CSprite.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="samp_plus.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

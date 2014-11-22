@@ -366,6 +366,9 @@
     <ClCompile Include="..\Common\CRPC.cpp">
       <Filter>Common</Filter>
     </ClCompile>
+    <ClCompile Include="CSprite.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Proxy">
@@ -377,5 +380,20 @@
     <Filter Include="Common\RakNet">
       <UniqueIdentifier>{d8c378ef-dad6-49fb-8e62-8b3af498a0e3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI">
+      <UniqueIdentifier>{3794df7d-7446-409e-84e8-e28cfdffd0b5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="CSprite.h">
+      <Filter>GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Client.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="samp_plus.png" />
   </ItemGroup>
 </Project>
