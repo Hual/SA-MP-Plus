@@ -17,6 +17,10 @@ bool CGame::PedAnims;
 bool CGame::RecreateMarkers = false;
 bool CGame::VehicleBlips = true;
 float CGame::AircraftMaxHeight;
+bool CGame::inWater = false;
+
+int CGame::X, CGame::Y;
+
 int CGame::ClipAmmo[50];
 
 
@@ -25,6 +29,11 @@ void CGame::OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND 
 	m_bGameLoaded = false;
 	InPauseMenu = false;
 	PauseMenuEnabled = true;
+
+	X = 5;
+	Y = 5;
+
+//	box.Init(pDevice, 100, 60, 1366/2, 768/2, D3DCOLOR_ARGB(25, 255, 255, 255));
 
 	CGraphics::Initialize(pDirect3D, pDevice);
 }
@@ -51,7 +60,7 @@ void CGame::OnLoad()
 
 void CGame::OnUnload()
 {
-
+	CGraphics::CleanUp();
 }
 
 int CGame::OnCursorMove(int iX, int iY)
@@ -77,11 +86,12 @@ BYTE CGame::OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID)
 
 void CGame::PostDeviceReset()
 {
-	
+	CGraphics::PostDeviceReset();
 }
 
 void CGame::PreEndScene()
 {
+
 	if(RecreateMarkers)
 	{
 		for(int i = 0; i < MAX_RACE_CHECKPOINTS; ++i)
@@ -100,7 +110,12 @@ void CGame::PreEndScene()
 
 void CGame::PostEndScene()
 {
-	
+
+}
+
+void CGame::BeginScene()
+{
+	CGraphics::BeginScene();
 }
 
 void CGame::OnWorldCreate()
@@ -310,4 +325,25 @@ void CGame::ToggleWaterBuoyancy(bool toggle)
 	{
 		memcpy((void*) 0x6C3F80, "\xC6\x87\x98\x00\x00\x00\x01", 7); //MOV BYTE PTR DS:[EDI+98],1
 	}
+}
+
+void CGame::OnEnterWater()
+{
+	inWater = true;
+
+	//Network::SendRPC(eRPC::ON_ENTER_WATER);
+}
+
+void CGame::OnLeaveWater()
+{
+	inWater = false;
+
+	//Network::SendRPC(eRPC::ON_LEAVE_WATER);
+}
+
+void CGame::Present()
+{
+	//CGraphics::DrawString("Running SA-MP+ Pre-Alpha Release", 15, X, Y, D3DCOLOR_ARGB(255, 255, 255, 255));
+
+	//CGraphics::DrawBox(50, 50, 100, 90, D3DCOLOR_ARGB(255, 255, 255, 255));
 }

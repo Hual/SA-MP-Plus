@@ -18,13 +18,18 @@ typedef void* (*PlaceCheckpoint_t)(unsigned int, unsigned short, CVector*, float
 class CGame
 {
 public:
+
 	static void OnInitialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice, HWND hWindow);
 	static void OnLoad();
 	static void OnUnload();
+	
+	//DirectX
 	static void PreDeviceReset();
 	static void PostDeviceReset();
 	static void PreEndScene();
 	static void PostEndScene();
+	static void BeginScene();
+
 	static bool IsLoaded();
 	static bool InMainMenu();
 	static bool HUDVisible();
@@ -43,6 +48,8 @@ public:
 	static void OnRadioChange(BYTE id);
 	static void OnMouseClick(BYTE type, int X, int Y);
 	static void OnDrinkSprunk();
+	static void OnEnterWater();
+	static void OnLeaveWater();
 
 	static void UnprotectMemory();
 	static void SetRadioStation(unsigned long ulStation);
@@ -66,9 +73,16 @@ public:
 	static bool RecreateMarkers;
 	static int ClipAmmo[50];
 	static float AircraftMaxHeight;
-	
+	static bool inWater;
+
+	static void Present();
+	static int X, Y;
+
+
 private:
 	static bool m_bGameLoaded;
 	static bool Frozen;
 	static bool PedAnims;
+
+	
 };
