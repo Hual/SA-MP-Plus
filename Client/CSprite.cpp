@@ -11,7 +11,7 @@ Sprite::Sprite()
 
 }
 
-Sprite::Sprite(int x, int y)
+Sprite::Sprite(float x, float y)
 {
 	CLog::Write("Sprite::Sprite");
 	pos.x = x;
@@ -46,33 +46,45 @@ Sprite::~Sprite()
 
 }
 
-bool Sprite::Init(LPDIRECT3DDEVICE9 device, int width, int height)
+bool Sprite::Init(LPDIRECT3DDEVICE9 device, std::string filename, int width, int height)
 {
 	m_device = device;
-
 
 	center = D3DXVECTOR2(width / 2, height / 2);
 	scale = D3DXVECTOR2(width, height);
 
-	/*if (FAILED(D3DXCreateTextureFromFileEx(device, file.c_str(), width, height, D3DX_DEFAULT, 0, D3DFMT_UNKNOWN, D3DPOOL_MANAGED,
+	if (FAILED(D3DXCreateTextureFromFileEx(device, filename.c_str(), width, height, D3DX_DEFAULT, 0, D3DFMT_UNKNOWN, D3DPOOL_MANAGED,
 		D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &tex)))
-		return false;*/
+		return false;
 
-	HRSRC hRes = FindResource(NULL, MAKEINTRESOURCE(IDB_PNG1), RT_RCDATA);
-	
-	HGLOBAL hData = LoadResource(NULL, hRes);
-	LPVOID data = LockResource(hData);
-	
-	if (FAILED(D3DXCreateTextureFromResourceEx(device, GetModuleHandle("sampp_client.asi"), MAKEINTRESOURCE(IDB_PNG1), width, height, D3DX_DEFAULT, 0, D3DFMT_UNKNOWN, D3DPOOL_MANAGED,
-		D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &tex)))
+	if (FAILED(D3DXCreateSprite(device, &sprite)))
+		return false;
+
+	SetTransformation();
+
+	initialized = true;
+
+	return true;
+}
+
+bool Sprite::Init(LPDIRECT3DDEVICE9 device, wint_t resource, int width, int height)
+{
+	m_device = device;
+
+	center = D3DXVECTOR2(width / 2, height / 2);
+	scale = D3DXVECTOR2(width, height);
+
+
+	if (HRESULT hr = (D3DXCreateTextureFromResourceEx(device, GetModuleHandle("sampp_client.asi"), MAKEINTRESOURCE(resource), width, height, D3DX_DEFAULT,
+		0, D3DFMT_UNKNOWN, D3DPOOL_MANAGED, D3DX_DEFAULT, D3DX_DEFAULT, 0, NULL, NULL, &tex) != S_OK))
 	{
-		CLog::Write("Sprite::Init FAILED");
+		CLog::Write("Sprite::Init FAILED: %d", hr);
 		return false;
 	}
 
 	if (FAILED(D3DXCreateSprite(device, &sprite)))
 		return false;
-	
+
 	SetTransformation();
 
 	initialized = true;
@@ -93,13 +105,13 @@ void Sprite::Draw()
 
 		//m_device->Clear(0, NULL, D3DCLEAR_STENCIL, D3DCOLOR_XRGB(0, 0, 0), 0, 0);
 
-			//m_device->SetRenderState(D3DRS_ZWRITEENABLE, false);
+		//m_device->SetRenderState(D3DRS_ZWRITEENABLE, false);
 
-			//SetTransformation();
+		//SetTransformation();
 
-			//sprite->SetTransform(&mat);
-			
-			sprite->Draw(tex, NULL, NULL, &D3DXVECTOR3(pos.x, pos.y, 0), color);
+		//sprite->SetTransform(&mat);
+
+		sprite->Draw(tex, NULL, NULL, &D3DXVECTOR3(pos.x, pos.y, 0), color);
 
 		sprite->End();
 	}

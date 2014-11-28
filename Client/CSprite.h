@@ -4,17 +4,17 @@
 #include <DirectX/d3dx9.h>
 #include <SAMP+/client/CLog.h>
 
-#include "resource.h"
-
 #include <string>
 class Sprite
 {
 	public:
 		Sprite();
-		Sprite(int x, int y);
+		Sprite(float x, float y);
 		~Sprite();
 
-		bool Init(LPDIRECT3DDEVICE9 device, int width, int height);
+		bool Init(LPDIRECT3DDEVICE9 device, std::string filename, int width, int height);
+		bool Init(LPDIRECT3DDEVICE9 device, wint_t resource, int width, int height);
+		bool begin(LPDIRECT3DDEVICE9 device);
 		bool isInitialized();
 
 		void Draw();

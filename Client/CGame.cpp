@@ -127,7 +127,7 @@ void CGame::OnWorldCreate()
 	}
 }
 
-void CGame::OnResolutionChange(int X, int Y)
+void CGame::OnResolutionChange(UINT16 X, UINT16 Y)
 {
 	RakNet::BitStream bitStream;
 	bitStream.Write(X);
@@ -136,7 +136,7 @@ void CGame::OnResolutionChange(int X, int Y)
 	Network::SendRPC(eRPC::ON_RESOLUTION_CHANGE, &bitStream);
 }
 
-void CGame::OnMouseClick(BYTE type, int X, int Y)
+void CGame::OnMouseClick(BYTE type, UINT16 X, UINT16 Y)
 {
 	RakNet::BitStream bitStream;
 	bitStream.Write(type);
