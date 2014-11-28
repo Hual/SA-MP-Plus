@@ -8,6 +8,7 @@
 #include <DirectX/d3dx9.h>
 
 #include "CSprite.h"
+#include "resource.h"
 
 class CGraphics
 {

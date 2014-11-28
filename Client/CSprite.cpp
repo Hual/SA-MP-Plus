@@ -46,7 +46,7 @@ Sprite::~Sprite()
 
 }
 
-bool Sprite::Init(LPDIRECT3DDEVICE9 device, std::string filename, int width, int height)
+bool Sprite::Init(LPDIRECT3DDEVICE9 device, std::string filename, float width, float height)
 {
 	m_device = device;
 
@@ -67,7 +67,7 @@ bool Sprite::Init(LPDIRECT3DDEVICE9 device, std::string filename, int width, int
 	return true;
 }
 
-bool Sprite::Init(LPDIRECT3DDEVICE9 device, wint_t resource, int width, int height)
+bool Sprite::Init(LPDIRECT3DDEVICE9 device, wint_t resource, float width, float height)
 {
 	m_device = device;
 
@@ -141,12 +141,12 @@ void Sprite::OnResetDevice()
 	sprite->OnResetDevice();
 }
 
-void Sprite::Resize(int width, int height)
+void Sprite::Resize(float width, float height)
 {
 	scale = D3DXVECTOR2(width, height);
 }
 
-void Sprite::Move(int x, int y)
+void Sprite::Move(float x, float y)
 {
 	pos.x = x;
 	pos.y = y;

@@ -59,7 +59,7 @@ RPC_CALLBACK CRPCCallback::StuntBonus(RPC_ARGS)
 RPC_CALLBACK CRPCCallback::ResolutionChange(RPC_ARGS)
 {
 
-	int X, Y;
+	uint16_t X, Y;
 
 	if (bsData.Read(X) && bsData.Read(Y))
 		Callback::Execute("OnPlayerResolutionChange", "iii", Y, X, iExtra);
@@ -71,7 +71,7 @@ RPC_CALLBACK CRPCCallback::ResolutionChange(RPC_ARGS)
 RPC_CALLBACK CRPCCallback::PlayerClick(RPC_ARGS)
 {
 	uint8_t type;
-	int X, Y;
+	uint8_t X, Y;
 
 	if (bsData.Read(type) && bsData.Read(X) && bsData.Read(Y))
 		Callback::Execute("OnPlayerClick", "iiii", Y, X, type, iExtra);
