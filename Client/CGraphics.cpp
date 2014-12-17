@@ -26,17 +26,16 @@ void CGraphics::Initialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice)
 	m_bCursorEnabled = false;
 	UpdateScreenResolution();
 
-
 	CLog::Write("CGraphics::Initialize");
 
 	int width = GetSystemMetrics(SM_CXSCREEN);
 	int height = GetSystemMetrics(SM_CYSCREEN);
 
-	logo = new Sprite(width / 2, height / 2);
+	logo = new Sprite((float)width / 2, (float)height / 2);
 
 	CLog::Write("Width: %d Height: %d", width, height);
 
-	if (!logo->Init(pDevice, 311, 152))
+	if (!logo->Init(pDevice, IDB_PNG1, 311, 152))
 	{
 		CLog::Write("Couldn't load the SA-MP+ logo");
 	}
@@ -96,16 +95,13 @@ void CGraphics::PreEndScene()
 		if (logo)
 		{
 			delete logo;
-			logo = NULL;
+			logo = nullptr;
+		}
+		if (CGame::Playing())
+		{
+			//Drawing goes here
 		}
 	}
-
-	
-
-	/*if (CGame::Playing())
-	{
-
-	}*/
 }
 
 void CGraphics::BeginScene()
@@ -117,5 +113,8 @@ void CGraphics::CleanUp()
 {
 	CLog::Write("CGraphics::CleanUp");
 	if (logo)
+	{
 		delete logo;
+		logo = nullptr;
+	}
 }

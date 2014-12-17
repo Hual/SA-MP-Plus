@@ -5,46 +5,85 @@ Box::Box()
 {
 	initialized = false;
 	m_bDraw = false;
-	v_buffer = NULL;
-	m_pDevice = NULL;
+
+	//Initialize pointers
+	v_buffer = nullptr;
+	m_pDevice = nullptr;
+	//m_pTexture = nullptr;
+	//m_pDest = nullptr;
+	//m_pBackBufferSurface = nullptr;
+	//m_pRenderToSurface = nullptr;
+	m_pShader = nullptr;
+	m_pDeclaration = nullptr;
+	m_pIndexBuffer = nullptr;
+
+	D3DXMatrixIdentity(&m_World);
+	D3DXMatrixIdentity(&m_View);
+	D3DXMatrixIdentity(&m_Proj);
 }
 
 
-bool Box::Init(IDirect3DDevice9* pDevice, int width, int height, int x, int y, D3DCOLOR color)
+bool Box::Init(IDirect3DDevice9* pDevice, float width, float height, float x, float y, D3DCOLOR color)
 {
-	if (FAILED(pDevice->CreateVertexBuffer(4 * sizeof(CUSTOMVERTEX), 0, CUSTOMFVF, D3DPOOL_MANAGED, &v_buffer, NULL)))
-		return false;
 
-
-	CUSTOMVERTEX vertex[] =
+	VertexData vertex[] =
 	{
 		//X			Y		  Z		RHW   Color
-		{ x,		y,		  0.0f, 1.0f, color	},
-		{ x+width,  y,		  0.0f, 1.0f, color	},
-		{ x,		y+height, 0.0f,	1.0f, color	},
-		{ x+width,  y+height, 0.0f,	1.0f, color	}
+		{ D3DXVECTOR3(x, y, 0), color },
+		{ D3DXVECTOR3(x + width, y, 0), color	},
+		{ D3DXVECTOR3(x, y + height, 0), color	},
+		{ D3DXVECTOR3(x + width, y + height, 0), color}
 	};
 
-	VOID* pVoid = NULL;
+	VOID* pVoid = nullptr;
 
-	if (FAILED(v_buffer->Lock(0, 0, (void**) &pVoid, 0)))
-		return false;
-	
-	memcpy(pVoid, vertex, sizeof(vertex));
+	//Set up the vertex buffer
 
-	if (!pVoid)
-		return false;
+	unsigned long vertexSize = 4 * sizeof(VertexData);
 
-	if (FAILED(v_buffer->Unlock()))
+	if (FAILED(pDevice->CreateVertexBuffer(vertexSize, 0, CUSTOMFVF, D3DPOOL_MANAGED, &v_buffer, NULL)))
 		return false;
 
-	m_BarRect = { m_iX, m_iY, m_iX + m_iWidth, m_iY + m_iHeight };
+	v_buffer->Lock(0, 0, (void**) &pVoid, 0);
+	{
+		memcpy(pVoid, vertex, sizeof(vertex));
+	}
+	v_buffer->Unlock();
 
-	m_iX = x;
-	m_iY = y;
+	//Set up the index buffer
 
-	m_iWidth = width;
-	m_iHeight = height;
+	unsigned long indices [] =
+	{
+		0, 1, 2, 3
+	};
+
+	if (FAILED(pDevice->CreateIndexBuffer(4 * sizeof(unsigned long), 0, D3DFMT_INDEX16, D3DPOOL_MANAGED, &m_pIndexBuffer, 0)))
+		return false;
+
+	m_pIndexBuffer->Lock(0, 0, (void**) &pVoid, 0);
+	{
+		memcpy(pVoid, indices, sizeof(indices));
+	}
+	m_pIndexBuffer->Unlock();
+
+
+	//Create the shader
+
+	if (HRESULT hr = (D3DXCreateEffectFromResource(pDevice, GetModuleHandle("sampp_client.asi"), MAKEINTRESOURCE(IDR_RCDATA1), 0, 0, 0, 0, &m_pShader, 0)) != D3D_OK)
+	{
+		CLog::Write("D3DXCreateEffectFromResource failed: %d", hr);
+		return false;
+	}
+
+
+	//Initialize the variables
+	m_BarRect = { m_fX, m_fY, m_fX + m_fWidth, m_fY + m_fHeight };
+
+	m_fX = x;
+	m_fY = y;
+
+	m_fWidth = width;
+	m_fHeight = height;
 
 	m_pDevice = pDevice;
 
@@ -61,7 +100,25 @@ Box::~Box()
 	if (v_buffer)
 	{
 		v_buffer->Release();
-		v_buffer = NULL;
+		v_buffer = nullptr;
+	}
+
+	if (m_pShader)
+	{
+		m_pShader->Release();
+		m_pShader = nullptr;
+	}
+
+	if (m_pDeclaration)
+	{
+		m_pDeclaration->Release();
+		m_pDeclaration = nullptr;
+	}
+
+	if (m_pIndexBuffer)
+	{
+		m_pIndexBuffer->Release();
+		m_pIndexBuffer = nullptr;
 	}
 
 }
@@ -73,7 +130,27 @@ void Box::Draw()
 
 		m_pDevice->Clear(1, &m_BarRect, D3DCLEAR_TARGET | D3DCLEAR_ZBUFFER, m_cColor, 0, 0);
 
-		m_pDevice->SetFVF(CUSTOMFVF);
+		unsigned int pass = 0;
+		m_pShader->Begin(&pass, 0);
+		{
+			for (unsigned int i = 0; i < pass; ++i)
+			{
+				m_pShader->BeginPass(i);
+				{
+					m_pShader->SetMatrix("WorldViewProj", &(m_World * m_View * m_Proj));
+					m_pDevice->SetFVF(CUSTOMFVF);
+					m_pDevice->SetStreamSource(0, v_buffer, 0, sizeof(VertexData));
+					m_pDevice->SetIndices(m_pIndexBuffer);
+					m_pShader->CommitChanges();
+
+					m_pDevice->DrawIndexedPrimitive(D3DPT_TRIANGLELIST, 0, 0, 4, 0, 2);
+				}
+				m_pShader->EndPass();
+			}
+		}
+		m_pShader->End();
+			
+		/*m_pDevice->SetFVF(CUSTOMFVF);
 
 		//Disable Z-Depth
 		m_pDevice->SetRenderState(D3DRS_ZENABLE, D3DZB_FALSE);
@@ -84,16 +161,14 @@ void Box::Draw()
 		//Destination
 		m_pDevice->SetRenderState(D3DRS_DESTBLENDALPHA, D3DRS_DESTBLEND);
 
-		m_pDevice->SetStreamSource(0, v_buffer, 0, sizeof(CUSTOMVERTEX));
+		m_pDevice->SetStreamSource(0, v_buffer, 0, sizeof(VertexData));
 
 			// copy the vertex buffer to the back buffer
 		m_pDevice->DrawPrimitive(D3DPT_TRIANGLESTRIP, 0, 2);
 
 		//Re-enable Z-Depth
 		m_pDevice->SetRenderState(D3DRS_ZENABLE, D3DZB_TRUE);
-		//m_pDevice->EndScene();
-	
-		
+		//m_pDevice->EndScene();*/
 
 	}
 }
@@ -106,4 +181,19 @@ void Box::Show()
 void Box::Hide()
 {
 	m_bDraw = false;
+}
+
+void Box::OnLostDevice()
+{
+	m_pShader->OnLostDevice();
+}
+
+void Box::OnResetDevice()
+{
+	m_pShader->OnResetDevice();
+}
+
+bool Box::isInitialized()
+{
+	return initialized;
 }

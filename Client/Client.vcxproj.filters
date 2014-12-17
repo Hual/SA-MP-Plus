@@ -369,6 +369,9 @@
     <ClCompile Include="CSprite.cpp">
       <Filter>GUI</Filter>
     </ClCompile>
+    <ClCompile Include="Box.cpp">
+      <Filter>GUI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Proxy">
@@ -383,17 +386,36 @@
     <Filter Include="GUI">
       <UniqueIdentifier>{3794df7d-7446-409e-84e8-e28cfdffd0b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUI\Headers">
+      <UniqueIdentifier>{d1c3f731-65f2-4386-bbb5-1cd1b0371ed2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Images">
+      <UniqueIdentifier>{716624a3-c66b-4aac-9cfc-a48969c6a23b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUI\Shaders">
+      <UniqueIdentifier>{bc1a97c1-1cc9-4c75-85e4-02e2f3b92b68}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CSprite.h">
-      <Filter>GUI</Filter>
+      <Filter>GUI\Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="Box.h">
+      <Filter>GUI\Headers</Filter>
     </ClInclude>
     <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="samp_plus.png">
+      <Filter>GUI\Images</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Client.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="samp_plus.png" />
+    <CustomBuild Include="shader.fx">
+      <Filter>GUI\Shaders</Filter>
+    </CustomBuild>
   </ItemGroup>
 </Project>

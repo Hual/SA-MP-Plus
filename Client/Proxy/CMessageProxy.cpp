@@ -60,17 +60,17 @@ LRESULT CALLBACK CMessageProxy::Process(HWND wnd, UINT umsg, WPARAM wparam, LPAR
 	
 			case WM_LBUTTONDOWN:
 			{
-				CGame::OnMouseClick(0, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+				CGame::OnMouseClick(0, (UINT16)GET_X_LPARAM(lparam), (UINT16)GET_Y_LPARAM(lparam));
 				break;
 			}
 			case WM_RBUTTONDOWN:
 			{
-				CGame::OnMouseClick(1, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+				CGame::OnMouseClick(1, (UINT16) GET_X_LPARAM(lparam), (UINT16) GET_Y_LPARAM(lparam));
 				break;
 			}
 			case WM_MBUTTONDOWN:
 			{
-				CGame::OnMouseClick(2, GET_X_LPARAM(lparam), GET_Y_LPARAM(lparam));
+				CGame::OnMouseClick(2, (UINT16) GET_X_LPARAM(lparam), (UINT16) GET_Y_LPARAM(lparam));
 				break;
 			}
 		}

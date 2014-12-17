@@ -68,59 +68,64 @@ namespace Network
 			if (!pPacket->length)
 				return;
 
-			CLog::Write("Received packet: %i, local: %i", pPacket->data[0], pPacket->wasGeneratedLocally);
-
 			RakNet::BitStream bitStream(&pPacket->data[1], pPacket->length - 1, false);
+
+			CLog::Write("Received packet: %i, local: %i, size: %d byte(s)", pPacket->data[0], pPacket->wasGeneratedLocally, bitStream.GetNumberOfBytesUsed());
 
 			switch (pPacket->data[0])
 			{
-			case ePacketType::PACKET_PLAYER_REGISTERED:
-			{
-				bConnected = true;
-				bServerHasPlugin = true;
-				CRPCCallback::Initialize();
+				case ePacketType::PACKET_PLAYER_REGISTERED:
+				{
+					bConnected = true;
+					bServerHasPlugin = true;
+					CRPCCallback::Initialize();
 
-				break;
-			}
-			case ePacketType::PACKET_RPC:
-			{
-				unsigned short usRpcId;
+					break;
+				}
+				case ePacketType::PACKET_RPC:
+				{
+					unsigned short usRpcId;
 
-				if (bitStream.Read<unsigned short>(usRpcId))
-					CRPC::Process(usRpcId, bitStream);
+					if (bitStream.Read<unsigned short>(usRpcId))
+						CRPC::Process(usRpcId, bitStream);
 
-				break;
-			}
-			case ePacketType::PACKET_CONNECTION_REJECTED:
-			case ePacketType::PACKET_PLAYER_PROPER_DISCONNECT:
-			{
-				bServerHasPlugin = false;
+					break;
+				}
+				case ePacketType::PACKET_CONNECTION_REJECTED:
+				case ePacketType::PACKET_PLAYER_PROPER_DISCONNECT:
+				{
+					bServerHasPlugin = false;
 
-				break;
-			}
-			case ID_DISCONNECTION_NOTIFICATION:
-			case ID_CONNECTION_LOST:
-			{
-				bConnected = false;
+					break;
+				}
+				case ID_DISCONNECTION_NOTIFICATION:
+				case ID_CONNECTION_LOST:
+				{
+					bConnected = false;
 
-				if (ServerHasPlugin())
-					Connect();
+					if (ServerHasPlugin())
+						Connect();
 
-				break;
-			}
-			default:
-				break;
+					break;
+				}
+				default:
+					break;
 
 			}
 
 			pRakClient->DeallocatePacket(pPacket);
+			CLog::bytesReceived += bitStream.GetNumberOfBytesUsed();
 		}
+		
 	}
 
 	unsigned int Send(Network::ePacketType packetType, RakNet::BitStream* pBitStream, PacketPriority priority, PacketReliability reliability, char cOrderingChannel)
 	{
 		if (!IsConnected())
 			return 0;
+
+		CLog::Write("Sent packet: %i, size: %i byte(s)", packetType, pBitStream->GetNumberOfBytesUsed());
+		CLog::bytesSent += pBitStream->GetNumberOfBytesUsed();
 
 		return pRakClient->Send(packetType, *pRakClient->GetRemoteAddress(), pBitStream, priority, reliability, cOrderingChannel);
 	}
@@ -129,6 +134,9 @@ namespace Network
 	{
 		if (!IsConnected())
 			return 0;
+
+		CLog::Write("Sent packet: %i, size: %i byte(s)", usRPCId, pBitStream->GetNumberOfBytesUsed());
+		CLog::bytesSent += pBitStream->GetNumberOfBytesUsed();
 
 		return pRakClient->SendRPC(usRPCId, *pRakClient->GetRemoteAddress(), pBitStream, priority, reliability, cOrderingChannel);
 	}

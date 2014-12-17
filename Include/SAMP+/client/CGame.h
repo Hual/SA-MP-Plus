@@ -44,9 +44,9 @@ public:
 	static BYTE OnPauseMenuChange(BYTE bFromMenuID, BYTE bToMenuID);
 	static void OnWorldCreate();
 	static void OnPauseMenuToggle(bool toggle);
-	static void OnResolutionChange(int X, int Y);
+	static void OnResolutionChange(UINT16 X, UINT16 Y);
 	static void OnRadioChange(BYTE id);
-	static void OnMouseClick(BYTE type, int X, int Y);
+	static void OnMouseClick(BYTE type, UINT16 X, UINT16 Y);
 	static void OnDrinkSprunk();
 	static void OnEnterWater();
 	static void OnLeaveWater();
