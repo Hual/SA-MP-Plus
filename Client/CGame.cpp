@@ -327,6 +327,21 @@ void CGame::ToggleWaterBuoyancy(bool toggle)
 	}
 }
 
+void CGame::ToggleUnderwaterEffect(bool toggle)
+{
+	CMem::PutSingle<BYTE>(0x00C402D3, (BYTE) toggle);
+}
+
+void CGame::ToggleNightVision(bool toggle)
+{
+	CMem::PutSingle<BYTE>(0xC402B8, (BYTE) toggle);
+}
+
+void CGame::ToggleThermalVision(bool toggle)
+{
+	CMem::PutSingle<BYTE>(0xC402B9, (BYTE) toggle);
+}
+
 void CGame::OnEnterWater()
 {
 	inWater = true;

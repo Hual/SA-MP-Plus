@@ -29,3 +29,7 @@ Browser/Library/MetroFramework.Fonts/obj
 *.suo
 Build/Debug/*
 Build/Release/sampp_server.lib
+Client/Box.cpp
+Client/Box.cpp
+Client/Box.h
+Client/shader.fx

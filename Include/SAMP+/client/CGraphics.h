@@ -8,6 +8,7 @@
 #include <DirectX/d3dx9.h>
 
 #include "CSprite.h"
+#include "Box.h"
 #include "resource.h"
 
 class CGraphics
@@ -34,5 +35,6 @@ private:
 	static bool m_bCursorEnabled;
 
 	static Sprite* logo;
+	static Box* box;
 
 };

@@ -84,6 +84,30 @@ cell AMX_NATIVE_CALL TogglePlayerWaterBuoyancy(AMX* pAmx, cell* pParams)
 	return Network::PlayerSendRPC(eRPC::TOGGLE_WATER_BUOYANCY, pParams[1], &bitStream);
 }
 
+cell AMX_NATIVE_CALL ToggleUnderwaterEffect(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(!!pParams[2]); // toggle
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_UNDERWATER_EFFECT, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL ToggleNightVision(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(!!pParams[2]); // toggle
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_NIGHTVISION, pParams[1], &bitStream);
+}
+
+cell AMX_NATIVE_CALL ToggleThermalVision(AMX* pAmx, cell* pParams)
+{
+	RakNet::BitStream bitStream;
+	bitStream.Write(!!pParams[2]); // toggle
+
+	return Network::PlayerSendRPC(eRPC::TOGGLE_THERMALVISION, pParams[1], &bitStream);
+}
+
 cell AMX_NATIVE_CALL IsPlayerInPauseMenuProc(AMX* pAmx, cell* pParams)
 {
 	return Network::GetPlayerFromPlayerid(pParams[1])->IsInPauseMenu();
@@ -362,6 +386,9 @@ AMX_NATIVE_INFO PluginNatives[] =
 	{ "GetPlayerRadioStation", GetRadioStation },
 	{ "TogglePlayerInfiniteOxygen", ToggleInfiniteOxygen },
 	{ "ToggleWaterBuoyancy", TogglePlayerWaterBuoyancy },
+	{ "ToggleUnderwaterEffect", ToggleUnderwaterEffect },
+	{ "ToggleNightVision", ToggleNightVision },
+	{ "ToggleThermalVision", ToggleThermalVision },
 	{ 0, 0 }
 };
 

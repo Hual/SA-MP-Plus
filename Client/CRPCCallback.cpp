@@ -31,6 +31,9 @@ void CRPCCallback::Initialize()
 	CRPC::Add(eRPC::TOGGLE_VEHICLE_BLIPS, ToggleVehicleBlips);
 	CRPC::Add(eRPC::TOGGLE_INFINITE_OXYGEN, ToggleInfiniteOxygen);
 	CRPC::Add(eRPC::TOGGLE_WATER_BUOYANCY, ToggleWaterBuoyancy);
+	CRPC::Add(eRPC::TOGGLE_UNDERWATER_EFFECT, ToggleUnderwaterEffect);
+	CRPC::Add(eRPC::TOGGLE_NIGHTVISION, ToggleNightVision);
+	CRPC::Add(eRPC::TOGGLE_THERMALVISION, ToggleThermalVision);
 
 	CGame::OnResolutionChange(*(int*)0x0C9C040, *(int*)0x0C9C044);
 	CMem::InstallJmp(0x0584770, CJmpProxy::MarkersHook, CJmpProxy::MarkersHookJmpBack, 6);
@@ -328,5 +331,32 @@ RPC_CALLBACK CRPCCallback::ToggleWaterBuoyancy(RPC_ARGS)
 	if (bsData.Read(toggle))
 	{
 		CGame::ToggleWaterBuoyancy(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::ToggleUnderwaterEffect(RPC_ARGS)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::ToggleUnderwaterEffect(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::ToggleNightVision(RPC_ARGS)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::ToggleNightVision(toggle);
+	}
+}
+
+RPC_CALLBACK CRPCCallback::ToggleThermalVision(RPC_ARGS)
+{
+	bool toggle;
+	if (bsData.Read(toggle))
+	{
+		CGame::ToggleThermalVision(toggle);
 	}
 }
