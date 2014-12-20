@@ -63,6 +63,9 @@ Functions
   * GetPlayerRadioStation(playerid)
   * TogglePlayerInfiniteOxygen(playerid, bool:toggle)
   * ToggleWaterBuoyancy(playerid, bool:toggle)
+  * ToggleUnderwaterEffect(playerid, bool:toggle)
+  * ToggleNightVision(playerid, bool:toggle);
+  * ToggleThermalVision(playerid, bool:toggle);
 
 ####Callbacks:
   * OnPlayerOpenPauseMenu(playerid)

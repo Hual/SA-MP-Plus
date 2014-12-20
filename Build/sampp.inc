@@ -110,6 +110,9 @@ native GetPlayerVehicleBlips(playerid);
 native GetPlayerRadioStation(playerid);
 native TogglePlayerInfiniteOxygen(playerid, bool:toggle);
 native ToggleWaterBuoyancy(playerid, bool:toggle);
+native ToggleUnderwaterEffect(playerid, bool:toggle);
+native ToggleNightVision(playerid, bool:toggle);
+native ToggleThermalVision(playerid, bool:toggle);
 native SAMPP_ExecuteCallback(type, {Float,_}:...);
 
 forward OnPlayerOpenPauseMenu(playerid);

@@ -32,6 +32,9 @@ public:
 	static RPC_CALLBACK ToggleVehicleBlips(RPC_ARGS);
 	static RPC_CALLBACK ToggleInfiniteOxygen(RPC_ARGS);
 	static RPC_CALLBACK ToggleWaterBuoyancy(RPC_ARGS);
+	static RPC_CALLBACK ToggleUnderwaterEffect(RPC_ARGS);
+	static RPC_CALLBACK ToggleNightVision(RPC_ARGS);
+	static RPC_CALLBACK ToggleThermalVision(RPC_ARGS);
 
 private:
 
