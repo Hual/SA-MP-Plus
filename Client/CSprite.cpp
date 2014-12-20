@@ -1,11 +1,16 @@
 #include "CSprite.h"
 
+//Just a sprite class that draws an image on the screen
+
 Sprite::Sprite()
 {
+	CLog::Write("Sprite::Sprite");
 	pos.x = 0;
 	pos.y = 0;
 
 	color = D3DCOLOR_ARGB(255, 255, 255, 255);
+
+	D3DXMatrixIdentity(&mat);
 
 	initialized = false;
 
@@ -20,6 +25,8 @@ Sprite::Sprite(float x, float y)
 	scale = D3DXVECTOR2();
 
 	color = D3DCOLOR_ARGB(255, 255, 255, 255);
+
+	D3DXMatrixIdentity(&mat);
 
 	initialized = false;
 }

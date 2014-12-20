@@ -1,18 +1,19 @@
 #pragma once
 
+#define D3D_DEBUG_INFO
+
 #include <DirectX/d3d9.h>
 #include <DirectX/d3dx9.h>
 #include <SAMP+/client/CLog.h>
 
 #include "resource.h"
 
-#define CUSTOMFVF (D3DFVF_XYZRHW | D3DFVF_TEX1)
+#define CUSTOMFVF (D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1)
 
 class Box
 {
 public:
 	Box();
-	Box(int x, int y);
 	~Box();
 
 	bool Init(IDirect3DDevice9* pDevice, float width, float height, float x, float y, D3DCOLOR color);
@@ -36,8 +37,9 @@ private:
 	static struct VertexData
 	{
 		D3DXVECTOR3 Pos;
-		FLOAT RHW;
+		float RHW;
 		D3DCOLOR Color;
+		D3DXVECTOR2 UV;
 	};
 
 	D3DRECT m_BarRect;
@@ -60,6 +62,8 @@ private:
 	D3DXMATRIX m_World;
 	D3DXMATRIX m_View;
 	D3DXMATRIX m_Proj;
+
+	LPDIRECT3DTEXTURE9 m_pTexture;
 
 	//IDirect3DTexture9* m_pTexture;
 	//IDirect3DSurface9* m_pDest;

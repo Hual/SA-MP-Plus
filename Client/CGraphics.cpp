@@ -6,6 +6,7 @@ IDirect3DDevice9* CGraphics::m_pDevice;
 bool CGraphics::m_bCursorEnabled;
 
 Sprite* CGraphics::logo;
+Box* CGraphics::box;
 
 VOID CGraphics::SetScreenResolution(UINT uiWidth, UINT uiHeight)
 {
@@ -46,6 +47,17 @@ void CGraphics::Initialize(IDirect3D9* pDirect3D, IDirect3DDevice9* pDevice)
 		CLog::Write("Loaded the SA-MP+ logo successfully");
 	}
 
+	box = new Box();
+
+	if (!box->Init(pDevice, 100, 100, width / 2, height / 2, D3DCOLOR_ARGB(55, 255, 255, 255)))
+	{
+		CLog::Write("Couldn't load 'box'");
+	}
+	else
+	{
+		CLog::Write("Loaded 'box'");
+	}
+
 }
 
 void CGraphics::UpdateScreenResolution()
@@ -71,6 +83,8 @@ void CGraphics::OnReset()
 	CLog::Write("CGraphics::OnReset");
 	if (logo)
 		logo->OnLostDevice();
+	if (box)
+		box->OnLostDevice();
 }
 
 void CGraphics::PostDeviceReset()
@@ -78,11 +92,12 @@ void CGraphics::PostDeviceReset()
 	CLog::Write("CGraphics::PostDeviceReset");
 	if (logo)
 		logo->OnResetDevice();
+	if (box)
+		box->OnResetDevice();
 }
 
 void CGraphics::PreEndScene()
 {
-	
 	if (!CGame::IsLoaded())
 	{
 		if (logo->isInitialized())
@@ -100,13 +115,15 @@ void CGraphics::PreEndScene()
 		if (CGame::Playing())
 		{
 			//Drawing goes here
+			//if (box && box->isInitialized())
+				//box->Draw();
 		}
 	}
 }
 
 void CGraphics::BeginScene()
 {
-
+	
 }
 
 void CGraphics::CleanUp()
@@ -116,5 +133,10 @@ void CGraphics::CleanUp()
 	{
 		delete logo;
 		logo = nullptr;
+	}
+	if (box)
+	{
+		delete box;
+		box = nullptr;
 	}
 }
