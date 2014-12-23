@@ -6,6 +6,7 @@ A client modification that uses SA-MP's plugin SDK to interact with the server a
 Download
 ---------
   * [PAWN include.](Build/sampp.inc?raw=true)
+  * [SublimeText auto complete file](Build/Pawn.sublime-completions?raw=true)
   * [Source code.](https://github.com/v01d-/SA-MP-Plus/archive/master.zip)
 
 ####Windows:
@@ -64,8 +65,8 @@ Functions
   * TogglePlayerInfiniteOxygen(playerid, bool:toggle)
   * ToggleWaterBuoyancy(playerid, bool:toggle)
   * ToggleUnderwaterEffect(playerid, bool:toggle)
-  * ToggleNightVision(playerid, bool:toggle);
-  * ToggleThermalVision(playerid, bool:toggle);
+  * ToggleNightVision(playerid, bool:toggle)
+  * ToggleThermalVision(playerid, bool:toggle)
 
 ####Callbacks:
   * OnPlayerOpenPauseMenu(playerid)
