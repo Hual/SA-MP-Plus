@@ -728,8 +728,6 @@
 		"MOUSE_MIDDLE_CLICK",
 		"MOUSE_RIGHT_CLICK",
 		"NO_BLUR_INTENSITY",
-		"OnPlayerConnect",
-		"OnPlayerDisconnect",
 		"PAUSE_ID_AUDIODEFAULTSETTINGS",
 		"PAUSE_ID_AUDIOSETTINGS",
 		"PAUSE_ID_BRIEF",
@@ -774,8 +772,6 @@
 		"STUNT_TYPE_STOPPIE",
 		"STUNT_TYPE_TWO_WHEELS",
 		"STUNT_TYPE_WHEELIE",
-		"_ALS_OnPlayerConnect",
-		"_ALS_OnPlayerDisconnect"
 
 		/*
 
@@ -785,7 +781,7 @@
 		██╔══╝  ██║╚██╗██║██║  ██║
 		███████╗██║ ╚████║██████╔╝
 		╚══════╝╚═╝  ╚═══╝╚═════╝ 
-		
+
 		*/           
 
 		/////////////////////////////////////////////////////////////////////////////////////
