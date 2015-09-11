@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "Server\Server.vcxproj", "{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}"
 EndProject
@@ -234,32 +234,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proxy", "Proxy", "{EF8298D3
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Debug|Mixed Platforms = Debug|Mixed Platforms
-		Debug|Win32 = Debug|Win32
-		Release|Any CPU = Release|Any CPU
-		Release|Mixed Platforms = Release|Mixed Platforms
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Debug|Win32.ActiveCfg = Debug|Win32
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Debug|Win32.Build.0 = Debug|Win32
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Release|Any CPU.ActiveCfg = Release|Win32
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Release|Win32.ActiveCfg = Release|Win32
 		{EB9065C8-756C-48BC-BCB9-5519D9F1F75D}.Release|Win32.Build.0 = Release|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Debug|Win32.ActiveCfg = Debug|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Debug|Win32.Build.0 = Debug|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Any CPU.ActiveCfg = Release|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Mixed Platforms.Build.0 = Release|Win32
 		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Win32.ActiveCfg = Release|Win32
 		{14D55EBE-A874-4AEC-AA4E-8103DB779038}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
